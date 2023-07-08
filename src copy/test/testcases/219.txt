@@ -1,0 +1,5 @@
+class TestBlock extends Name{
+    static int function(){
+        float r,s;
+    }
+}

@@ -1,0 +1,615 @@
+testcase200:
+class Shape {
+    static final int numOfShape = 0;
+    final int immuAttribute = 0;
+    float length,width;
+    static int getNumOfShape() {
+        return numOfShape;
+    }
+}
+---
+testcase201:
+class Rectangle extends Shape {
+    float getArea(){
+        return this.length*this.width;
+    }
+}
+---
+testcase202:
+class Hello{
+    final int My1stCons = 1 +5,My2ndCons = 2;
+    static int x,y =0;
+}
+---
+testcase203:
+class Hello1 {
+    fina int My1stCons = 1;
+    static int x =0;
+}
+---
+testcase204:
+class Hello{
+    final int My1stCons = 0,4;
+}
+---
+testcase205:
+class Happy {
+    static final a = 0;
+    final int b =1;
+    final static im = 2;
+}
+---
+testcase206:
+class Shape extends ShapeFather {
+    float a(){
+        return this.length*this.width;
+    }
+}
+---
+testcase207:
+class Shape extends ShapeFather {
+    float a(){
+        return this*this.width;
+    }
+}
+---
+testcase208:
+class Name{
+    float a = 9.0,b=12e9,c=0.5E-5;
+    int a = 2,b,c=4,d;
+}
+---
+testcase209:
+class Name{
+    static int float a (;){
+
+    }
+}
+---
+testcase210:
+class Name{
+    static int a (;int a,b){
+
+    }
+}
+---
+testcase211:
+class Name{
+    static int a (int a,b; float c){
+        
+    }
+}
+---
+testcase212:
+class Name{
+    static int a (int a,b; float c){
+        return a;
+    }
+}
+---
+testcase213:
+class Name{
+    final static width, height;
+    final static int a (int a,b; float c){
+        return a;
+    }
+}
+---
+testcase214:
+class Name{
+    final static string width, height;
+    static int a (int a,b; float c){
+        return a;
+    }
+}
+---
+testcase215:
+class TestBlock extends Name{
+    {
+        return a;
+    }
+}
+---
+testcase216:
+class TestBlock extends Name{
+    static function{
+        return a;
+    }
+}
+---
+testcase217:
+class TestBlock extends Name{
+    static boolean function{
+        return a;
+    }
+}
+---
+testcase218:
+class TestBlock extends Name{
+    static int function(){
+        {1,2,3}
+    }
+}
+---
+testcase219:
+class TestBlock extends Name{
+    static int function(){
+        float r,s;
+    }
+}
+---
+testcase220:
+class TestBlock extends Name{
+    static int function(){
+        int[5] a,b;
+    }
+}
+---
+testcase221:
+class TestBlock extends Name{
+    static int function(){
+        r:=2.0;
+    }
+}
+---
+testcase222:
+class TestBlock extends Name{
+    static int function(){
+        s := r * r* this.myPI;
+        s = r * r* this.myPI;
+    }
+}
+---
+testcase223:
+class TestBlock extends Name{
+    static int function(){
+        a[0]:=s;
+    }
+}
+---
+testcase224:
+class testBlock{
+    static int function(){
+        r:=2;
+        float r,s;
+    }
+}
+---
+testcase225:
+class testBlock{
+    static int function(){
+        float r,s;
+        r:=2;
+    }
+---
+testcase226:
+class testBlock{
+    static int function(){
+        float r,s=0;
+        this.a :=10;
+        this.b :="hello world!";
+        a:=this.a^this.b;
+    }
+}
+---
+testcase227:
+class testBlock{
+    static int function(){
+        float r,s;
+        r:=2;
+        value:= x.forr(5);
+        x.hello := f.length + this.width; #it's work ???
+    }
+}
+---
+testcase228:
+class testBlock{
+    static int function(){
+        float r,s;
+        x.hello := f.length(3+f.width);
+        x.hello := f.length("are u ole");
+    }
+}
+---
+testcase229:
+class testBlock{
+    static int function(){
+        float r,s;
+        number[3] := r *2 - s.bts(7);
+    }
+}
+---
+testcase230:
+class testBlock{
+    static int function(){
+        float r,s;
+        arr[this.a] := this.a[arr];
+    }
+}
+---
+testcase231:
+class testBlock{
+    static int function(){
+        float r,s;
+        arr[this.a + x.foo(2)] := this.a[arr];
+        a[b[c[d[2]]]]:=3-43*b[dfd - fdf[2]];
+    }
+}
+---
+testcase232:
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[2] := x.m()[3];
+    }
+}
+---
+testcase233:
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[2][] := x.m()[3];
+    }
+}
+---
+testcase234:
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[b[[]]] := x.m()[3];
+    }
+}
+---
+testcase235:
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[2] := x.m()[].a;
+    }
+}
+---
+testcase236:
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[2] := x.m()[3].a.b;
+    }
+}
+---
+testcase237:
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[2] := x.m(21)[[]3];
+    }
+}
+---
+testcase238:
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[] := x.m()[];
+    }
+}
+---
+testcase239:
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[.] := x.m()[];
+    }
+}
+---
+testcase240:
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[;] := x.m()[nil];
+    }
+}
+---
+testcase241:
+class testIfStatement{
+    if flag then
+        io.writeStrLn("hahaha");
+    else
+        io.writeStrLn("hihihi");
+}
+---
+testcase242:
+class testIfStatement{
+    float a,x;
+    static void ifcheck(int a){
+        if flag then
+            io.writeStrLn("hahaha");
+        else
+            io.writeStrLn("hihihi");
+    }
+}
+---
+testcase243:
+class testIfStatement{
+    float a,x;
+    static void ifcheck(int x){
+        if flag then {
+            float a;
+            float b;
+            a[0] :=3;
+            b[2]:=a[3];
+        }
+        else{
+            io.writeStrLn("hihihi");
+        }
+    }
+}
+---
+testcase244:
+class testIfStatement{
+    float a,x;
+    static void ifcheck(int x){
+        if flag then {
+            float a;
+            a[0] :=3;
+            float b;
+            b[2]:=a[3];
+        }
+        else
+            io.writeStrLn("hihihi");
+    }
+}
+---
+testcase245:
+class testIfStatement{
+    float a,x;
+    static void ifcheck(int x){
+        if flag then {
+            float a;
+            float b;
+            b[2]:=a[3];
+            if a+b then {
+                a :=b;
+            }
+        }
+        else
+            io.writeStrLn("hihihi");
+    }
+}
+---
+testcase246:
+class testIfStatement{
+    float a,x;
+    static void ifcheck(int x){
+        if flag then {
+            float a;
+            float b;
+            a[0] :=3;
+            b[2]:=a[3];
+        }
+        else{
+            if a ==9 then
+                a:=9;
+            else
+                if a==10 then
+                    a :=10;
+        }
+        io.writeStrLn("hihihi");
+    }
+}
+---
+testcase247:
+class testIfStatement{
+    float a,x;
+    static void ifcheck(int x){
+        if flag: {
+            float a;
+            float b;
+            a[0] :=3;
+            b[2]:=a[3];
+        }
+        else{
+            io.writeStrLn("hihihi");
+        }
+    }
+}
+---
+testcase248:
+class testIfStatement{
+    float a,x;
+    static void ifcheck(int x){
+        if flag then {
+            float a;
+            a[0] :=3;
+            else 
+                io.writeStr("not here");
+        }
+        else
+            io.writeStrLn("hihihi");
+    }
+}
+---
+testcase249:
+class testIfStatement{
+    float a,x;
+    static void ifcheck(int x){
+        else{
+            if flag then {
+            float a;
+            float b;
+            b[2]:=a[3];
+            if a+b then {
+                a :=b;
+            }
+        }
+        }
+    }
+}
+---
+testcase250:
+class testIfStatement{
+    float a,x;
+    static void ifcheck(int x){
+        if a>=0 then {
+            float a;
+            a[0] :=3;
+        }
+        else if a<=0 then{
+            if a ==9 then
+                a:=9;
+            else
+                if a==10 then
+                    a :=10;
+        }
+        else 
+            io.writeStrLn("hihihi");
+    }
+}
+---
+testcase251:
+class testForStatement{
+    int a;
+    static float b(){
+        for i:=1 to 100 do{
+            io.writeIntLn(i);
+            Intarray[i]:=i+1;
+        }
+    }
+}
+---
+testcase252:
+class testForStatement{
+    int a;
+    static float b(){
+        for i:=1 to 100 do{
+            if i == 3 then
+                Intarray[i]:=i+1;
+            else{
+                a:= i[3];
+            }
+        }
+    }
+}
+---
+testcase253:
+class testForStatement{
+    int a;
+    static float b(){
+        for i:=1 downto 100 do{
+            io.writeIntLn(x);
+            Intarray[i]:=i+1;
+        }
+    }
+}
+---
+testcase254:
+class testForStatement{
+    int a;
+    static float b(){
+        for i:=1 to 100 do{
+            io.writeIntLn(i);
+            Intarray[i]:=i+1;
+        }
+    }
+    string testFor(){
+        if i>=5 then
+            for a[10]:=10 to a[220]:=9 do
+                return a;
+    }
+}
+---
+testcase255:
+class testForStatement{
+    int a;
+    static float b(){
+        for 1 to 100 do 
+            io.writeIntLn(i);
+        Intarray[i]:=i+1;
+        
+    }
+}
+---
+testcase256:
+class testForStatement{
+    int a;
+    static float b(){
+        for i:=1 to 100 do{
+            io.writeIntLn(i);
+            if i==10 then break;
+            Intarray[i]:=i+1;
+        }
+    }
+}
+---
+testcase257:
+class testForStatement{
+    int a;
+    static float b(){
+        for i:=1 to 100 do{
+            if i == 3 then
+                continue;
+            else{
+                break;
+            }
+        }
+    }
+}
+---
+testcase258:
+class testForStatement{
+    int a;
+    break;
+    static float b(){
+        for i:=1 downto 100 do{
+            io.writeIntLn(x);
+            Intarray[i]:=i+1;
+        }
+    }
+}
+---
+testcase259:
+class testForStatement{
+    int a;
+    static float b(){
+        for i:=1 to 100 do{
+            io.writeIntLn(i);
+            Intarray[i]:=i+1;
+        }
+        return break;
+    }
+    string testFor(){
+        if i>=5 then
+            for a[10]:=10 to a[220]:=9 do
+                return continue;
+    }
+}
+---
+testcase260:
+class testForStatement{
+    int a;
+    continue return a;
+    static float b(){
+        for 1 to 100 do 
+            io.writeIntLn(i);
+        Intarray[i]:=i+1;
+    }
+}
+---
+testcase261:
+class testForStatement{
+    int a;
+    static float b(){
+        for i:=1 to 100 do 
+            Shape.getCount(i);
+        Intarray[i]:=i+1;
+    }
+}
+---
+testcase262:
+class testForStatement{
+    int a;
+    static float b(){
+        Shape.a[a.getCount(b)];
+            
+        Intarray[i]:=i+1;
+    }
+}
+---

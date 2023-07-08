@@ -1,0 +1,15 @@
+class testForStatement{
+    int a;
+    static float b(){
+        for i:=1 to 100 do{
+            io.writeIntLn(i);
+            Intarray[i]:=i+1;
+        }
+        return break;
+    }
+    string testFor(){
+        if i>=5 then
+            for a[10]:=10 to a[220]:=9 do
+                return continue;
+    }
+}

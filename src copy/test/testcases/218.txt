@@ -1,0 +1,5 @@
+class TestBlock extends Name{
+    static int function(){
+        {1,2,3}
+    }
+}

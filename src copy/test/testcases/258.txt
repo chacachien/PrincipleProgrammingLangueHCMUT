@@ -1,0 +1,10 @@
+class testForStatement{
+    int a;
+    break;
+    static float b(){
+        for i:=1 downto 100 do{
+            io.writeIntLn(x);
+            Intarray[i]:=i+1;
+        }
+    }
+}

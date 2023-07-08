@@ -1,0 +1,6 @@
+class testBlock{
+    static int function(){
+        float r,s;
+        number[3] := r *2 - s.bts(7);
+    }
+}

@@ -1,0 +1,4 @@
+class Hello1 {
+    fina int My1stCons = 1;
+    static int x =0;
+}

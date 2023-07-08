@@ -1,0 +1,6 @@
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[b[[]]] := x.m()[3];
+    }
+}

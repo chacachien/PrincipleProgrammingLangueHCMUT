@@ -1,0 +1,5 @@
+class TestBlock extends Name{
+    static boolean function{
+        return a;
+    }
+}

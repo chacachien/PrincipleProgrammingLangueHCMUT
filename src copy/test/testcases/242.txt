@@ -1,0 +1,9 @@
+class testIfStatement{
+    float a,x;
+    static void ifcheck(int a){
+        if flag then
+            io.writeStrLn("hahaha");
+        else
+            io.writeStrLn("hihihi");
+    }
+}

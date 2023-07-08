@@ -1,0 +1,12 @@
+class testForStatement{
+    int a;
+    static float b(){
+        for i:=1 to 100 do{
+            if i == 3 then
+                continue;
+            else{
+                break;
+            }
+        }
+    }
+}
