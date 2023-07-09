@@ -1,0 +1,5 @@
+class Happy {
+    static final a = 0;
+    final int b =1;
+    final static im = 2;
+}

@@ -1,0 +1,10 @@
+class SearchLinkedList {
+    static void main(ArrayString args) {
+        SearchLinkedList sList = new SearchLinkedList();
+        sList.add(1);
+        sList.add(2);
+        sList.add(4);
+        sList.sNode(2);
+        sList.search(7);
+    }
+}

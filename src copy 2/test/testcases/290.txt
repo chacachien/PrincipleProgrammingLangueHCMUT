@@ -1,0 +1,11 @@
+class Palindrome{
+    void main(ArrayString args){
+        original := in.nextLine();
+        length := original.length();
+        for i := (length - 1) downto 0 do
+            reverse := reverse + original.charAt(i);
+            if original.equals(reverse) then
+                io.print("Yes."); 
+            else io.print("No.");
+    }
+}

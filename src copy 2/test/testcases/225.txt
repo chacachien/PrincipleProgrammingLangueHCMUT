@@ -1,0 +1,5 @@
+class testBlock{
+    static int function(){
+        float r,s;
+        r:=2;
+    }

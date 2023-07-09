@@ -1,0 +1,6 @@
+class Hello {
+  void main(StringArray)
+  {
+    io.print("Hello, World!");
+  }
+}

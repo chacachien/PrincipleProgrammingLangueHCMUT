@@ -1,0 +1,200 @@
+testcase200:successful
+---
+testcase201:successful
+---
+testcase202:successful
+---
+testcase203:Error on line 2 col 9: int
+---
+testcase204:Error on line 2 col 28: 4
+---
+testcase205:Error on line 2 col 19: =
+---
+testcase206:successful
+---
+testcase207:successful
+---
+testcase208:successful
+---
+testcase209:Error on line 2 col 15: float
+---
+testcase210:Error on line 2 col 18: ;
+---
+testcase211:successful
+---
+testcase212:successful
+---
+testcase213:Error on line 2 col 22: ,
+---
+testcase214:successful
+---
+testcase215:Error on line 2 col 4: {
+---
+testcase216:Error on line 2 col 19: {
+---
+testcase217:Error on line 2 col 27: {
+---
+testcase218:Error on line 3 col 9: 1
+---
+testcase219:successful
+---
+testcase220:successful
+---
+testcase221:successful
+---
+testcase222:Error on line 4 col 10: =
+---
+testcase223:successful
+---
+testcase224:Error on line 4 col 8: float
+---
+testcase225:Error on line 5 col 5: <EOF>
+---
+testcase226:successful
+---
+testcase227:successful
+---
+testcase228:successful
+---
+testcase229:successful
+---
+testcase230:successful
+---
+testcase231:successful
+---
+testcase232:successful
+---
+testcase233:Error on line 4 col 14: [
+---
+testcase234:Error on line 4 col 14: [
+---
+testcase235:Error on line 4 col 24: ]
+---
+testcase236:Error on line 4 col 26: .
+---
+testcase237:Error on line 4 col 26: [
+---
+testcase238:Error on line 4 col 12: ]
+---
+testcase239:Error on line 4 col 12: .
+---
+testcase240:Error on line 4 col 12: ;
+---
+testcase241:Error on line 2 col 4: if
+---
+testcase242:successful
+---
+testcase243:successful
+---
+testcase244:Error on line 7 col 12: float
+---
+testcase245:successful
+---
+testcase246:successful
+---
+testcase247:Error on line 4 col 15: :
+---
+testcase248:Error on line 7 col 12: else
+---
+testcase249:Error on line 4 col 8: else
+---
+testcase250:successful
+---
+testcase251:successful
+---
+testcase252:successful
+---
+testcase253:successful
+---
+testcase254:Error on line 11 col 17: [
+---
+testcase255:Error on line 4 col 12: 1
+---
+testcase256:successful
+---
+testcase257:successful
+---
+testcase258:Error on line 3 col 4: break
+---
+testcase259:Error on line 8 col 15: break
+---
+testcase260:Error on line 3 col 4: continue
+---
+testcase261:successful
+---
+testcase262:Error on line 4 col 30: ;
+---
+testcase263:successful
+---
+testcase264:Error on line 5 col 3: <EOF>
+---
+testcase265:Error on line 2 col 23: )
+---
+testcase266:Error on line 2 col 32: int
+---
+testcase267:successful
+---
+testcase268:successful
+---
+testcase269:Error on line 4 col 19: :=
+---
+testcase270:successful
+---
+testcase271:Error on line 5 col 15: =
+---
+testcase272:successful
+---
+testcase273:Error on line 4 col 25: ,
+---
+testcase274:Error on line 4 col 13: (
+---
+testcase275:Error on line 3 col 27: ;
+---
+testcase276:successful
+---
+testcase277:Error on line 4 col 12: 1
+---
+testcase278:Error on line 5 col 17: =
+---
+testcase279:successful
+---
+testcase280:successful
+---
+testcase281:successful
+---
+testcase282:successful
+---
+testcase283:successful
+---
+testcase284:successful
+---
+testcase285:successful
+---
+testcase286:Error on line 3 col 38: =
+---
+testcase287:Error on line 4 col 29: .
+---
+testcase288:Error on line 4 col 15: :
+---
+testcase289:successful
+---
+testcase290:successful
+---
+testcase291:successful
+---
+testcase292:successful
+---
+testcase293:Error on line 3 col 49: *
+---
+testcase294:successful
+---
+testcase295:Error on line 10 col 30: (
+---
+testcase296:Error on line 21 col 9: :
+---
+testcase297:successful
+---
+testcase298:Error on line 7 col 18: )
+---
+testcase299:successful
+---

@@ -1,0 +1,9 @@
+class CountChar{ 
+    void main() {
+        String str = "useless"; count = 0;
+        for i :=  0 to str.length() do {
+            if str.charAt(i) != " " then count := count + 1; 
+        }
+        io.print(count); 
+    } 
+}

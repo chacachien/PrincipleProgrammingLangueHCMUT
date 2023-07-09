@@ -1,0 +1,6 @@
+class NewTon {
+    void main() {
+        int n = m.nextInt(1;2;3);
+        io.print(self.fact(n));
+    }
+}

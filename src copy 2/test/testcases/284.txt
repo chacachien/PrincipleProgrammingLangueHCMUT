@@ -1,0 +1,14 @@
+class CountPunctuation{
+    void main () {
+        int Size = io.read(), i;
+        IntArray a = new IntArray(Size);
+        IntArray b = nil;
+        for i := 0 to Size do{ 
+            a[i] := io.read(); 
+        }
+        b := Arrays.copyOf(a, Size);
+        for i := 0 to Size do {
+            io.println("Element at b["+ i +"] = " + b[i]); 
+        }
+    }
+}

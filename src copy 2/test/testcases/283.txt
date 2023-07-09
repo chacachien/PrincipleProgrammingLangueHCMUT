@@ -1,0 +1,9 @@
+class Trapezoid {
+    IOScanner ios;
+    void main() {
+        Area := 0.5 * (base1st + base2nd) * height;
+        Median := 0.5 * (base1st+ base2nd);
+        io.format("Area = %.2f",Area);
+        io.format("Median = %.2f", Median);
+    } 
+}

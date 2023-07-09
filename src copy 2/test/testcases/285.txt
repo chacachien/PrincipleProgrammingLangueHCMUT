@@ -1,0 +1,11 @@
+class Reverse{
+    void main(){
+        int number = io.input();
+        int start =0;
+        int length = number.toString().length; # :)
+        for i := 0 to length do
+        { int remainder = number % 10;
+        reverse := reverse * 10 + remainder;
+        number := number/10; } io.print(reverse);
+    }
+}

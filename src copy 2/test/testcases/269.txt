@@ -1,0 +1,9 @@
+class IndividualCharacters
+{  
+      void main(ArrayString args) {  
+        String str := "characters ";  
+        for i  :=  0 to str.length() do {  
+            io.print(str.charAt(i) + " ");  
+        }  
+    } 
+}

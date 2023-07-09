@@ -1,0 +1,12 @@
+class Reverse {
+    String reverse(string s) {
+        var both = s.split(" ", 1," "); # pythonic
+        if both.length == 1 then return both[0];
+        else return self.reverse(both[1]) + " " + both[0]; 
+    }
+    void main(self) {
+        string str ="1 2 3 4";
+        string reversed = self.reverse(str);
+        io.print(reversed);
+    }
+}

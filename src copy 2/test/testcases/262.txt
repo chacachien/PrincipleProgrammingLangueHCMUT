@@ -1,0 +1,8 @@
+class testForStatement{
+    int a;
+    static float b(){
+        Shape.a[a.getCount(b)];
+            
+        Intarray[i]:=i+1;
+    }
+}

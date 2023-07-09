@@ -1,0 +1,10 @@
+class testExpression {
+    static void main(ArrayString args) {
+        for i := 10 to 201 do {
+            if (i % 7 == 0) + - (i \ 5 != 0) then 
+            {
+                io.print();
+            }
+        }
+    }
+}

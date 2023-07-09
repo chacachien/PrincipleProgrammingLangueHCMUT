@@ -1,0 +1,7 @@
+class HashMap{
+    static void main(){
+        var nguyen = new Employee(1, "Pat");
+        int a = nguyen.hash();
+        io.print("hash a = " +a);
+    }
+}

@@ -1,0 +1,8 @@
+class Cat extends Animal{
+    int num = 12;
+    Cat[13] cat;
+    Cat(int 1size){
+        this.cat := new Cat(size);
+        this.catCount :=cat;
+    } 
+}

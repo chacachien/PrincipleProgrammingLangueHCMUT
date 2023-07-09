@@ -1,0 +1,6 @@
+class TestBlock extends Name{
+    static int function(){
+        s := r * r* this.myPI;
+        s = r * r* this.myPI;
+    }
+}

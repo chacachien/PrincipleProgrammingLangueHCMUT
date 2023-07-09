@@ -1,0 +1,6 @@
+class Name{
+    final static width, height;
+    final static int a (int a,b; float c){
+        return a;
+    }
+}

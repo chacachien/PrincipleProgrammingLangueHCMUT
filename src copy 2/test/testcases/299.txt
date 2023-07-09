@@ -1,0 +1,11 @@
+class GetLink {
+    void main() {
+        System.exit(1);
+        s.executeUpdate("DROP TABLE CUJOSQL.DLTABLE");
+        s.executeUpdate("CREATE TABLE CUJOSQL.DLTABLE (COL1 DATALINK)");
+        ps.setString (1, "http://www.ibm.com/developerworks/java/library/j-jdbcnew/index.html");
+        ps.executeUpdate();
+        rs.next();
+        is_primitive_literal.close();
+    } 
+}

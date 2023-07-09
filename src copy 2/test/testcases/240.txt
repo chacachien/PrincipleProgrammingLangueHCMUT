@@ -1,0 +1,6 @@
+class testBlock{
+    static int function(){
+        float r,s;
+        x.b[;] := x.m()[nil];
+    }
+}

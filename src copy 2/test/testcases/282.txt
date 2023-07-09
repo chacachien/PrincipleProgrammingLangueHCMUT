@@ -1,0 +1,11 @@
+class Almost {
+    static void main()  {
+        Connection conn = DriverManager.getConnection("jdbc:db2:*local");
+        Statement stmt = conn.createStatement();
+        crs.populate(rs);
+        for i := 0 to _Int.MaxInt do  {
+            if !crs.next() then break;
+        io.print("v1 is " + crs.getString(1));
+        }
+    }
+}
