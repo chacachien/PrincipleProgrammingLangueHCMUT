@@ -1,0 +1,1 @@
+this is a array {a,d,d},<EOF>

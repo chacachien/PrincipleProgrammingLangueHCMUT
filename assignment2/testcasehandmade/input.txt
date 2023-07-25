@@ -1,0 +1,26 @@
+testcase300:
+class a{
+    float b, c;
+}
+---
+testcase301:
+class a{
+    float b = 3, d = 3, c = 3+4; 
+}
+---
+testcase302:
+class a{
+    static final boolean c = 2;
+}
+---
+testcase303:
+class a{
+    final static int c = 1;
+    
+}
+---
+testcase304:
+class a{
+    static float a;
+}
+---

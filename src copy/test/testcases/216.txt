@@ -1,5 +1,0 @@
-class TestBlock extends Name{
-    static function{
-        return a;
-    }
-}

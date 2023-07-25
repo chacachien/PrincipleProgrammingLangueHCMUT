@@ -1,0 +1,10 @@
+testcase300:Program([ClassDecl(Id(a),[AttributeDecl(Instance,VarDecl(Id(b),FloatType)),AttributeDecl(Instance,VarDecl(Id(c),FloatType))])])
+---
+testcase301:Program([ClassDecl(Id(a),[AttributeDecl(Instance,VarDecl(Id(b),FloatType,e)),AttributeDecl(Instance,VarDecl(Id(d),FloatType,e)),AttributeDecl(Instance,VarDecl(Id(c),FloatType,e))])])
+---
+testcase302:Program([ClassDecl(Id(a),[AttributeDecl(Static,ConstDecl(Id(c),BoolType,e))])])
+---
+testcase303:Program([ClassDecl(Id(a),[AttributeDecl(Static,ConstDecl(Id(c),IntType,e))])])
+---
+testcase304:Program([ClassDecl(Id(a),[AttributeDecl(Static,VarDecl(Id(a),FloatType))])])
+---

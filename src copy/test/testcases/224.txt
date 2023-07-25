@@ -1,6 +1,0 @@
-class testBlock{
-    static int function(){
-        r:=2;
-        float r,s;
-    }
-}

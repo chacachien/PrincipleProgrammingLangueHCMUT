@@ -1,6 +1,0 @@
-class Name{
-    final static string width, height;
-    static int a (int a,b; float c){
-        return a;
-    }
-}

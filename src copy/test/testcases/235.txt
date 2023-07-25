@@ -1,6 +1,0 @@
-class testBlock{
-    static int function(){
-        float r,s;
-        x.b[2] := x.m()[].a;
-    }
-}

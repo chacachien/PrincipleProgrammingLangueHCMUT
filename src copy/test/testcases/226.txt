@@ -1,8 +1,0 @@
-class testBlock{
-    static int function(){
-        float r,s=0;
-        this.a :=10;
-        this.b :="hello world!";
-        a:=this.a^this.b;
-    }
-}

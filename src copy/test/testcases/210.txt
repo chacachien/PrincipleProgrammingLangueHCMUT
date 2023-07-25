@@ -1,5 +1,0 @@
-class Name{
-    static int a (;int a,b){
-
-    }
-}

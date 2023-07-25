@@ -1,4 +1,0 @@
-class Name{
-    float a = 9.0,b=12e9,c=0.5E-5;
-    int a = 2,b,c=4,d;
-}

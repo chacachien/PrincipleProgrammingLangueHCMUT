@@ -1,6 +1,0 @@
-class testIfStatement{
-    if flag then
-        io.writeStrLn("hahaha");
-    else
-        io.writeStrLn("hihihi");
-}

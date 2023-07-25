@@ -1,7 +1,0 @@
-class testBlock{
-    static int function(){
-        float r,s;
-        arr[this.a + x.foo(2)] := this.a[arr];
-        a[b[c[d[2]]]]:=3-43*b[dfd - fdf[2]];
-    }
-}

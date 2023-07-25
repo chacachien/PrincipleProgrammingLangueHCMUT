@@ -1,3 +1,0 @@
-class Hello{
-    final int My1stCons = 0,4;
-}

@@ -1,8 +1,0 @@
-class testBlock{
-    static int function(){
-        float r,s;
-        r:=2;
-        value:= x.forr(5);
-        x.hello := f.length + this.width; #it's work ???
-    }
-}

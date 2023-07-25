@@ -1,9 +1,0 @@
-class testForStatement{
-    int a;
-    static float b(){
-        for i:=1 to 100 do{
-            io.writeIntLn(i);
-            Intarray[i]:=i+1;
-        }
-    }
-}

@@ -1,0 +1,3 @@
+class a{
+    static final boolean c = 2;
+}

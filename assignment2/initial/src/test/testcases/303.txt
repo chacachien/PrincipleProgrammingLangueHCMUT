@@ -1,0 +1,4 @@
+class a{
+    final static int c = 1;
+    
+}

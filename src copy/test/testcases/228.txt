@@ -1,7 +1,0 @@
-class testBlock{
-    static int function(){
-        float r,s;
-        x.hello := f.length(3+f.width);
-        x.hello := f.length("are u ole");
-    }
-}

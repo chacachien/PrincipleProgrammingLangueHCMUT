@@ -1,5 +1,0 @@
-class TestBlock extends Name{
-    static int function(){
-        int[5] a,b;
-    }
-}

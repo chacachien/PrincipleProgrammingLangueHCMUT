@@ -1,6 +1,0 @@
-class testBlock{
-    static int function(){
-        float r,s;
-        arr[this.a] := this.a[arr];
-    }
-}

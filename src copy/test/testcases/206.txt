@@ -1,5 +1,0 @@
-class Shape extends ShapeFather {
-    float a(){
-        return this.length*this.width;
-    }
-}
