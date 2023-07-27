@@ -1,0 +1,6 @@
+class Shape {
+    float length,width;
+    static int getNumOfShape() {
+        return numOfShape;
+    }
+}

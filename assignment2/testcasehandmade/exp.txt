@@ -8,3 +8,11 @@ testcase303:Program([ClassDecl(Id(a),[AttributeDecl(Static,ConstDecl(Id(c),IntTy
 ---
 testcase304:Program([ClassDecl(Id(a),[AttributeDecl(Static,VarDecl(Id(a),FloatType))])])
 ---
+testcase305:Program([ClassDecl(Id(Rectangle),Id(Shape),[MethodDecl(Id(getArea),Instance,[],FloatType,Block([],[Return(e)]))])])
+---
+testcase306:Program([ClassDecl(Id(Rectangle),Id(Shape),[MethodDecl(Id(getArea),Instance,[],FloatType,Block([],[Return(e)])),MethodDecl(Id(getLength),Instance,[],FloatType,Block([],[Return(e)]))])])
+---
+testcase307:Program([ClassDecl(Id(Shape),[AttributeDecl(Instance,VarDecl(Id(length),FloatType)),AttributeDecl(Instance,VarDecl(Id(width),FloatType)),MethodDecl(Id(getNumOfShape),Static,[],IntType,Block([],[Return(e)]))])])
+---
+testcase308:Program([ClassDecl(Id(Rectangle),[MethodDecl(Id(getArea),Instance,[param(Id(a),FloatType),param(Id(b),FloatType),param(Id(c),IntType)],FloatType,Block([],[Return(e)]))])])
+---

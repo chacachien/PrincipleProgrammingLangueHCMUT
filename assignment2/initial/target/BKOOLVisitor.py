@@ -149,6 +149,11 @@ class BKOOLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by BKOOLParser#vardeclmu.
+    def visitVardeclmu(self, ctx:BKOOLParser.VardeclmuContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by BKOOLParser#assignmentstatement.
     def visitAssignmentstatement(self, ctx:BKOOLParser.AssignmentstatementContext):
         return self.visitChildren(ctx)

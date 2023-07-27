@@ -198,6 +198,10 @@ class Block(Stmt):
         return "Block([" + ','.join(str(i) for i in self.decl) + "],[" + ','.join(str(i) for i in self.stmt) + "])"
 
 
+#-----------------------------------------------------------
+# ----------------    DECLARATION           --------
+#-----------------------------------------------------------
+
 # used for local constant declaration
 @dataclass
 class ConstDecl(StoreDecl):

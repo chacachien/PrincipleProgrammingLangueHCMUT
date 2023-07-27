@@ -1,6 +1,7 @@
 from BKOOLVisitor import BKOOLVisitor
 from BKOOLParser import BKOOLParser
 from AST import *
+from functools import reduce
 
 class ASTGeneration(BKOOLVisitor):
 
@@ -51,14 +52,17 @@ class ASTGeneration(BKOOLVisitor):
     #   member: attribute
 	# 	        | method
 	# 	        | constructor;
+    #       return a list of MemberDecl
     def visitMember(self, ctx:BKOOLParser.MemberContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by BKOOLParser#attribute.
     #   attribute: (mutableatt|immutableatt) SEMI;
+    #       return a list of AttributeDecl
     def visitAttribute(self, ctx:BKOOLParser.AttributeContext):
-        return self.visit(ctx.getChild(0))
+        return self.visit(ctx.getChild(0))          
+        
 
 
     # Visit a parse tree produced by BKOOLParser#mutableatt.
@@ -86,9 +90,9 @@ class ASTGeneration(BKOOLVisitor):
 	#              | (STATIC)? FINAL typ listatt;
     def visitImmutableatt(self, ctx:BKOOLParser.ImmutableattContext):
         if ctx.getChildCount()==4:
-            return map(lambda x: AttributeDecl(Static(),ConstDecl(x[0],self.visit(ctx.typ()),x[1])), self.visit(ctx.listatt()) )
+            return list(map(lambda x: AttributeDecl(Static(),ConstDecl(x[0],self.visit(ctx.typ()),x[1])), self.visit(ctx.listatt()) ))
         else:
-            return map(lambda x: AttributeDecl(Instance(),ConstDecl(x[0],self.visit(ctx.typ()),x[1])), self.visit(ctx.listatt()) )
+            return list(map(lambda x: AttributeDecl(Instance(),ConstDecl(x[0],self.visit(ctx.typ()),x[1])), self.visit(ctx.listatt()) ))
 
 
     # Visit a parse tree produced by BKOOLParser#listatt.
@@ -109,23 +113,32 @@ class ASTGeneration(BKOOLVisitor):
     # Visit a parse tree produced by BKOOLParser#method.
     #       method: STATIC? typ ID LB listparameter RB blockstatement;
     def visitMethod(self, ctx:BKOOLParser.MethodContext):
-        return 'method'
-
-
+        if ctx.STATIC():
+            return [MethodDecl(Static(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()), self.visit(ctx.typ()), self.visit(ctx.blockstatement()))]
+        else:
+            return [MethodDecl(Instance(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()), self.visit(ctx.typ()), self.visit(ctx.blockstatement()))]
     # Visit a parse tree produced by BKOOLParser#listparameter.
     #       listparameter: listparameterprime | ;
     def visitListparameter(self, ctx:BKOOLParser.ListparameterContext):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount()==0:
+            return []
+        else:
+            return self.visit(ctx.listparameterprime())
 
 
     # Visit a parse tree produced by BKOOLParser#listparameterprime.
     #       listparameterprime: paradecl SEMI listparameterprime | paradecl;
+    #       return a list of VarDecl
+    #       (float a,b; int c; string d,e)
     def visitListparameterprime(self, ctx:BKOOLParser.ListparameterprimeContext):
-        pass
-
+        if ctx.getChildCount()==1:
+            return self.visit(ctx.paradecl()) # this is a list of VarDecl
+        else:
+            return self.visit(ctx.paradecl()) + self.visit(ctx.listparameterprime())
 
     # Visit a parse tree produced by BKOOLParser#paradecl.
     #       paradecl: typ idlist;
+    #           return a list of VarDecl
     def visitParadecl(self, ctx:BKOOLParser.ParadeclContext):
         return list(map(lambda x: VarDecl(x, self.visit(ctx.typ())), self.visit(ctx.idlist())))
 
@@ -137,63 +150,79 @@ class ASTGeneration(BKOOLVisitor):
         else:
             return [Id(ctx.ID().getText())] + self.visit(ctx.idlist())
 
-
     # Visit a parse tree produced by BKOOLParser#constructor.
+    #       constructor: STATIC? ID LB listparameter RB blockstatement;
     def visitConstructor(self, ctx:BKOOLParser.ConstructorContext):
-        return 'constructor'
+        if ctx.STATIC():
+            return MethodDecl(Static(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()), self.visit(ctx.blockstatement()))
+        else:
+            return MethodDecl(Instance(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()), self.visit(ctx.blockstatement()))
 
 
     # Visit a parse tree produced by BKOOLParser#statement.
+    #       statement:....
     def visitStatement(self, ctx:BKOOLParser.StatementContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by BKOOLParser#blockstatement.
+    #       blockstatement: LP listblock RP;
     def visitBlockstatement(self, ctx:BKOOLParser.BlockstatementContext):
-        return self.visitChildren(ctx)
+        return Block(self.visit(ctx.listblock())[0], self.visit(ctx.listblock())[1])
 
 
     # Visit a parse tree produced by BKOOLParser#listblock.
+    #       listblock: blockdecllist blockbodylist;
     def visitListblock(self, ctx:BKOOLParser.ListblockContext):
-        return self.visitChildren(ctx)
-
+        return self.visit(ctx.blockdecllist()), self.visit(ctx.blockbodylist())
 
     # Visit a parse tree produced by BKOOLParser#blockdecllist.
+    #       blockdecllist: blockdeclprime| ;
     def visitBlockdecllist(self, ctx:BKOOLParser.BlockdecllistContext):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount()==0:
+            return []
+        else:
+            return self.visit(ctx.blockdeclprime())
 
 
     # Visit a parse tree produced by BKOOLParser#blockdeclprime.
+    #   `   blockdeclprime: blockdecl blockdeclprime| blockdecl;
     def visitBlockdeclprime(self, ctx:BKOOLParser.BlockdeclprimeContext):
-        return self.visitChildren(ctx)
-
-
+        if ctx.getChildCount() == 1:
+            return [self.visit(ctx.blockdecl())]
+        else:
+            return [self.visit(ctx.blockdecl())] + self.visit(ctx.blockdeclprime())
+        
     # Visit a parse tree produced by BKOOLParser#blockbodylist.
+    #      blockbodylist: blockbodyprime | ;
     def visitBlockbodylist(self, ctx:BKOOLParser.BlockbodylistContext):
-        return self.visitChildren(ctx)
-
-
+        return self.visit(ctx.blockbodyprime()) if ctx.getChildCount() == 1 else []
     # Visit a parse tree produced by BKOOLParser#blockbodyprime.
+    #       blockbodyprime: statement blockbodyprime | statement;
     def visitBlockbodyprime(self, ctx:BKOOLParser.BlockbodyprimeContext):
-        return self.visitChildren(ctx)
+        return [self.visit(ctx.statement())] if ctx.getChildCount() == 1 else [self.visit(ctx.statement())] + self.visit(ctx.blockbodyprime())
 
 
     # Visit a parse tree produced by BKOOLParser#blockdecl.
+    #       blockdecl: vardecl SEMI; //all of them
     def visitBlockdecl(self, ctx:BKOOLParser.BlockdeclContext):
-        return self.visitChildren(ctx)
-
+        return self.visit(ctx.vardecl())
 
     # Visit a parse tree produced by BKOOLParser#vardecl.
+    #       vardecl: FINAL typ listatt;
     def visitVardecl(self, ctx:BKOOLParser.VardeclContext):
-        return self.visitChildren(ctx)
-
-
+        return list(map(lambda x: ConstDecl(x[0], self.visit(ctx.typ()), x[1]), self.visit(ctx.listatt())))
+    def visitVardeclmu(self, ctx:BKOOLParser.VardeclmuContext):
+        return list(map(lambda x: VarDecl(x[0], self.visit(ctx.typ()), x[1]), self.visit(ctx.listattmu())))
+    
+    
     # Visit a parse tree produced by BKOOLParser#assignmentstatement.
+    #       assignmentstatement: lhs ASSIGN expression SEMI;
     def visitAssignmentstatement(self, ctx:BKOOLParser.AssignmentstatementContext):
-        return self.visitChildren(ctx)
-
+        return Assign(self.visit(ctx.lhs()), self.visit(ctx.expression()))
 
     # Visit a parse tree produced by BKOOLParser#lhs.
+    #       lhs: indexexpression | ID | instanceattributeaccess|staticattributeaccess; 
     def visitLhs(self, ctx:BKOOLParser.LhsContext):
         return self.visitChildren(ctx)
 
@@ -219,8 +248,9 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#returnstatement.
+    #       returnstatement: RETURN expression SEMI;
     def visitReturnstatement(self, ctx:BKOOLParser.ReturnstatementContext):
-        return self.visitChildren(ctx)
+        return Return(self.visit(ctx.expression()))
 
 
     # Visit a parse tree produced by BKOOLParser#methodinvocationstatement.
@@ -229,64 +259,122 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#expression.
+    #       exp1 LT exp1| exp1 GT exp1| exp1 LET exp1| exp1 GET exp1| exp1;
+    #       return a BinaryOp or UnaryOp
     def visitExpression(self, ctx:BKOOLParser.ExpressionContext):
-        return 'e'
-
-
+        if ctx.getChildCount() == 1:
+            return self.visit(ctx.exp1(0))
+        else:
+            left = ctx.visit(ctx.exp1(0))
+            right = ctx.vist(ctx.exp1(1))
+            return BinaryOp(ctx.getChild(1).getText(), left, right)
+        
     # Visit a parse tree produced by BKOOLParser#exp1.
+    #       exp1: exp2 EQE exp2| exp2 NEQ exp2| exp2;
     def visitExp1(self, ctx:BKOOLParser.Exp1Context):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount() == 1:
+            return self.visit(ctx.exp2(0))
+        else:
+            left = ctx.visit(ctx.exp2(0))
+            right = ctx.vist(ctx.exp2(1))
+            return BinaryOp(ctx.getChild(1).getText(), left, right)
 
 
     # Visit a parse tree produced by BKOOLParser#exp2.
+    #       exp2: exp2 AND exp3 | exp2 OR exp3 | exp3;
     def visitExp2(self, ctx:BKOOLParser.Exp2Context):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount() == 1:
+            return self.visit(ctx.exp3())
+        else:
+            left = ctx.visit(ctx.exp2())
+            right = ctx.vist(ctx.exp3())
+            return BinaryOp(ctx.getChild(1).getText(), left, right)
 
 
     # Visit a parse tree produced by BKOOLParser#exp3.
+    #       exp3: exp3 ADD exp4 | exp3 SUB exp4| exp4;
     def visitExp3(self, ctx:BKOOLParser.Exp3Context):
-        return self.visitChildren(ctx)
-
+        if ctx.getChildCount() == 1:
+            return self.visit(ctx.exp4())
+        else:
+            left = ctx.visit(ctx.exp3())
+            right = ctx.vist(ctx.exp4())
+            return BinaryOp(ctx.getChild(1).getText(), left, right)
 
     # Visit a parse tree produced by BKOOLParser#exp4.
+    #       exp4: exp4 MUL exp5 | exp4 FDIV exp5| exp4 IDIV exp5| exp4 MOD exp5| exp5;
     def visitExp4(self, ctx:BKOOLParser.Exp4Context):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount()==1:
+            return self.visit(ctx.exp5())
+        else:
+            left = ctx.visit(ctx.exp4())
+            right = ctx.vist(ctx.exp5())
+            return BinaryOp(ctx.getChild(1).getText(), left, right)
 
 
     # Visit a parse tree produced by BKOOLParser#exp5.
+    #       exp5: exp5 CONCATE exp6| exp6;
     def visitExp5(self, ctx:BKOOLParser.Exp5Context):
-        return self.visitChildren(ctx)
-
+        if ctx.getChildCount()==1:
+            return self.visit(ctx.exp6())
+        else:
+            left = self.visit(ctx.exp5())
+            right = self.visit(ctx.exp6())
+            return BinaryOp(ctx.getChild(1).getText(), left, right)
 
     # Visit a parse tree produced by BKOOLParser#exp6.
+    #       exp6: NOT exp6 | exp7; //hmmm
     def visitExp6(self, ctx:BKOOLParser.Exp6Context):
-        return self.visitChildren(ctx)
-
+        if ctx.getChildCount()==1:
+            return self.visit(ctx.exp7())
+        else:
+            return UnaryOp(ctx.getChild(0).getText(), self.visit(ctx.exp6()))
 
     # Visit a parse tree produced by BKOOLParser#exp7.
+    #       exp7: ADD exp7| SUB exp7 | exp8  ;
     def visitExp7(self, ctx:BKOOLParser.Exp7Context):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount()==1:
+            return self.visit(ctx.exp8())
+        else:
+            return UnaryOp(ctx.getChild(0).getText(), self.visit(ctx.exp7()))
 
 
     # Visit a parse tree produced by BKOOLParser#exp8.
+    #       exp8: exp9 LSB expression RSB | exp9 | literal |NIL; //test later
     def visitExp8(self, ctx:BKOOLParser.Exp8Context):
-        return self.visitChildren(ctx)
-
-
+        if ctx.getChild(0).getText():
+            return self.visit(ctx.getChild(0))
+        else:
+            return ArrayCell(self.visit(ctx.exp9()), self.visit(ctx.expression()))
+            
     # Visit a parse tree produced by BKOOLParser#exp9.
+    #       exp9: exp9 DOT (ID |methodinvocation) | exp10; 
     def visitExp9(self, ctx:BKOOLParser.Exp9Context):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount()==1:
+            return self.visit(ctx.exp10())
+        else:
+            return FieldAccess(self.visit(ctx.exp9()), self.visit(ctx.ID())) if ctx.ID() else FieldAccess(self.visit(ctx.exp9()), self.visit(ctx.methodinvocation()))
+        # i don't think it work, but i will review later
 
 
     # Visit a parse tree produced by BKOOLParser#exp10.
+    #       exp10: classcreate | exp11;
     def visitExp10(self, ctx:BKOOLParser.Exp10Context):
-        return self.visitChildren(ctx)
-
+        return self.visit(ctx.getChild(0))
 
     # Visit a parse tree produced by BKOOLParser#exp11.
+    #       exp11: LB expression RB | ID | THIS |IO;
     def visitExp11(self, ctx:BKOOLParser.Exp11Context):
-        return self.visitChildren(ctx)
-
+        if ctx.getChildCount() == 3:
+            return self.visit(ctx.expression())
+        else:
+            if ctx.ID():
+                return Id(ctx.ID().getText())
+            elif ctx.THIS():
+                return SelfLiteral()
+            elif ctx.IO():
+                return ClassDecl()
+            
 
     # Visit a parse tree produced by BKOOLParser#memberaccess.
     def visitMemberaccess(self, ctx:BKOOLParser.MemberaccessContext):
@@ -294,13 +382,14 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#instanceattributeaccess.
+    #       instanceattributeaccess: exp9 DOT ID; 
     def visitInstanceattributeaccess(self, ctx:BKOOLParser.InstanceattributeaccessContext):
-        return self.visitChildren(ctx)
-
+        return FieldAccess(self.visit(ctx.exp9()), Id(ctx.ID().getText()))
 
     # Visit a parse tree produced by BKOOLParser#staticattributeaccess.
+    #       staticattributeaccess: ID DOT ID;
     def visitStaticattributeaccess(self, ctx:BKOOLParser.StaticattributeaccessContext):
-        return self.visitChildren(ctx)
+        return FieldAccess(Id(ctx.ID(0).getText()), Id(ctx.ID(1).getText()))
 
 
     # Visit a parse tree produced by BKOOLParser#instancemethodinvocation.
@@ -334,9 +423,9 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#indexexpression.
+    #          indexexpression: exp9 LSB expression RSB;
     def visitIndexexpression(self, ctx:BKOOLParser.IndexexpressionContext):
-        return self.visitChildren(ctx)
-
+        return ArrayCell(self.visit(ctx.exp9()), self.visit(ctx.expression()))
 
     # Visit a parse tree produced by BKOOLParser#classcreate.
     def visitClasscreate(self, ctx:BKOOLParser.ClasscreateContext):

@@ -24,3 +24,36 @@ class a{
     static float a;
 }
 ---
+testcase305:
+class Rectangle extends Shape {
+    float getArea(){
+        return this.length*this.width;
+    }
+}
+---
+testcase306:
+class Rectangle extends Shape {
+    float getArea(){
+        return this.length*this.width;
+    }
+    float getLength(){
+        return this.length+this.width;
+    }
+}
+---
+testcase307:
+class Shape {
+    float length,width;
+    static int getNumOfShape() {
+        return numOfShape;
+    }
+}
+---
+testcase308:
+class Rectangle{
+    float getArea(float a,b ; int c){
+        return this.length*this.width;
+    }
+}
+---
+

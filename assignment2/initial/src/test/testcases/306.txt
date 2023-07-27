@@ -1,0 +1,10 @@
+class Rectangle extends Shape {
+    float getArea(){
+        return this.length*this.width;
+    }
+    float getLength(){
+        return this.length+this.width;
+    }
+}
+testcase306:Program([ClassDecl(Id(Rectangle),Id(Shape),[MethodDecl(Id(getArea),Instance,[],FloatType,Block([],[Return(e)])),MethodDecl(Id(getLength),Instance,[],FloatType,Block([Return(e)]))])])
+---
