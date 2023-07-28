@@ -265,8 +265,8 @@ class ASTGeneration(BKOOLVisitor):
         if ctx.getChildCount() == 1:
             return self.visit(ctx.exp1(0))
         else:
-            left = ctx.visit(ctx.exp1(0))
-            right = ctx.vist(ctx.exp1(1))
+            left = self.visit(ctx.exp1(0))
+            right = self.visit(ctx.exp1(1))
             return BinaryOp(ctx.getChild(1).getText(), left, right)
         
     # Visit a parse tree produced by BKOOLParser#exp1.
@@ -275,8 +275,8 @@ class ASTGeneration(BKOOLVisitor):
         if ctx.getChildCount() == 1:
             return self.visit(ctx.exp2(0))
         else:
-            left = ctx.visit(ctx.exp2(0))
-            right = ctx.vist(ctx.exp2(1))
+            left = self.visit(ctx.exp2(0))
+            right = self.visit(ctx.exp2(1))
             return BinaryOp(ctx.getChild(1).getText(), left, right)
 
 
@@ -286,8 +286,8 @@ class ASTGeneration(BKOOLVisitor):
         if ctx.getChildCount() == 1:
             return self.visit(ctx.exp3())
         else:
-            left = ctx.visit(ctx.exp2())
-            right = ctx.vist(ctx.exp3())
+            left = self.visit(ctx.exp2())
+            right = self.visit(ctx.exp3())
             return BinaryOp(ctx.getChild(1).getText(), left, right)
 
 
@@ -297,8 +297,8 @@ class ASTGeneration(BKOOLVisitor):
         if ctx.getChildCount() == 1:
             return self.visit(ctx.exp4())
         else:
-            left = ctx.visit(ctx.exp3())
-            right = ctx.vist(ctx.exp4())
+            left = self.visit(ctx.exp3())
+            right = self.visit(ctx.exp4())
             return BinaryOp(ctx.getChild(1).getText(), left, right)
 
     # Visit a parse tree produced by BKOOLParser#exp4.
@@ -307,8 +307,8 @@ class ASTGeneration(BKOOLVisitor):
         if ctx.getChildCount()==1:
             return self.visit(ctx.exp5())
         else:
-            left = ctx.visit(ctx.exp4())
-            right = ctx.vist(ctx.exp5())
+            left = self.visit(ctx.exp4())
+            right = self.visit(ctx.exp5())
             return BinaryOp(ctx.getChild(1).getText(), left, right)
 
 
@@ -353,7 +353,7 @@ class ASTGeneration(BKOOLVisitor):
         if ctx.getChildCount()==1:
             return self.visit(ctx.exp10())
         else:
-            return FieldAccess(self.visit(ctx.exp9()), self.visit(ctx.ID())) if ctx.ID() else FieldAccess(self.visit(ctx.exp9()), self.visit(ctx.methodinvocation()))
+            return FieldAccess(self.visit(ctx.exp9()), Id(ctx.ID().getText())) if ctx.ID() else CallStmt(self.visit(ctx.exp9()), self.visit(ctx.methodinvocation())[0], self.visit(ctx.methodinvocation())[1])
         # i don't think it work, but i will review later
 
 
@@ -373,12 +373,12 @@ class ASTGeneration(BKOOLVisitor):
             elif ctx.THIS():
                 return SelfLiteral()
             elif ctx.IO():
-                return ClassDecl()
+                return Id(ctx.ID().getText()) # hmmmmmmm
             
 
     # Visit a parse tree produced by BKOOLParser#memberaccess.
-    def visitMemberaccess(self, ctx:BKOOLParser.MemberaccessContext):
-        return self.visitChildren(ctx)
+    # def visitMemberaccess(self, ctx:BKOOLParser.MemberaccessContext):
+    #     return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by BKOOLParser#instanceattributeaccess.
@@ -393,33 +393,55 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#instancemethodinvocation.
+    #       instancemethodinvocation: exp9 DOT ID LB listexpression RB;
     def visitInstancemethodinvocation(self, ctx:BKOOLParser.InstancemethodinvocationContext):
-        return self.visitChildren(ctx)
+        return CallStmt(self.visit(ctx.exp9()), Id(ctx.ID().getText()), self.visit(ctx.listexpression()))
 
 
     # Visit a parse tree produced by BKOOLParser#staticmethodinvocation.
+    #       staticmethodinvocation: ID DOT ID LB listexpression RB; 
     def visitStaticmethodinvocation(self, ctx:BKOOLParser.StaticmethodinvocationContext):
-        return self.visitChildren(ctx)
+        return CallStmt(Id(ctx.ID(0).getText()), Id(ctx.ID(1).getText()), self.visit(ctx.listexpression()))
 
 
     # Visit a parse tree produced by BKOOLParser#methodinvocation.
+    #       methodinvocation: ID LB listexpression RB;
     def visitMethodinvocation(self, ctx:BKOOLParser.MethodinvocationContext):
-        return self.visitChildren(ctx)
+        return Id(ctx.ID().getText()), self.visit(ctx.listexpression())
 
 
     # Visit a parse tree produced by BKOOLParser#listexpression.
+    #       listexpression: expressionprime | ;
+    #       return a list of expression
     def visitListexpression(self, ctx:BKOOLParser.ListexpressionContext):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount()==0:
+            return []
+        else:
+            return self.visit(ctx.expressionprime())
 
 
     # Visit a parse tree produced by BKOOLParser#expressionprime.
+    #       expressionprime: expression COMMA expressionprime | expression;
     def visitExpressionprime(self, ctx:BKOOLParser.ExpressionprimeContext):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount()==1:
+            return [self.visit(ctx.expression())]
+        else:
+            return [self.visit(ctx.expression())] + self.visit(ctx.expressionprime())
 
 
     # Visit a parse tree produced by BKOOLParser#literal.
+    #       literal: INTLIT | FLOATLIT | BOOLIT | STRINGLIT|arraylit;
     def visitLiteral(self, ctx:BKOOLParser.LiteralContext):
-        return self.visitChildren(ctx)
+        if ctx.INTLIT():
+            return IntLiteral(int(ctx.INTLIT().getText()))
+        elif ctx.FLOATLIT():
+            return FloatLiteral(float(ctx.FLOATLIT().getText()))
+        elif ctx.BOOLIT():
+            return BooleanLiteral(bool(ctx.BOOLIT().getText()))
+        elif ctx.STRINGLIT():
+            return StringLiteral(ctx.STRINGLIT().getText())
+        else:
+            return self.visit(ctx.arraylit())
 
 
     # Visit a parse tree produced by BKOOLParser#indexexpression.
@@ -428,43 +450,57 @@ class ASTGeneration(BKOOLVisitor):
         return ArrayCell(self.visit(ctx.exp9()), self.visit(ctx.expression()))
 
     # Visit a parse tree produced by BKOOLParser#classcreate.
+    #       classcreate: NEW ID LB listexpression RB;
     def visitClasscreate(self, ctx:BKOOLParser.ClasscreateContext):
-        return self.visitChildren(ctx)
+        return NewExpr(Id(ctx.ID().getText()), self.visit(ctx.listexpression()))
 
 
     # Visit a parse tree produced by BKOOLParser#arraylit.
+    #       arraylit: LP array RP;
     def visitArraylit(self, ctx:BKOOLParser.ArraylitContext):
-        return self.visitChildren(ctx)
+        return ArrayLiteral(self.visit(ctx.array()))
 
 
     # Visit a parse tree produced by BKOOLParser#array.
+    #       array: arrayelement COMMA array | arrayelement;
     def visitArray(self, ctx:BKOOLParser.ArrayContext):
-        return self.visitChildren(ctx)
+        if ctx.getChildCount()==1:
+            return [self.visit(ctx.arrayelement())]
+        else:
+            return [self.visit(ctx.arrayelement())] + self.visit(ctx.array())
 
 
     # Visit a parse tree produced by BKOOLParser#arrayelement.
+    #       arrayelement: INTLIT | FLOATLIT | BOOLIT | STRINGLIT;
     def visitArrayelement(self, ctx:BKOOLParser.ArrayelementContext):
-        return self.visitChildren(ctx)
+        if ctx.INTLIT():
+            return IntLiteral(int(ctx.INTLIT().getText()))
+        elif ctx.FLOATLIT():
+            return FloatLiteral(float(ctx.FLOATLIT().getText()))
+        elif ctx.BOOLIT():
+            return BooleanLiteral(bool(ctx.BOOLIT().getText()))
+        elif ctx.STRINGLIT():
+            return StringLiteral(ctx.STRINGLIT().getText())
 
 
     # Visit a parse tree produced by BKOOLParser#intoperator.
-    def visitIntoperator(self, ctx:BKOOLParser.IntoperatorContext):
-        return self.visitChildren(ctx)
+    # def visitIntoperator(self, ctx:BKOOLParser.IntoperatorContext):
+    #     return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by BKOOLParser#floatoperator.
-    def visitFloatoperator(self, ctx:BKOOLParser.FloatoperatorContext):
-        return self.visitChildren(ctx)
+    # # Visit a parse tree produced by BKOOLParser#floatoperator.
+    # def visitFloatoperator(self, ctx:BKOOLParser.FloatoperatorContext):
+    #     return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by BKOOLParser#booloperator.
-    def visitBooloperator(self, ctx:BKOOLParser.BooloperatorContext):
-        return self.visitChildren(ctx)
+    # # Visit a parse tree produced by BKOOLParser#booloperator.
+    # def visitBooloperator(self, ctx:BKOOLParser.BooloperatorContext):
+    #     return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by BKOOLParser#stringoperator.
-    def visitStringoperator(self, ctx:BKOOLParser.StringoperatorContext):
-        return self.visitChildren(ctx)
+    # # Visit a parse tree produced by BKOOLParser#stringoperator.
+    # def visitStringoperator(self, ctx:BKOOLParser.StringoperatorContext):
+    #     return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by BKOOLParser#typ.

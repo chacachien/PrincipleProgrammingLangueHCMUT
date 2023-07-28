@@ -69,12 +69,9 @@ vardeclmu: typ listattmu; 			// add to assignment 2
 
 // ASSIGN 
 assignmentstatement: lhs ASSIGN expression SEMI;
-
 lhs: indexexpression | ID | instanceattributeaccess|staticattributeaccess; //something like a.b 
 
-
 ifstatement: IF expression THEN statement (ELSE statement)?; //expression or statement ?
-
 forstatement: FOR ID ASSIGN expression (TO | DOWNTO) expression DO statement; //interger
 breakstatment: BREAK SEMI;
 continuestatement: CONTINUTE SEMI;
@@ -102,7 +99,7 @@ exp10: classcreate | exp11;
 exp11: LB expression RB | ID | THIS |IO;
 
 //member access
-memberaccess: instanceattributeaccess|staticattributeaccess|instancemethodinvocation|staticmethodinvocation;
+//memberaccess: instanceattributeaccess|staticattributeaccess|instancemethodinvocation|staticmethodinvocation;
 instanceattributeaccess: exp9 DOT ID; //(ID|THIS|IO)
 staticattributeaccess: ID DOT ID;
 instancemethodinvocation: exp9 DOT ID LB listexpression RB;
@@ -133,10 +130,10 @@ arraylit: LP array RP;
 array: arrayelement COMMA array | arrayelement;
 arrayelement: INTLIT | FLOATLIT | BOOLIT | STRINGLIT;
 
-intoperator: ADD|SUB|MUL|FDIV|LT|LET|EQ|GT|GET|EQE|NEQ|IDIV|MOD;
-floatoperator: ADD|SUB|MUL|FDIV|LT|LET|GT|GET|EQ;
-booloperator: EQE|NEQ|NOT|AND|OR;
-stringoperator: CONCATE;
+// intoperator: ADD|SUB|MUL|FDIV|LT|LET|EQ|GT|GET|EQE|NEQ|IDIV|MOD;
+// floatoperator: ADD|SUB|MUL|FDIV|LT|LET|GT|GET|EQ;
+// booloperator: EQE|NEQ|NOT|AND|OR;
+// stringoperator: CONCATE;
 
 
 typ: INTTYPE|FLOATYPE|BOOLEANTYPE|STRINGTYPE|VOIDTYPE|ID|arraytyp;
