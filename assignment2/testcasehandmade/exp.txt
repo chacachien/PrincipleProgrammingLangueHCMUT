@@ -16,3 +16,19 @@ testcase307:Program([ClassDecl(Id(Shape),[AttributeDecl(Instance,VarDecl(Id(leng
 ---
 testcase308:Program([ClassDecl(Id(Rectangle),[MethodDecl(Id(getArea),Instance,[param(Id(a),FloatType),param(Id(b),FloatType),param(Id(c),IntType)],FloatType,Block([],[Return(BinaryOp(*,FieldAccess(Self(),Id(length)),FieldAccess(Self(),Id(width))))]))])])
 ---
+testcase309:Program([ClassDecl(Id(Shape),[AttributeDecl(Static,ConstDecl(Id(numOfShape),IntType,IntLit(0))),AttributeDecl(Instance,ConstDecl(Id(immuAttribute),IntType,IntLit(0))),AttributeDecl(Instance,VarDecl(Id(length),FloatType)),AttributeDecl(Instance,VarDecl(Id(width),FloatType)),MethodDecl(Id(getNumOfShape),Static,[],IntType,Block([],[Return(Id(numOfShape))]))]),ClassDecl(Id(Rectangle),Id(Shape),[MethodDecl(Id(getArea),Instance,[],FloatType,Block([],[Return(BinaryOp(*,FieldAccess(Self(),Id(length)),FieldAccess(Self(),Id(width))))]))])])
+---
+testcase310:Program([ClassDecl(Id(Test),[AttributeDecl(Instance,VarDecl(Id(a),IntType)),AttributeDecl(Instance,VarDecl(Id(b),FloatType)),AttributeDecl(Instance,VarDecl(Id(c),BoolType))])])
+---
+testcase311:Program([ClassDecl(Id(Circle),Id(Shape),[MethodDecl(Id(getArea),Instance,[],FloatType,Block([],[Return(BinaryOp(*,BinaryOp(*,FloatLit(3.14),FieldAccess(Self(),Id(radius))),FieldAccess(Self(),Id(radius))))]))])])
+---
+testcase312:Program([ClassDecl(Id(Test),[MethodDecl(Id(printMessage),Instance,[],VoidType,Block([],[Call(Id(io),Id(writeStrLn),[StringLit(Hello, World!)])]))])])
+---
+testcase313:
+---
+testcase314:Program([ClassDecl(Id(Math),[MethodDecl(Id(max),Static,[param(Id(a),IntType),param(Id(b),IntType)],IntType,Block([],[If(BinaryOp(>,Id(a),Id(b)),Return(Id(a)),Return(Id(b)))]))])])
+---
+testcase315:Program([ClassDecl(Id(Circle),Id(Shape),[MethodDecl(Id(getArea),Instance,[],FloatType,Block([],[Return(BinaryOp(*,BinaryOp(*,FloatLit(3.14),FieldAccess(Self(),Id(radius))),FieldAccess(Self(),Id(radius))))]))]),ClassDecl(Id(Square),Id(Shape),[MethodDecl(Id(getArea),Instance,[],FloatType,Block([],[Return(BinaryOp(*,FieldAccess(Self(),Id(length)),FieldAccess(Self(),Id(length))))]))]),ClassDecl(Id(Test),[],[MethodDecl(Id(main),Static,[],VoidType,Block([],[VarDecl(Id(c),Id(Shape)),VarDecl(Id(s),Id(Shape)),VarDecl(Id(area1),FloatType),VarDecl(Id(area2),FloatType),Assign(Id(c),NewExpr(Id(Circle),[])),Assign(Id(s),NewExpr(Id(Square),[])),Assign(Id(area1),CallExpr(FieldAccess(Id(c),Id(getArea)),[])),Assign(Id(area2),CallExpr(FieldAccess(Id(s),Id(getArea)),[])),CallStmt(Call(Id(io),Id(writeStrLn),[BinaryOp(+,StringLit(AreaofCircle:),Id(area1))])),CallStmt(Call(Id(io),Id(writeStrLn),[BinaryOp(+,StringLit(AreaofSquare:),Id(area2))]))]))])])
+---
+testcase316:Program([ClassDecl(Id(Shape),[],[AttributeDecl(Instance,VarDecl(Id(length),FloatType)),AttributeDecl(Instance,VarDecl(Id(width),FloatType)),MethodDecl(Id(__init__Shape),Instance,[ParamDecl(Id(l),FloatType),ParamDecl(Id(w),FloatType)],VoidType,Block([],[Assign(FieldAccess(Self(),Id(length)),Id(l)),Assign(FieldAccess(Self(),Id(width)),Id(w))]))]),ClassDecl(Id(Circle),Id(Shape),[MethodDecl(Id(getArea),Instance,[],FloatType,Block([],[Return(BinaryOp(*,BinaryOp(*,FloatLit(3.14),FieldAccess(Self(),Id(radius))),FieldAccess(Self(),Id(radius))))]))]),ClassDecl(Id(Test),[],[MethodDecl(Id(main),Static,[],VoidType,Block([],[VarDecl(Id(c),Id(Circle)),VarDecl(Id(area),FloatType),Assign(Id(c),NewExpr(Id(Circle),[FloatLit(5.0),FloatLit(5.0)])),Assign(Id(area),CallExpr(FieldAccess(Id(c),Id(getArea)),[])),CallStmt(Call(Id(io),Id(writeStrLn),[BinaryOp(+,StringLit(AreaofCircle:),Id(area))]))]))])])
+---

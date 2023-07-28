@@ -1,3 +1,12 @@
 how to deal with "io"
 int a = 6 -> AttributeDecl(Instance,VarDecl(Id(b),FloatType,FloatLiteral(3.0))) 
             or AttributeDecl(Instance,VarDecl(Id(b),FloatType,IntLiteral(3))) 
+
+can we do something like this: class Test{
+    int factorial(int n) {
+        if (n <= 1) then
+            return 1;
+        else
+            return n * factorial(n - 1);
+    }
+}

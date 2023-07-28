@@ -56,4 +56,92 @@ class Rectangle{
     }
 }
 ---
+testcase309:
+class Shape {
+    static final int numOfShape = 0;
+    final int immuAttribute = 0;
+    float length, width;
+
+    static int getNumOfShape() {
+        return numOfShape;
+    }
+}
+
+class Rectangle extends Shape {
+    float getArea() {
+        return this.length * this.width;
+    }
+}
+---
+testcase310:
+class Test {
+    int a;
+    float b;
+    boolean c;
+}
+---
+testcase311:
+class Circle extends Shape{
+    float getArea() {
+        return 3.14 * this.radius * this.radius;
+    }
+}
+---
+testcase312:
+class Test{void printMessage() {io.writeStrLn("Hello, World!");}}
+---
+testcase313:
+
+---
+testcase314:
+class Math{
+    static int max(int a; int b) {
+        if (a > b) then return a;
+        else return b;
+    }
+}
+---
+testcase315:
+class Circle extends Shape {
+    float getArea() {
+        return 3.14 * this.radius * this.radius;
+    }
+}
+class Square extends Shape {
+    float getArea() {
+        return this.length * this.length;
+    }
+}
+class Test {
+    static void main() {
+        Shape c = new Circle();
+        Shape s = new Square();
+        float area1 = c.getArea();
+        float area2 = s.getArea();
+        io.writeStrLn("Area of Circle: " ^ area1);
+        io.writeStrLn("Area of Square: " ^ area2);
+    }
+}
+---
+testcase316:
+class Shape {
+    float length, width;
+    Shape(float l, w) {
+        this.length := l;
+        this.width := w;
+    }
+}
+class Circle extends Shape {
+    float getArea() {
+        return 3.14 * this.radius * this.radius;
+    }
+}
+class Test {
+    static void main() {
+        Circle c = new Circle(5.0, 5.0);
+        float area = c.getArea();
+        io.writeStrLn("Area of Circle: " ^ area);
+    }
+}
+---
 

@@ -154,9 +154,9 @@ class ASTGeneration(BKOOLVisitor):
     #       constructor: STATIC? ID LB listparameter RB blockstatement;
     def visitConstructor(self, ctx:BKOOLParser.ConstructorContext):
         if ctx.STATIC():
-            return MethodDecl(Static(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()), self.visit(ctx.blockstatement()))
+            return [MethodDecl(Static(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()),None ,self.visit(ctx.blockstatement()))]
         else:
-            return MethodDecl(Instance(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()), self.visit(ctx.blockstatement()))
+            return [MethodDecl(Instance(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()),None,self.visit(ctx.blockstatement()))]
 
 
     # Visit a parse tree produced by BKOOLParser#statement.
@@ -204,9 +204,9 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#blockdecl.
-    #       blockdecl: vardecl SEMI; //all of them
+    #       blockdecl: vardecl|vardeclmu SEMI; //all of them
     def visitBlockdecl(self, ctx:BKOOLParser.BlockdeclContext):
-        return self.visit(ctx.vardecl())
+        return self.visit(ctx.getChild(0))
 
     # Visit a parse tree produced by BKOOLParser#vardecl.
     #       vardecl: FINAL typ listatt;
@@ -228,23 +228,25 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#ifstatement.
+    #       ifstatement: IF expression THEN statement (ELSE statement)?; 
     def visitIfstatement(self, ctx:BKOOLParser.IfstatementContext):
-        return self.visitChildren(ctx)
+        return If(self.visit(ctx.expression()), self.visit(ctx.statement(0)), self.visit(ctx.statement(1)) if ctx.ELSE() else If(self.visit(ctx.expression()), self.visit(ctx.statement(0))))
 
 
     # Visit a parse tree produced by BKOOLParser#forstatement.
+    #       forstatement: FOR ID ASSIGN expression (TO | DOWNTO) expression DO statement; //interger
     def visitForstatement(self, ctx:BKOOLParser.ForstatementContext):
-        return self.visitChildren(ctx)
+        return For(Id(ctx.ID().getText()), self.visit(ctx.expression(0)), self.visit(ctx.expression(1)), ctx.TO(), self.visit(ctx.statement()))
 
 
     # Visit a parse tree produced by BKOOLParser#breakstatment.
     def visitBreakstatment(self, ctx:BKOOLParser.BreakstatmentContext):
-        return self.visitChildren(ctx)
+        return Break()
 
 
     # Visit a parse tree produced by BKOOLParser#continuestatement.
     def visitContinuestatement(self, ctx:BKOOLParser.ContinuestatementContext):
-        return self.visitChildren(ctx)
+        return Continue()
 
 
     # Visit a parse tree produced by BKOOLParser#returnstatement.
@@ -254,8 +256,9 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#methodinvocationstatement.
+    #       methodinvocationstatement: (instancemethodinvocation|staticmethodinvocation) SEMI
     def visitMethodinvocationstatement(self, ctx:BKOOLParser.MethodinvocationstatementContext):
-        return self.visitChildren(ctx)
+        return self.visit(ctx.getChild(0))
 
 
     # Visit a parse tree produced by BKOOLParser#expression.
@@ -373,7 +376,7 @@ class ASTGeneration(BKOOLVisitor):
             elif ctx.THIS():
                 return SelfLiteral()
             elif ctx.IO():
-                return Id(ctx.ID().getText()) # hmmmmmmm
+                return Id(ctx.IO().getText()) # hmmmmmmm
             
 
     # Visit a parse tree produced by BKOOLParser#memberaccess.

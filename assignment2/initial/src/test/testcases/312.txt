@@ -1,0 +1,1 @@
+class Test{void printMessage() {io.writeStrLn("Hello, World!");}}

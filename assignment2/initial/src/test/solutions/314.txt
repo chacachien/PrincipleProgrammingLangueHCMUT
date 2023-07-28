@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Math),[MethodDecl(Id(max),Static,[param(Id(a),IntType),param(Id(b),IntType)],IntType,Block([],[If(BinaryOp(>,Id(a),Id(b)),Return(Id(a)),Return(Id(b)))]))])])
