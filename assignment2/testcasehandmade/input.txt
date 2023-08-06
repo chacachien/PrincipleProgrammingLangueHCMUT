@@ -91,9 +91,6 @@ testcase312:
 class Test{void printMessage() {io.writeStrLn("Hello, World!");}}
 ---
 testcase313:
-
----
-testcase314:
 class Math{
     static int max(int a; int b) {
         if (a > b) then return a;
@@ -101,7 +98,7 @@ class Math{
     }
 }
 ---
-testcase315:
+testcase314:
 class Circle extends Shape {
     float getArea() {
         return 3.14 * this.radius * this.radius;
@@ -114,16 +111,19 @@ class Square extends Shape {
 }
 class Test {
     static void main() {
-        Shape c = new Circle();
-        Shape s = new Square();
-        float area1 = c.getArea();
-        float area2 = s.getArea();
+        Shape c, s;
+        float area1, area2;
+        
+        c := new Circle();
+        s := new Square();
+        area1 := c.getArea();
+        area2 := s.getArea();
         io.writeStrLn("Area of Circle: " ^ area1);
         io.writeStrLn("Area of Square: " ^ area2);
     }
 }
 ---
-testcase316:
+testcase315:
 class Shape {
     float length, width;
     Shape(float l, w) {
@@ -144,4 +144,300 @@ class Test {
     }
 }
 ---
+testcase316:
+class Animal {
+    string name;
+    int age;
 
+    Animal(string name; int age) {
+        this.name := name;
+        this.age := age;
+    }
+
+    void makeSound() { }
+}
+
+class Dog extends Animal {
+    string breed;
+
+    Dog(string name; int age; string breed) {
+        this.Animal(name, age);
+        this.breed := breed;
+    }
+
+    void makeSound() {
+        io.writeStrLn("Woof! Woof!");
+    }
+
+    void fetch() {
+        io.writeStrLn("Fetching the ball!");
+    }
+}
+
+class Cat extends Animal {
+    string furColor;
+
+    Cat(string name; int age; string furColor) {
+        this.Animal(name, age);
+        this.furColor := furColor;
+    }
+
+    void makeSound() {
+        io.writeStrLn("Meow!");
+    }
+
+    void climbTree() {
+        io.writeStrLn("Climbing the tree!");
+    }
+}
+
+class Test {
+    static void main() {
+        Dog dog = new Dog("Buddy", 3, "Labrador");
+        Cat cat = new Cat("Whiskers", 2, "Gray");
+        Animal animal1 = dog;
+        Animal animal2 = cat;
+        dog.makeSound();
+        cat.makeSound();
+
+        io.writeStrLn("Dog's breed: " ^ dog.breed);
+        io.writeStrLn("Cat's fur color: " ^ cat.furColor);
+
+        animal1.makeSound();
+        animal2.makeSound();
+
+        animal1.fetch();
+        animal2.climbTree();
+    }
+}
+---
+testcase317:
+class Point {
+    int x, y;
+
+    Point(int x; int y) {
+        this.x := x;
+        this.y := y;
+    }
+
+    void display() {
+        io.writeStrLn("x: " ^ this.x ^ ", y: " ^ this.y);
+    }
+
+    static Point add(Point p1, p2) {
+        return new Point(p1.x + p2.x, p1.y + p2.y);
+    }
+}
+
+class Test {
+    static void main() {
+        Point p1 = new Point(3, 5);
+        Point p2 = new Point(-2, 7);
+        Point sum = Point.add(p1, p2);
+
+        p1.display();
+        p2.display();
+        sum.display();
+    }
+}
+---
+testcase318:
+class Student {
+    string name;
+    int age;
+    float gpa;
+
+    Student(string name; int age; float gpa) {
+        this.name := name;
+        this.age := age;
+        this.gpa := gpa;
+    }
+
+    void display() {
+        io.writeStrLn("Name:" ^ this.name);
+        io.writeStrLn("Age:" ^ this.age);
+        io.writeStrLn("GPA:" ^ this.gpa);
+    }
+
+    string getGrade() {
+        if (this.gpa >= 3.5) then return "A";
+        else {
+            if (this.gpa >= 3.0) then return "B";
+            else {
+                if (this.gpa >= 2.0) then return "C";
+                else {
+                    if (this.gpa >= 1.0) then return "D";
+                    else return "F";
+                }
+            }
+        }
+    }
+}
+
+class Test {
+    static void main() {
+        Student s1 = new Student("Alice", 20, 3.8);
+        Student s2 = new Student("Bob", 19, 2.9);
+
+        s1.display();
+        io.writeStrLn("Grade:" ^ s1.getGrade());
+
+        s2.display();
+        io.writeStrLn("Grade:" ^ s2.getGrade());
+    }
+}
+---
+testcase319:
+class Math {
+    static int factorial(int n) {
+        if (n == 0) then {
+            return 1;
+        } else {
+            return n * this.factorial(n - 1);
+        }
+    }
+
+    static int fibonacci(int n) {
+        if (n <= 1) then {
+            return n;
+        } else {
+            return this.fibonacci(n - 1) + this.fibonacci(n - 2);
+        }
+    }
+}
+
+class Test {
+    static void main() {
+        int num1 = 5;
+        int num2 = 6;
+
+        int factNum1 = Math.factorial(num1);
+        int factNum2 = Math.factorial(num2);
+
+        int fibNum1 = Math.fibonacci(num1);
+        int fibNum2 = Math.fibonacci(num2);
+
+        io.writeStrLn("Factorial_of" ^ num1 ^ ":" ^ factNum1);
+        io.writeStrLn("Factorial_of" ^ num2 ^ ":" ^ factNum2);
+        io.writeStrLn("Fibonacci_of" ^ num1 ^ ":" ^ fibNum1);
+        io.writeStrLn("Fibonacci_of" ^ num2 ^ ":" ^ fibNum2);
+    }
+}
+---
+testcase320:
+class Bank {
+    float interestRate;
+
+    Bank(float rate) {
+        this.interestRate := rate;
+    }
+
+    float calculateInterest(float principal) {
+        return principal * this.interestRate;
+    }
+}
+
+class SavingsAccount extends Bank {
+    SavingsAccount(float rate) {
+        this.Bank(rate);
+    }
+
+    float calculateInterestReal(float principal) {
+        return this.calculateInterest(principal) + 100;
+    }
+}
+
+class FixedDeposit extends Bank {
+    FixedDeposit(float rate) {
+        this.Bank(rate);
+    }
+
+    float calculateInterestReal(float principal; int years) {
+        return this.calculateInterest(principal) * years;
+    }
+}
+
+class Test {
+    static void main() {
+        Bank bank1, bank2;
+        float principal = 1000.0;
+        float interest1, interest2;
+
+
+        bank1 := new SavingsAccount(0.05);
+        bank2 := new FixedDeposit(0.08);
+
+
+        interest1 := bank1.calculateInterest(principal);
+        interest2 := bank2.calculateInterest(principal, 5);
+
+        io.writeStrLn("Interest_from_Savings_Account:" ^ interest1);
+        io.writeStrLn("Interest_from_Fixed Deposit:" ^ interest2);
+    }
+}
+---
+testcase321:
+class Test {
+    static void main() {
+        int a = 5, b = 10;
+        int c = 15;
+        boolean result = a + b * c >= c - b / a && !(a > b);
+        io.writeStrLn("Result: " ^ result);
+    }
+}
+
+---
+testcase322:
+class Test {
+    static void main() {
+        boolean p = true;
+        boolean q = false;
+        boolean result = p && q || !p;
+        io.writeStrLn("Result:" ^ result);
+    }
+}
+---
+testcase323:
+class Test {
+    static void main() {
+        int a = 5;
+        int b = 10, c = 15;
+
+        boolean result1 = (a + b) * c > a + b * c;
+        boolean result2 = (a >= b) && (c < a) || (b <= c);
+        boolean result3 = !((a == b) || c != b) && !(c > a && (b < c));
+
+        io.writeStrLn("Result 1: " ^ result1);
+        io.writeStrLn("Result 2: " ^ result2);
+        io.writeStrLn("Result 3: " ^ result3);
+    }
+}
+---
+testcase324:
+class Person {
+    string name;
+    int age;
+    
+    Person(string n; int a) {
+        this.name := n;
+        this.age := a;
+    }
+    
+    void display() {
+        io.writeStrLn("Name:" ^ this.name);
+        io.writeStrLn("Age:" ^ this.age);
+    }
+}
+---
+testcase325:
+class Test {
+    static void main() {
+        Person[3] persons;
+        int totalAge = 0;
+        persons[0] := new Person("Alice", 25);
+        persons[1] := new Person("Bob", 30);
+        persons[2] := new Person("Charlie", 22);
+        io.writeStrLn("Total Age:" ^ totalAge);
+    }
+}
+---

@@ -1,0 +1,8 @@
+class Test {
+    static void main() {
+        boolean p = true;
+        boolean q = false;
+        boolean result = p && q || !p;
+        io.writeStrLn("Result:" ^ result);
+    }
+}

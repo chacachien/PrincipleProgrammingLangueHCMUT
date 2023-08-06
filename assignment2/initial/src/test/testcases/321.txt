@@ -1,0 +1,8 @@
+class Test {
+    static void main() {
+        int a = 5, b = 10;
+        int c = 15;
+        boolean result = a + b * c >= c - b / a && !(a > b);
+        io.writeStrLn("Result: " ^ result);
+    }
+}

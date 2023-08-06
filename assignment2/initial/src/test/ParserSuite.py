@@ -63,13 +63,25 @@ class Test {
         self.assertTrue(TestParser.test(input,expect,203))
     def test313(self):
         """Miss ) int main( {}"""
-        input = """class Test{
-    int factorial(int n) {
-        if (n <= 1) then
-            return 1;
-        else
-            return n * factorial(n - 1);
+        input = """
+class Test {
+    static void main() {
+        int a = 5;
+        int b = 10;
+        int c = 15;
+
+        boolean result1 = (a + b) * c > a + b * c;
+        boolean result2 = (a >= b) && (c < a) || (b <= c);
+        boolean result3 = !((a == b) || c != b) && !(c > a && (b < c));
+
+        io.writeStrLn("Result 1: " ^ result1);
+        io.writeStrLn("Result 2: " ^ result2);
+        io.writeStrLn("Result 3: " ^ result3);
     }
-}"""
+}
+
+
+
+"""
         expect = "successful"
         self.assertTrue(TestParser.test(input,expect,204))

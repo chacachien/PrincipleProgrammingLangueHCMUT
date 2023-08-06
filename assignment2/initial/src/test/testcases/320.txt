@@ -1,0 +1,50 @@
+class Bank {
+    float interestRate;
+
+    Bank(float rate) {
+        this.interestRate := rate;
+    }
+
+    float calculateInterest(float principal) {
+        return principal * this.interestRate;
+    }
+}
+
+class SavingsAccount extends Bank {
+    SavingsAccount(float rate) {
+        this.Bank(rate);
+    }
+
+    float calculateInterestReal(float principal) {
+        return this.calculateInterest(principal) + 100;
+    }
+}
+
+class FixedDeposit extends Bank {
+    FixedDeposit(float rate) {
+        this.Bank(rate);
+    }
+
+    float calculateInterestReal(float principal; int years) {
+        return this.calculateInterest(principal) * years;
+    }
+}
+
+class Test {
+    static void main() {
+        Bank bank1, bank2;
+        float principal = 1000.0;
+        float interest1, interest2;
+
+
+        bank1 := new SavingsAccount(0.05);
+        bank2 := new FixedDeposit(0.08);
+
+
+        interest1 := bank1.calculateInterest(principal);
+        interest2 := bank2.calculateInterest(principal, 5);
+
+        io.writeStrLn("Interest_from_Savings_Account:" ^ interest1);
+        io.writeStrLn("Interest_from_Fixed Deposit:" ^ interest2);
+    }
+}

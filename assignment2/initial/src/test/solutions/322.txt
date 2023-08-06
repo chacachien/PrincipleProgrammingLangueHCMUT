@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Test),[MethodDecl(Id(main),Static,[],VoidType,Block([VarDecl(Id(p),BoolType,BooleanLit(True)),VarDecl(Id(q),BoolType,BooleanLit(False)),VarDecl(Id(result),BoolType,BinaryOp(||,BinaryOp(&&,Id(p),Id(q)),UnaryOp(!,Id(p))))],[Call(Id(io),Id(writeStrLn),[BinaryOp(^,StringLit(Result:),Id(result))])]))])])

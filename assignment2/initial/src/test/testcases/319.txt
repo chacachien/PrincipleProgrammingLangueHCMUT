@@ -1,0 +1,35 @@
+class Math {
+    static int factorial(int n) {
+        if (n == 0) then {
+            return 1;
+        } else {
+            return n * this.factorial(n - 1);
+        }
+    }
+
+    static int fibonacci(int n) {
+        if (n <= 1) then {
+            return n;
+        } else {
+            return this.fibonacci(n - 1) + this.fibonacci(n - 2);
+        }
+    }
+}
+
+class Test {
+    static void main() {
+        int num1 = 5;
+        int num2 = 6;
+
+        int factNum1 = Math.factorial(num1);
+        int factNum2 = Math.factorial(num2);
+
+        int fibNum1 = Math.fibonacci(num1);
+        int fibNum2 = Math.fibonacci(num2);
+
+        io.writeStrLn("Factorial_of" ^ num1 ^ ":" ^ factNum1);
+        io.writeStrLn("Factorial_of" ^ num2 ^ ":" ^ factNum2);
+        io.writeStrLn("Fibonacci_of" ^ num1 ^ ":" ^ fibNum1);
+        io.writeStrLn("Fibonacci_of" ^ num2 ^ ":" ^ fibNum2);
+    }
+}

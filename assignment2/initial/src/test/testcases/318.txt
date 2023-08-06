@@ -1,0 +1,44 @@
+class Student {
+    string name;
+    int age;
+    float gpa;
+
+    Student(string name; int age; float gpa) {
+        this.name := name;
+        this.age := age;
+        this.gpa := gpa;
+    }
+
+    void display() {
+        io.writeStrLn("Name:" ^ this.name);
+        io.writeStrLn("Age:" ^ this.age);
+        io.writeStrLn("GPA:" ^ this.gpa);
+    }
+
+    string getGrade() {
+        if (this.gpa >= 3.5) then return "A";
+        else {
+            if (this.gpa >= 3.0) then return "B";
+            else {
+                if (this.gpa >= 2.0) then return "C";
+                else {
+                    if (this.gpa >= 1.0) then return "D";
+                    else return "F";
+                }
+            }
+        }
+    }
+}
+
+class Test {
+    static void main() {
+        Student s1 = new Student("Alice", 20, 3.8);
+        Student s2 = new Student("Bob", 19, 2.9);
+
+        s1.display();
+        io.writeStrLn("Grade:" ^ s1.getGrade());
+
+        s2.display();
+        io.writeStrLn("Grade:" ^ s2.getGrade());
+    }
+}

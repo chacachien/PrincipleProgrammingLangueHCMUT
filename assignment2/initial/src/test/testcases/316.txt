@@ -1,19 +1,65 @@
-class Shape {
-    float length, width;
-    Shape(float l, w) {
-        this.length := l;
-        this.width := w;
+class Animal {
+    string name;
+    int age;
+
+    Animal(string name; int age) {
+        this.name := name;
+        this.age := age;
+    }
+
+    void makeSound() { }
+}
+
+class Dog extends Animal {
+    string breed;
+
+    Dog(string name; int age; string breed) {
+        this.Animal(name, age);
+        this.breed := breed;
+    }
+
+    void makeSound() {
+        io.writeStrLn("Woof! Woof!");
+    }
+
+    void fetch() {
+        io.writeStrLn("Fetching the ball!");
     }
 }
-class Circle extends Shape {
-    float getArea() {
-        return 3.14 * this.radius * this.radius;
+
+class Cat extends Animal {
+    string furColor;
+
+    Cat(string name; int age; string furColor) {
+        this.Animal(name, age);
+        this.furColor := furColor;
+    }
+
+    void makeSound() {
+        io.writeStrLn("Meow!");
+    }
+
+    void climbTree() {
+        io.writeStrLn("Climbing the tree!");
     }
 }
+
 class Test {
     static void main() {
-        Circle c = new Circle(5.0, 5.0);
-        float area = c.getArea();
-        io.writeStrLn("Area of Circle: " ^ area);
+        Dog dog = new Dog("Buddy", 3, "Labrador");
+        Cat cat = new Cat("Whiskers", 2, "Gray");
+        Animal animal1 = dog;
+        Animal animal2 = cat;
+        dog.makeSound();
+        cat.makeSound();
+
+        io.writeStrLn("Dog's breed: " ^ dog.breed);
+        io.writeStrLn("Cat's fur color: " ^ cat.furColor);
+
+        animal1.makeSound();
+        animal2.makeSound();
+
+        animal1.fetch();
+        animal2.climbTree();
     }
 }

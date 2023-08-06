@@ -173,11 +173,13 @@ class ASTGeneration(BKOOLVisitor):
 
     # Visit a parse tree produced by BKOOLParser#listblock.
     #       listblock: blockdecllist blockbodylist;
+    ##      return a tuple of list of VarDecl and list of Stmt
     def visitListblock(self, ctx:BKOOLParser.ListblockContext):
-        return self.visit(ctx.blockdecllist()), self.visit(ctx.blockbodylist())
+        return (self.visit(ctx.blockdecllist()), self.visit(ctx.blockbodylist()))
 
     # Visit a parse tree produced by BKOOLParser#blockdecllist.
     #       blockdecllist: blockdeclprime| ;
+    #       return a list of VarDecl
     def visitBlockdecllist(self, ctx:BKOOLParser.BlockdecllistContext):
         if ctx.getChildCount()==0:
             return []
@@ -189,9 +191,9 @@ class ASTGeneration(BKOOLVisitor):
     #   `   blockdeclprime: blockdecl blockdeclprime| blockdecl;
     def visitBlockdeclprime(self, ctx:BKOOLParser.BlockdeclprimeContext):
         if ctx.getChildCount() == 1:
-            return [self.visit(ctx.blockdecl())]
+            return self.visit(ctx.blockdecl())
         else:
-            return [self.visit(ctx.blockdecl())] + self.visit(ctx.blockdeclprime())
+            return self.visit(ctx.blockdecl()) + self.visit(ctx.blockdeclprime())
         
     # Visit a parse tree produced by BKOOLParser#blockbodylist.
     #      blockbodylist: blockbodyprime | ;
@@ -210,10 +212,16 @@ class ASTGeneration(BKOOLVisitor):
 
     # Visit a parse tree produced by BKOOLParser#vardecl.
     #       vardecl: FINAL typ listatt;
+    #       return a list of ConstDecl
     def visitVardecl(self, ctx:BKOOLParser.VardeclContext):
         return list(map(lambda x: ConstDecl(x[0], self.visit(ctx.typ()), x[1]), self.visit(ctx.listatt())))
+    
+    
+    # Visit a parse tree produced by BKOOLParser#vardeclmu.
+    #       vardeclmu: typ listattmu;
+    #       return a list of vacl
     def visitVardeclmu(self, ctx:BKOOLParser.VardeclmuContext):
-        return list(map(lambda x: VarDecl(x[0], self.visit(ctx.typ()), x[1]), self.visit(ctx.listattmu())))
+        return list(map(lambda x: VarDecl(x[0], self.visit(ctx.typ()), x[1]) if x[1] else VarDecl(x[0], self.visit(ctx.typ())), self.visit(ctx.listattmu())))
     
     
     # Visit a parse tree produced by BKOOLParser#assignmentstatement.
@@ -224,7 +232,7 @@ class ASTGeneration(BKOOLVisitor):
     # Visit a parse tree produced by BKOOLParser#lhs.
     #       lhs: indexexpression | ID | instanceattributeaccess|staticattributeaccess; 
     def visitLhs(self, ctx:BKOOLParser.LhsContext):
-        return self.visitChildren(ctx)
+        return Id(ctx.ID().getText()) if ctx.ID() else self.visit(ctx.getChild(0))
 
 
     # Visit a parse tree produced by BKOOLParser#ifstatement.
@@ -356,7 +364,7 @@ class ASTGeneration(BKOOLVisitor):
         if ctx.getChildCount()==1:
             return self.visit(ctx.exp10())
         else:
-            return FieldAccess(self.visit(ctx.exp9()), Id(ctx.ID().getText())) if ctx.ID() else CallStmt(self.visit(ctx.exp9()), self.visit(ctx.methodinvocation())[0], self.visit(ctx.methodinvocation())[1])
+            return FieldAccess(self.visit(ctx.exp9()), Id(ctx.ID().getText())) if ctx.ID() else CallExpr(self.visit(ctx.exp9()), self.visit(ctx.methodinvocation())[0], self.visit(ctx.methodinvocation())[1])
         # i don't think it work, but i will review later
 
 
@@ -440,7 +448,7 @@ class ASTGeneration(BKOOLVisitor):
         elif ctx.FLOATLIT():
             return FloatLiteral(float(ctx.FLOATLIT().getText()))
         elif ctx.BOOLIT():
-            return BooleanLiteral(bool(ctx.BOOLIT().getText()))
+            return BooleanLiteral(ctx.BOOLIT().getText()=="true")
         elif ctx.STRINGLIT():
             return StringLiteral(ctx.STRINGLIT().getText())
         else:
@@ -481,7 +489,7 @@ class ASTGeneration(BKOOLVisitor):
         elif ctx.FLOATLIT():
             return FloatLiteral(float(ctx.FLOATLIT().getText()))
         elif ctx.BOOLIT():
-            return BooleanLiteral(bool(ctx.BOOLIT().getText()))
+            return BooleanLiteral(ctx.BOOLIT().getText()=="true")
         elif ctx.STRINGLIT():
             return StringLiteral(ctx.STRINGLIT().getText())
 

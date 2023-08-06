@@ -1,0 +1,28 @@
+class Point {
+    int x, y;
+
+    Point(int x; int y) {
+        this.x := x;
+        this.y := y;
+    }
+
+    void display() {
+        io.writeStrLn("x: " ^ this.x ^ ", y: " ^ this.y);
+    }
+
+    static Point add(Point p1, p2) {
+        return new Point(p1.x + p2.x, p1.y + p2.y);
+    }
+}
+
+class Test {
+    static void main() {
+        Point p1 = new Point(3, 5);
+        Point p2 = new Point(-2, 7);
+        Point sum = Point.add(p1, p2);
+
+        p1.display();
+        p2.display();
+        sum.display();
+    }
+}

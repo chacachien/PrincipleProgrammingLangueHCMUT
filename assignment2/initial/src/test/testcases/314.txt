@@ -1,6 +1,23 @@
-class Math{
-    static int max(int a; int b) {
-        if (a > b) then return a;
-        else return b;
+class Circle extends Shape {
+    float getArea() {
+        return 3.14 * this.radius * this.radius;
+    }
+}
+class Square extends Shape {
+    float getArea() {
+        return this.length * this.length;
+    }
+}
+class Test {
+    static void main() {
+        Shape c, s;
+        float area1, area2;
+        
+        c := new Circle();
+        s := new Square();
+        area1 := c.getArea();
+        area2 := s.getArea();
+        io.writeStrLn("Area of Circle: " ^ area1);
+        io.writeStrLn("Area of Square: " ^ area2);
     }
 }

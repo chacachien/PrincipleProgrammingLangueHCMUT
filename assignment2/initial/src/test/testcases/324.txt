@@ -1,0 +1,14 @@
+class Person {
+    string name;
+    int age;
+    
+    Person(string n; int a) {
+        this.name := n;
+        this.age := a;
+    }
+    
+    void display() {
+        io.writeStrLn("Name:" ^ this.name);
+        io.writeStrLn("Age:" ^ this.age);
+    }
+}
