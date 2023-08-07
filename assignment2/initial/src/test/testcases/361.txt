@@ -1,0 +1,14 @@
+class Manager extends Employee {
+    string department;
+
+    Manager(string n; int a; string dept) {
+        this.Employee(n, a);
+        this.department := dept;
+    }
+
+    void display() {
+        io.writeStrLn("Manager Name: " ^ this.name);
+        io.writeStrLn("Manager Age: " ^ this.age);
+        io.writeStrLn("Manager Department: " ^ this.department);
+    }
+}

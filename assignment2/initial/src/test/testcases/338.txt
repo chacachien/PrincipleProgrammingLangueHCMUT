@@ -1,0 +1,6 @@
+class decl {
+	int a, b, c;
+	float x, y;
+	string z = "abc";
+	static boolean d = true;
+}

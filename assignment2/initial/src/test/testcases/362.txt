@@ -1,0 +1,14 @@
+class Developer extends Employee {
+    string programmingLanguage;
+
+    Developer(string n; int a; string lang) {
+        this.Employee(n, a);
+        this.programmingLanguage := lang;
+    }
+
+    void display() {
+        io.writeStrLn("Developer Name: " ^ this.name);
+        io.writeStrLn("Developer Age: " ^ this.age);
+        io.writeStrLn("Programming Language: " ^ this.programmingLanguage);
+    }
+}

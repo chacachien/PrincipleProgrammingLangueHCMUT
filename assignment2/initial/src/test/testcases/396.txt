@@ -1,0 +1,96 @@
+class Account {
+    int accountNumber;
+    float balance;
+
+    Account(int number) {
+        this.accountNumber := number;
+        this.balance := 0.0;
+    }
+
+    void deposit(float amount) {
+        this.balance := this.balance + amount;
+    }
+
+    void withdraw(float amount) {
+        if amount <= this.balance then
+            this.balance := this.balance - amount;
+    
+    }
+
+    float getBalance() {
+        return this.balance;
+    }
+}
+
+class SavingsAccount extends Account {
+    float interestRate;
+
+    SavingsAccount(int number; float rate) {
+        this.Account(number);
+        this.interestRate := rate;
+    }
+
+    void applyInterest() {
+        float interest = this.balance * this.interestRate;
+        this.deposit(interest);
+    }
+}
+
+class CheckingAccount extends Account {
+    float overdraftLimit;
+
+    CheckingAccount(int number; float limit) {
+        this.Account(number);
+        this.overdraftLimit := limit;
+    }
+
+    void withdraw(float amount) {
+        if amount <= this.balance + this.overdraftLimit then
+            this.balance := this.balance - amount;
+    }
+}
+
+class Bank {
+    Account[10] accounts;
+
+    Bank(int numAccounts) {
+        this.accounts := new Account();
+        for i := 0 to numAccounts - 1 do
+            if i % 2 == 0 then
+                this.accounts[i] := new SavingsAccount(i, 0.05);
+            else
+                this.accounts[i] := new CheckingAccount(i, 500.0);
+        
+        
+    }
+
+    void simulateTransactions() {
+        for i := 0 to this.accounts.length - 1 do
+            if this.accounts[i] == SavingsAccount then {
+                SavingsAccount sa = this.accounts[i];
+                sa.deposit(100.0);
+                sa.applyInterest();
+            }
+            else{
+                CheckingAccount ca = this.accounts[i];
+                ca.deposit(200.0);
+                ca.withdraw(300.0);
+            }
+        
+    }
+
+    void printAccountBalances() {
+        for i := 0 to this.accounts.length - 1 do
+            io.writeStrLn("Account " ^ i ^ " Balance: " ^ (this.accounts[i]).getBalance());
+        
+    }
+}
+
+class TestBank {
+    static void main() {
+        Bank bank = new Bank(10);
+        bank.simulateTransactions();
+        bank.printAccountBalances();
+ 
+   }
+}

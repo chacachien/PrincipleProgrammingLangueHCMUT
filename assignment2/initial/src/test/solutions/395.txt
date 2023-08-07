@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(TestBank),[MethodDecl(Id(main),Static,[],VoidType,Block([VarDecl(Id(bank),ClassType(Id(Bank)),NewExpr(Id(Bank),[IntLit(10)]))],[Call(Id(bank),Id(simulateTransactions),[]),Call(Id(bank),Id(printAccountBalances),[])]))])])

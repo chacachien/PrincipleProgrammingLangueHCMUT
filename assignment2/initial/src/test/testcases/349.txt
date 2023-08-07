@@ -1,0 +1,3 @@
+class Understandable extends GoodBoy {
+    void Void() {}
+}

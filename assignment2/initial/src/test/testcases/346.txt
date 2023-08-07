@@ -1,0 +1,4 @@
+class a extends b 
+{
+    int c = this.ok().not_ok.very_ok().pho.rose.uu / 2 \ 5;
+}

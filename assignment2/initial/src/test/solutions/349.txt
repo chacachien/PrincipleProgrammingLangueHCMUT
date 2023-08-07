@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Understandable),Id(GoodBoy),[MethodDecl(Id(Void),Instance,[],VoidType,Block([],[]))])])

@@ -1,0 +1,35 @@
+class Bank {
+    Account[10] accounts;
+
+    Bank(int numAccounts) {
+        this.accounts := new Account();
+        for i := 0 to numAccounts - 1 do
+            if i % 2 == 0 then
+                this.accounts[i] := new SavingsAccount(i, 0.05);
+            else
+                this.accounts[i] := new CheckingAccount(i, 500.0);
+        
+        
+    }
+
+    void simulateTransactions() {
+        for i := 0 to this.accounts.length - 1 do
+            if this.accounts[i] == SavingsAccount then {
+                SavingsAccount sa = this.accounts[i];
+                sa.deposit(100.0);
+                sa.applyInterest();
+            }
+            else{
+                CheckingAccount ca = this.accounts[i];
+                ca.deposit(200.0);
+                ca.withdraw(300.0);
+            }
+        
+    }
+
+    void printAccountBalances() {
+        for i := 0 to this.accounts.length - 1 do
+            io.writeStrLn("Account " ^ i ^ " Balance: " ^ (this.accounts[i]).getBalance());
+        
+    }
+}

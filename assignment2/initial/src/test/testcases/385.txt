@@ -1,0 +1,13 @@
+class TestBubbleSort {
+    static void main() {
+        int[7] array = {64, 34, 25, 12, 22, 11, 90};
+        BubbleSort sorter = new BubbleSort();
+
+        io.writeStrLn("Original array:");
+        sorter.printArray(array);
+
+        io.writeStrLn("\nSorted array:");
+        sorter.sort(array);
+        sorter.printArray(array);
+    }
+}

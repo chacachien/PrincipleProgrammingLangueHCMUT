@@ -1,0 +1,15 @@
+class Test {
+    static void main() {
+        Warrior warrior = new Warrior("Conan", 25, "Greatsword");
+        Mage mage = new Mage("Gandalf", 30, "Fireball");
+
+        Character[2] characters;
+        characters[0] := warrior;
+        characters[1] := mage;
+
+        for c:=lemgth downto characters do {
+            c.displayInfo();
+            io.writeStrLn();
+        }
+    }
+}

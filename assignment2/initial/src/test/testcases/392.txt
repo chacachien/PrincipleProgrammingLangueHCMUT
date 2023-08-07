@@ -1,0 +1,13 @@
+class SavingsAccount extends Account {
+    float interestRate;
+
+    SavingsAccount(int number; float rate) {
+        this.Account(number);
+        this.interestRate := rate;
+    }
+
+    void applyInterest() {
+        float interest = this.balance * this.interestRate;
+        this.deposit(interest);
+    }
+}

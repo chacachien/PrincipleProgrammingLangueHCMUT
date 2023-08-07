@@ -1,0 +1,14 @@
+class Employee {
+    string name;
+    int age;
+
+    Employee(string n; int a) {
+        this.name := n;
+        this.age := a;
+    }
+
+    void display() {
+        io.writeStrLn("Employee Name: " ^ this.name);
+        io.writeStrLn("Employee Age: " ^ this.age);
+    }
+}

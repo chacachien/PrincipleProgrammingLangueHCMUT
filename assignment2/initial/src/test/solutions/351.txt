@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(scope),[MethodDecl(Id(x),Instance,[],IntType,Block([VarDecl(Id(x),IntType)],[Block([VarDecl(Id(x),IntType,IntLit(10))],[Block([ConstDecl(Id(x),IntType,IntLit(10))],[Block([ConstDecl(Id(x),FloatType,FloatLit(0.0))],[])])])]))])])

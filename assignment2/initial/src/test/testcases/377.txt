@@ -1,0 +1,14 @@
+class Character {
+    string name;
+    int level;
+
+    Character(string n; int l) {
+        this.name := n;
+        this.level := l;
+    }
+
+    void displayInfo() {
+        io.writeStrLn("Name: " ^ this.name);
+        io.writeStrLn("Level: " ^ this.level);
+    }
+}

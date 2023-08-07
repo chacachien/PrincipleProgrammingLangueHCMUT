@@ -1,0 +1,7 @@
+class TestBank {
+    static void main() {
+        Bank bank = new Bank(10);
+        bank.simulateTransactions();
+        bank.printAccountBalances();
+    }
+}

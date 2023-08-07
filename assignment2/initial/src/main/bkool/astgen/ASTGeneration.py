@@ -238,7 +238,7 @@ class ASTGeneration(BKOOLVisitor):
     # Visit a parse tree produced by BKOOLParser#ifstatement.
     #       ifstatement: IF expression THEN statement (ELSE statement)?; 
     def visitIfstatement(self, ctx:BKOOLParser.IfstatementContext):
-        return If(self.visit(ctx.expression()), self.visit(ctx.statement(0)), self.visit(ctx.statement(1)) if ctx.ELSE() else If(self.visit(ctx.expression()), self.visit(ctx.statement(0))))
+        return If(self.visit(ctx.expression()), self.visit(ctx.statement(0)), self.visit(ctx.statement(1))) if ctx.ELSE() else If(self.visit(ctx.expression()), self.visit(ctx.statement(0)))
 
 
     # Visit a parse tree produced by BKOOLParser#forstatement.

@@ -1,0 +1,8 @@
+class Point 
+{
+    int x, y;
+    static float length(Point a; Point b) 
+    {
+        return Math.sqrt(Math.sqr(a.x - b.x) - (a.y - b.y));
+    }
+}

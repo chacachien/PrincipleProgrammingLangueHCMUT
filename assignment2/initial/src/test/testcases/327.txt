@@ -1,0 +1,5 @@
+class array {
+    void test() {
+        x.b[2] := x.m()[3];
+    }
+}

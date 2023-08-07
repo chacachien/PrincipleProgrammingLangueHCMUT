@@ -1,0 +1,7 @@
+class Rectangle extends Shape {
+    float getArea(){
+        if a + b == 5 then 
+            a := b;
+        continue;
+    }
+}

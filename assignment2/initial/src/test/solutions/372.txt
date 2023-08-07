@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Vehicle),[MethodDecl(Id(move),Instance,[],VoidType,Block([],[Call(Id(io),Id(writeStrLn),[StringLit(Vehicle is moving.)])]))])])

@@ -1,0 +1,5 @@
+class Bicycle extends Vehicle {
+    void move() {
+        io.writeStrLn("Bicycle is pedaling on the path.");
+    }
+}

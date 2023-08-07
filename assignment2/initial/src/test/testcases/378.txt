@@ -1,0 +1,14 @@
+class Warrior extends Character {
+    string weapon;
+
+    Warrior(string n; int l, w) {
+        this.Character(n, l);
+        this.weapon := w;
+    }
+
+    void displayInfo() {
+        io.writeStrLn("Warrior:");
+        this.Character.displayInfo();
+        io.writeStrLn("Weapon: " ^ this.weapon);
+    }
+}

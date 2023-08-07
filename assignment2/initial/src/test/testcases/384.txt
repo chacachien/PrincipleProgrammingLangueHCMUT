@@ -1,0 +1,21 @@
+class BubbleSort {
+    void sort(int[10] arr) {
+        int temp;
+        for i := 0 to length - 2 do {
+            for j := 0 to length - 2 - i do {
+                if arr[j] > arr[j + 1] then {
+                   temp := arr[j];
+                    arr[j] := arr[j + 1];
+                    arr[j + 1] := temp;
+                }
+            }       
+        }
+    }
+
+    void printArray(int[10] arr) {
+        for i := 0 to length - 1 do {
+            io.writeInt(arr[i]);
+            io.writeChar(" ");
+        }
+    }
+}

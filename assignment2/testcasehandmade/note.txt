@@ -12,3 +12,11 @@ can we do something like this: class Test{
 }
 
 arraycell (int or IntLit)
+
+
+x.b[2] => FieldAccess or ArrayCell
+
+
+Id(this) or Self()
+
+a.b.c() -> call or FieldAccess

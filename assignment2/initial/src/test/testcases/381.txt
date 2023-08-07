@@ -1,0 +1,60 @@
+class Character {
+    string name;
+    int level;
+
+    Character(string n; int l) {
+        this.name := n;
+        this.level := l;
+    }
+
+    void displayInfo() {
+        io.writeStrLn("Name: " ^ this.name);
+        io.writeStrLn("Level: " ^ this.level);
+    }
+}
+
+class Warrior extends Character {
+    string weapon;
+
+    Warrior(string n; int l, w) {
+        this.Character(n, l);
+        this.weapon := w;
+    }
+
+    void displayInfo() {
+        io.writeStrLn("Warrior:");
+        this.Character.displayInfo();
+        io.writeStrLn("Weapon: " ^ this.weapon);
+    }
+}
+
+class Mage extends Character {
+    string spell;
+
+    Mage(string n; int l, s) {
+        this.Character(n, l);
+        this.spell := s;
+    }
+
+    void displayInfo() {
+        io.writeStrLn("Mage:");
+        this.Character.displayInfo();
+        io.writeStrLn("Spell: " ^ this.spell);
+    }
+}
+
+class Test {
+    static void main() {
+        Warrior warrior = new Warrior("Conan", 25, "Greatsword");
+        Mage mage = new Mage("Gandalf", 30, "Fireball");
+
+        Character[2] characters;
+        characters[0] := warrior;
+        characters[1] := mage;
+
+        for c:=0 to characters do {
+            c.displayInfo();
+            io.writeStrLn();
+        }
+    }
+}

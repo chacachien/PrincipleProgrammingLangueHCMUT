@@ -1,0 +1,14 @@
+class Mage extends Character {
+    string spell;
+
+    Mage(string n; int l, s) {
+        this.Character(n, l);
+        this.spell := s;
+    }
+
+    void displayInfo() {
+        io.writeStrLn("Mage:");
+        this.Character.displayInfo();
+        io.writeStrLn("Spell: " ^ this.spell);
+    }
+}

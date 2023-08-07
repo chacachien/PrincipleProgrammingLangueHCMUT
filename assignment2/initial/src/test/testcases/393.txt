@@ -1,0 +1,13 @@
+class CheckingAccount extends Account {
+    float overdraftLimit;
+
+    CheckingAccount(int number; float limit) {
+        this.Account(number);
+        this.overdraftLimit := limit;
+    }
+
+    void withdraw(float amount) {
+        if amount <= this.balance + this.overdraftLimit then
+            this.balance := this.balance - amount;
+    }
+}
