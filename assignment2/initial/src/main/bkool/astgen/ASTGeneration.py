@@ -244,7 +244,7 @@ class ASTGeneration(BKOOLVisitor):
     # Visit a parse tree produced by BKOOLParser#forstatement.
     #       forstatement: FOR ID ASSIGN expression (TO | DOWNTO) expression DO statement; //interger
     def visitForstatement(self, ctx:BKOOLParser.ForstatementContext):
-        return For(Id(ctx.ID().getText()), self.visit(ctx.expression(0)), self.visit(ctx.expression(1)), ctx.TO(), self.visit(ctx.statement()))
+        return For(Id(ctx.ID().getText()), self.visit(ctx.expression(0)), self.visit(ctx.expression(1)),bool(ctx.TO()), self.visit(ctx.statement()))
 
 
     # Visit a parse tree produced by BKOOLParser#breakstatment.
@@ -351,10 +351,10 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#exp8.
-    #       exp8: exp9 LSB expression RSB | exp9 | literal |NIL; //test later
+    #       exp8: exp9 LSB expression RSB | exp9 ; //test later
     def visitExp8(self, ctx:BKOOLParser.Exp8Context):
-        if ctx.getChild(0).getText():
-            return self.visit(ctx.getChild(0))
+        if ctx.getChildCount()==1:
+            return self.visit(ctx.exp9())
         else:
             return ArrayCell(self.visit(ctx.exp9()), self.visit(ctx.expression()))
             
@@ -374,7 +374,7 @@ class ASTGeneration(BKOOLVisitor):
         return self.visit(ctx.getChild(0))
 
     # Visit a parse tree produced by BKOOLParser#exp11.
-    #       exp11: LB expression RB | ID | THIS |IO;
+    #       exp11: LB expression RB | ID | THIS |IO | NIL |literal;
     def visitExp11(self, ctx:BKOOLParser.Exp11Context):
         if ctx.getChildCount() == 3:
             return self.visit(ctx.expression())
@@ -385,7 +385,10 @@ class ASTGeneration(BKOOLVisitor):
                 return SelfLiteral()
             elif ctx.IO():
                 return Id(ctx.IO().getText()) # hmmmmmmm
-            
+            elif ctx.NIL():
+                return NullLiteral()
+            else:
+                return self.visit(ctx.literal())
 
     # Visit a parse tree produced by BKOOLParser#memberaccess.
     # def visitMemberaccess(self, ctx:BKOOLParser.MemberaccessContext):
@@ -393,9 +396,9 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#instanceattributeaccess.
-    #       instanceattributeaccess: exp9 DOT ID; 
+    #       instanceattributeaccess: expression DOT ID; 
     def visitInstanceattributeaccess(self, ctx:BKOOLParser.InstanceattributeaccessContext):
-        return FieldAccess(self.visit(ctx.exp9()), Id(ctx.ID().getText()))
+        return FieldAccess(self.visit(ctx.expression()), Id(ctx.ID().getText()))
 
     # Visit a parse tree produced by BKOOLParser#staticattributeaccess.
     #       staticattributeaccess: ID DOT ID;
@@ -404,15 +407,15 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#instancemethodinvocation.
-    #       instancemethodinvocation: exp9 DOT ID LB listexpression RB;
+    #       instancemethodinvocation: expression DOT methodinvocation;
     def visitInstancemethodinvocation(self, ctx:BKOOLParser.InstancemethodinvocationContext):
-        return CallStmt(self.visit(ctx.exp9()), Id(ctx.ID().getText()), self.visit(ctx.listexpression()))
+        return CallStmt(self.visit(ctx.expression()), self.visit(ctx.methodinvocation())[0], self.visit(ctx.methodinvocation())[1])
 
 
     # Visit a parse tree produced by BKOOLParser#staticmethodinvocation.
-    #       staticmethodinvocation: ID DOT ID LB listexpression RB; 
+    #       staticmethodinvocation: ID DOT methodinvocation; 
     def visitStaticmethodinvocation(self, ctx:BKOOLParser.StaticmethodinvocationContext):
-        return CallStmt(Id(ctx.ID(0).getText()), Id(ctx.ID(1).getText()), self.visit(ctx.listexpression()))
+        return CallStmt(Id(ctx.ID(0).getText()), self.visit(ctx.methodinvocation())[0], self.visit(ctx.methodinvocation())[1])
 
 
     # Visit a parse tree produced by BKOOLParser#methodinvocation.

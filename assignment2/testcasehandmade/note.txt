@@ -10,3 +10,5 @@ can we do something like this: class Test{
             return n * factorial(n - 1);
     }
 }
+
+arraycell (int or IntLit)

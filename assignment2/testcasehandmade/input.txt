@@ -441,3 +441,29 @@ class Test {
     }
 }
 ---
+testcase326:
+
+class Library {
+    Book[5] books;
+    
+    Library(Book[5] b) {
+        books := b;
+    }
+    
+    void displayBooks() {
+        io.writeStrLn("Library_Catalog:");
+        for i := 0 to books.length do {
+            (books[i]).displayInfo();
+        }
+    }
+}
+
+class Test {
+    static void main() {
+        Book[3] bookList;
+        Library myLibrary = new Library(bookList);
+        bookList[0] := new Book("HarryPotter", "J.K.Rowling");
+        bookList[1] := new Book("TheHobbit", "J.R.R.Tolkien");
+    }
+}
+---

@@ -10,49 +10,34 @@ for i in range(len(a)):
 import string
 x = """
 Program([
-    ClassDecl(
-        Id(Test),
-        [
-            MethodDecl(
-                Id(main),
-                Static,
-                [],
-                VoidType,
+    ClassDecl(Id(Library), [
+        AttributeDecl(Instance, VarDecl(Id(books), ArrayType(IntLit(5), ClassType(Id(Book))))),
+        MethodDecl(Id(Library), Instance, [
+            param(Id(b), ArrayType(IntLit(5), ClassType(Id(Book))))
+        ], VoidType, Block([
+            AssignStmt(FieldAccess(Self(), Id(books)), Id(b))
+        ])),
+        MethodDecl(Id(displayBooks), Instance, [], VoidType, Block([
+            Call(Id(io), Id(writeStrLn), [StringLit(Library_Catalog:)]),
+            ForStmt(
+                Id(i),
+                IntLit(0),
+                FieldAccess(Id(books), Id(length)),
+                True,
                 Block([
-                    VarDecl(Id(persons), ArrayType(3,ClassType(Id(Person))),
-                    NewExpr(Id(Person),[])),
-                    VarDecl(Id(totalAge), IntType, IntLit(0))],[
-                    AssignStmt(
-                        ArrayCell(Id(persons), IntLit(0)),
-                        NewExpr(
-                            Id(Person),
-                            [StringLit(Alice), IntLit(25)]
-                        )
-                    ),
-                    AssignStmt(
-                        ArrayCell(Id(persons), IntLit(1)),
-                        NewExpr(
-                            Id(Person),
-                            [StringLit(Bob), IntLit(30)]
-                        )
-                    ),
-                    AssignStmt(
-                        ArrayCell(Id(persons), IntLit(2)),
-                        NewExpr(
-                            Id(Person),
-                            [StringLit(Charlie), IntLit(22)]
-                        )
-                    ),
-                    Call(
-                        Id(io),
-                        Id(writeStrLn),
-                        [BinaryOp(^, StringLit(Total Age: ), Id(totalAge))]
-                    )
+                    Call(ArrayCell(Id(books), Id(i)), Id(displayInfo), [])
                 ])
             )
-        ]
-    )
-])
+        ]))
+    ]),
+    ClassDecl(Id(Test), [
+        MethodDecl(Id(main), Static, [], VoidType, Block([
+            VarDecl(Id(bookList), ArrayType(IntLit(3), ClassType(Id(Book)))),
+            AssignStmt(ArrayCell(Id(bookList), IntLit(0)), NewExpr(Id(Book), [StringLit(Harry Potter), StringLit(J.K. Rowling)])),
+            AssignStmt(ArrayCell(Id(bookList), IntLit(1)), NewExpr(Id(Book), [StringLit(The Hobbit, StringLit(J.K. Rowling)]))])
+        ])
+    ])
+        
 """
 
 a=x.translate({ord(c): None for c in string.whitespace})

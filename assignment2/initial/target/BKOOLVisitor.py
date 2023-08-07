@@ -194,6 +194,31 @@ class BKOOLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by BKOOLParser#instanceattributeaccess.
+    def visitInstanceattributeaccess(self, ctx:BKOOLParser.InstanceattributeaccessContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKOOLParser#staticattributeaccess.
+    def visitStaticattributeaccess(self, ctx:BKOOLParser.StaticattributeaccessContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKOOLParser#instancemethodinvocation.
+    def visitInstancemethodinvocation(self, ctx:BKOOLParser.InstancemethodinvocationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKOOLParser#staticmethodinvocation.
+    def visitStaticmethodinvocation(self, ctx:BKOOLParser.StaticmethodinvocationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by BKOOLParser#methodinvocation.
+    def visitMethodinvocation(self, ctx:BKOOLParser.MethodinvocationContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by BKOOLParser#expression.
     def visitExpression(self, ctx:BKOOLParser.ExpressionContext):
         return self.visitChildren(ctx)
@@ -254,36 +279,6 @@ class BKOOLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by BKOOLParser#memberaccess.
-    def visitMemberaccess(self, ctx:BKOOLParser.MemberaccessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#instanceattributeaccess.
-    def visitInstanceattributeaccess(self, ctx:BKOOLParser.InstanceattributeaccessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#staticattributeaccess.
-    def visitStaticattributeaccess(self, ctx:BKOOLParser.StaticattributeaccessContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#instancemethodinvocation.
-    def visitInstancemethodinvocation(self, ctx:BKOOLParser.InstancemethodinvocationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#staticmethodinvocation.
-    def visitStaticmethodinvocation(self, ctx:BKOOLParser.StaticmethodinvocationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#methodinvocation.
-    def visitMethodinvocation(self, ctx:BKOOLParser.MethodinvocationContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by BKOOLParser#listexpression.
     def visitListexpression(self, ctx:BKOOLParser.ListexpressionContext):
         return self.visitChildren(ctx)
@@ -321,26 +316,6 @@ class BKOOLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by BKOOLParser#arrayelement.
     def visitArrayelement(self, ctx:BKOOLParser.ArrayelementContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#intoperator.
-    def visitIntoperator(self, ctx:BKOOLParser.IntoperatorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#floatoperator.
-    def visitFloatoperator(self, ctx:BKOOLParser.FloatoperatorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#booloperator.
-    def visitBooloperator(self, ctx:BKOOLParser.BooloperatorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#stringoperator.
-    def visitStringoperator(self, ctx:BKOOLParser.StringoperatorContext):
         return self.visitChildren(ctx)
 
 

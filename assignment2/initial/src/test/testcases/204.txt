@@ -1,19 +1,42 @@
 
-class Test {
-    static void main() {
-        int a = 5;
-        int b = 10;
-        int c = 15;
-
-        boolean result1 = (a + b) * c > a + b * c;
-        boolean result2 = (a >= b) && (c < a) || (b <= c);
-        boolean result3 = !((a == b) || c != b) && !(c > a && (b < c));
-
-        io.writeStrLn("Result 1: " ^ result1);
-        io.writeStrLn("Result 2: " ^ result2);
-        io.writeStrLn("Result 3: " ^ result3);
+class Book {
+    string title;
+    string author;
+    
+    Book(string t; string a) {
+        title := t;
+        author := a;
+    }
+    
+    void displayInfo() {
+        io.writeStrLn("Title:" ^ title);
+        io.writeStrLn("Author:" ^ author);
     }
 }
 
+class Library {
+    Book[5] books;
+    
+    Library(Book[5] b) {
+        books := b;
+    }
+    
+    void displayBooks() {
+        io.writeStrLn("Library Catalog:");
+        for i := 0 to books.length do {
+           (books[i]).displayInfo(a);
+        }
+    }
+}
 
-
+class Test {
+    static void main() {
+        Book[3] bookList;
+        Library myLibrary = new Library(bookList);
+        bookList[0] := new Book("Harry Potter", "J.K. Rowling");
+        bookList[1] := new Book("The Hobbit", "J.R.R. Tolkien");
+        bookList[2] := new Book("1984", "George Orwell");
+        
+        myLibrary.displayBooks();
+    }
+}

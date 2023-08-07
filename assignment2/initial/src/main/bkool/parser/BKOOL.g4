@@ -78,9 +78,15 @@ continuestatement: CONTINUTE SEMI;
 returnstatement: RETURN expression SEMI;
 methodinvocationstatement: (instancemethodinvocation|staticmethodinvocation) SEMI;
 
+
+instanceattributeaccess: expression DOT ID; //(ID|THIS|IO)
+staticattributeaccess: ID DOT ID;
+instancemethodinvocation: expression DOT methodinvocation;
+staticmethodinvocation: ID DOT methodinvocation;
+//think at night
+methodinvocation: ID LB listexpression RB;
 // object creation
 //objectcreation: NEW ID listexpression;
-
 
 expression: exp1 LT exp1| exp1 GT exp1| exp1 LET exp1| exp1 GET exp1| exp1;
 exp1: exp2 EQE exp2| exp2 NEQ exp2| exp2;
@@ -90,24 +96,17 @@ exp4: exp4 MUL exp5 | exp4 FDIV exp5| exp4 IDIV exp5| exp4 MOD exp5| exp5;
 exp5: exp5 CONCATE exp6| exp6;
 exp6: NOT exp6 | exp7; //hmmm
 exp7: ADD exp7| SUB exp7 | exp8  ;
-exp8: exp9 LSB expression RSB | exp9 | literal |NIL; //test later
+exp8: exp9 LSB expression RSB | exp9 ; //|NIL; //test later
 exp9: exp9 DOT (ID |methodinvocation) | exp10; //| exp9 DOT ID
 //exp9: memberaccess| exp10;
 exp10: classcreate | exp11;
 //exp10: classcreate| ID | literal;
 //exp10: NEW exp10 |exp11;
-exp11: LB expression RB | ID | THIS |IO;
+exp11: LB expression RB | ID | THIS |IO| literal | NIL;
 
 //member access
 //memberaccess: instanceattributeaccess|staticattributeaccess|instancemethodinvocation|staticmethodinvocation;
-instanceattributeaccess: exp9 DOT ID; //(ID|THIS|IO)
-staticattributeaccess: ID DOT ID;
-instancemethodinvocation: exp9 DOT ID LB listexpression RB;
-staticmethodinvocation: ID DOT ID LB listexpression RB; 
-//think at night
 
-
-methodinvocation: ID LB listexpression RB;
 
 
 listexpression: expressionprime | ; //i think it can be null
