@@ -1,9 +1,8 @@
 class PPL {
     string PPL = "Principles of Programming Languages";
     string lecturer = "Dr. Nguyen Hua Phung";
-    static void main(){
+    void main(){
         string con;
         con := lecturer ^ " - ";
-        }
     }
 }

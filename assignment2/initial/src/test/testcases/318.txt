@@ -31,7 +31,7 @@ class Student {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Student s1 = new Student("Alice", 20, 3.8);
         Student s2 = new Student("Bob", 19, 2.9);
 

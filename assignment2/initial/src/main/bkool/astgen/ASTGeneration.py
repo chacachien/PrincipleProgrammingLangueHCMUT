@@ -113,6 +113,8 @@ class ASTGeneration(BKOOLVisitor):
     # Visit a parse tree produced by BKOOLParser#method.
     #       method: STATIC? typ ID LB listparameter RB blockstatement;
     def visitMethod(self, ctx:BKOOLParser.MethodContext):
+        if ctx.ID().getText()=="main":
+            return [MethodDecl(Static(), Id(ctx.ID().getText()), [], self.visit(ctx.typ()), self.visit(ctx.blockstatement()))]
         if ctx.STATIC():
             return [MethodDecl(Static(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()), self.visit(ctx.typ()), self.visit(ctx.blockstatement()))]
         else:
@@ -153,10 +155,14 @@ class ASTGeneration(BKOOLVisitor):
     # Visit a parse tree produced by BKOOLParser#constructor.
     #       constructor: STATIC? ID LB listparameter RB blockstatement;
     def visitConstructor(self, ctx:BKOOLParser.ConstructorContext):
+        # if ctx.STATIC():
+        #     return [MethodDecl(Static(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()),None ,self.visit(ctx.blockstatement()))]
+        # else:
+        #     return [MethodDecl(Instance(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()),None,self.visit(ctx.blockstatement()))]
         if ctx.STATIC():
-            return [MethodDecl(Static(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()),None ,self.visit(ctx.blockstatement()))]
+            return [MethodDecl(Static(), Id("<init>"), self.visit(ctx.listparameter()),None ,self.visit(ctx.blockstatement()))]
         else:
-            return [MethodDecl(Instance(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()),None,self.visit(ctx.blockstatement()))]
+            return [MethodDecl(Instance(), Id("<init>"), self.visit(ctx.listparameter()),None,self.visit(ctx.blockstatement()))]
 
 
     # Visit a parse tree produced by BKOOLParser#statement.

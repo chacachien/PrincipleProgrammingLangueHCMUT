@@ -17,7 +17,7 @@ class Math {
 }
 
 class Test {
-    static void main() {
+    void main() {
         int num1 = 5;
         int num2 = 6;
 

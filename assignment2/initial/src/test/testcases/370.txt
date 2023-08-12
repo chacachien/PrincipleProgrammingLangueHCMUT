@@ -1,8 +1,8 @@
 class main {
-                 float getArea(){
-                x.b[2] := x.m()[3];
-                #start of declaration part
-                {
+            float getArea(){
+        x.b[2] := x.m()[3];
+        #start of declaration part
+        {
 float r,s;
 int[5] a,b;
 #list of statements

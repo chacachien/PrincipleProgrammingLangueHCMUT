@@ -14,7 +14,7 @@ class Library {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Book[3] bookList;
         Library myLibrary = new Library(bookList);
         bookList[0] := new Book("HarryPotter", "J.K.Rowling");

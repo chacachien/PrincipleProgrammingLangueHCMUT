@@ -31,7 +31,7 @@ class FixedDeposit extends Bank {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Bank bank1, bank2;
         float principal = 1000.0;
         float interest1, interest2;

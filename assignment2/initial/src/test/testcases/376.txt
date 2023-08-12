@@ -16,7 +16,7 @@ class Bicycle extends Vehicle {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Vehicle[5] vehicles;
         vehicles[0] := new Vehicle();
         vehicles[1] := new Car();

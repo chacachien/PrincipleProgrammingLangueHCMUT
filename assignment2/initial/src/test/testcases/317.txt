@@ -16,7 +16,7 @@ class Point {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Point p1 = new Point(3, 5);
         Point p2 = new Point(-2, 7);
         Point sum = Point.add(p1, p2);

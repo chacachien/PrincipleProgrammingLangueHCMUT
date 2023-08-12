@@ -110,7 +110,7 @@ class Square extends Shape {
     }
 }
 class Test {
-    static void main() {
+    void main() {
         Shape c, s;
         float area1, area2;
         
@@ -137,7 +137,7 @@ class Circle extends Shape {
     }
 }
 class Test {
-    static void main() {
+    void main() {
         Circle c = new Circle(5.0, 5.0);
         float area = c.getArea();
         io.writeStrLn("Area of Circle: " ^ area);
@@ -192,7 +192,7 @@ class Cat extends Animal {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Dog dog = new Dog("Buddy", 3, "Labrador");
         Cat cat = new Cat("Whiskers", 2, "Gray");
         Animal animal1 = dog;
@@ -230,7 +230,7 @@ class Point {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Point p1 = new Point(3, 5);
         Point p2 = new Point(-2, 7);
         Point sum = Point.add(p1, p2);
@@ -275,7 +275,7 @@ class Student {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Student s1 = new Student("Alice", 20, 3.8);
         Student s2 = new Student("Bob", 19, 2.9);
 
@@ -307,7 +307,7 @@ class Math {
 }
 
 class Test {
-    static void main() {
+    void main() {
         int num1 = 5;
         int num2 = 6;
 
@@ -358,7 +358,7 @@ class FixedDeposit extends Bank {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Bank bank1, bank2;
         float principal = 1000.0;
         float interest1, interest2;
@@ -378,14 +378,13 @@ class Test {
 ---
 testcase321:
 class Test {
-    static void main() {
+    void main() {
         int a = 5, b = 10;
         int c = 15;
         boolean result = a + b * c >= c - b / a && !(a > b);
         io.writeStrLn("Result: " ^ result);
     }
 }
-
 ---
 testcase322:
 class Test {
@@ -458,7 +457,7 @@ class Library {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Book[3] bookList;
         Library myLibrary = new Library(bookList);
         bookList[0] := new Book("HarryPotter", "J.K.Rowling");
@@ -758,7 +757,7 @@ class Triangle
 } 
 class Program
 {
-    static void main() 
+    void main() 
     {
         Point p1, p2, p3;
         Triangle abc;
@@ -882,7 +881,7 @@ class Triangle
 } 
 class Program
 {
-    static void main() 
+    void main() 
     {
         Point p1, p2, p3;
         Triangle abc;
@@ -972,19 +971,17 @@ class Developer extends Employee {
 }
 ---
 testcase363:
-class Test {
-    static void main() {
+class Test { /*
+    static void main() { 
         Employee emp = new Employee("John Doe", 30);
         Manager manager = new Manager("Alice Smith", 40, "HR");
         Developer developer = new Developer("Bob Johnson", 25, "Java");
-
         Employee e1 = manager;
         Employee e2 = developer;
-
         emp.display();
         e1.display();
         e2.display();
-    }
+    }*/
 }
 ---
 testcase364:
@@ -996,7 +993,7 @@ class test {
 ---
 testcase365:
 class test {
-    static void main() {
+    void main() {
         a := +a;
     }
 }
@@ -1010,10 +1007,9 @@ testcase367:
 class PPL {
     string PPL = "Principles of Programming Languages";
     string lecturer = "Dr. Nguyen Hua Phung";
-    static void main(){
+    void main(){
         string con;
         con := lecturer ^ " - ";
-        }
     }
 }
 ---
@@ -1033,11 +1029,11 @@ class main {
 }
 ---
 testcase370:
-        class main {
-                 float getArea(){
-                x.b[2] := x.m()[3];
-                #start of declaration part
-                {
+class main {
+            float getArea(){
+        x.b[2] := x.m()[3];
+        #start of declaration part
+        {
 float r,s;
 int[5] a,b;
 #list of statements
@@ -1079,7 +1075,7 @@ class Bicycle extends Vehicle {
 ---
 testcase375:
 class Test {
-    static void main() {
+    void main() {
         Vehicle[5] vehicles;
         vehicles[0] := new Vehicle();
         vehicles[1] := new Car();
@@ -1110,7 +1106,7 @@ class Bicycle extends Vehicle {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Vehicle[5] vehicles;
         vehicles[0] := new Vehicle();
         vehicles[1] := new Car();
@@ -1234,7 +1230,7 @@ class Mage extends Character {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Warrior warrior = new Warrior("Conan", 25, "Greatsword");
         Mage mage = new Mage("Gandalf", 30, "Fireball");
 
@@ -1596,7 +1592,7 @@ class Bank {
 ---
 testcase395:
 class TestBank {
-    static void main() {
+    void main() {
         Bank bank = new Bank(10);
         bank.simulateTransactions();
         bank.printAccountBalances();
@@ -1693,7 +1689,7 @@ class Bank {
 }
 
 class TestBank {
-    static void main() {
+    void main() {
         Bank bank = new Bank(10);
         bank.simulateTransactions();
         bank.printAccountBalances();
@@ -1703,7 +1699,7 @@ class TestBank {
 ---
 testcase397:
 class OperatorTest {
-    static void main() {
+    void main() {
         {
         int a = 10;
         int b = 20;

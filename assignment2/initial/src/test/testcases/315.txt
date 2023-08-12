@@ -11,7 +11,7 @@ class Circle extends Shape {
     }
 }
 class Test {
-    static void main() {
+    void main() {
         Circle c = new Circle(5.0, 5.0);
         float area = c.getArea();
         io.writeStrLn("Area of Circle: " ^ area);

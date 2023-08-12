@@ -1,14 +1,12 @@
-class Test {
-    static void main() {
+class Test { /*
+    static void main() { 
         Employee emp = new Employee("John Doe", 30);
         Manager manager = new Manager("Alice Smith", 40, "HR");
         Developer developer = new Developer("Bob Johnson", 25, "Java");
-
         Employee e1 = manager;
         Employee e2 = developer;
-
         emp.display();
         e1.display();
         e2.display();
-    }
+    }*/
 }

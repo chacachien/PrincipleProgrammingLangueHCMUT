@@ -9,7 +9,7 @@ class Square extends Shape {
     }
 }
 class Test {
-    static void main() {
+    void main() {
         Shape c, s;
         float area1, area2;
         

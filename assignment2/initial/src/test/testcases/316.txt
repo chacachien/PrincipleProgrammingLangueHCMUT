@@ -45,7 +45,7 @@ class Cat extends Animal {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Dog dog = new Dog("Buddy", 3, "Labrador");
         Cat cat = new Cat("Whiskers", 2, "Gray");
         Animal animal1 = dog;

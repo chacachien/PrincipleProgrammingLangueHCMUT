@@ -44,7 +44,7 @@ class Mage extends Character {
 }
 
 class Test {
-    static void main() {
+    void main() {
         Warrior warrior = new Warrior("Conan", 25, "Greatsword");
         Mage mage = new Mage("Gandalf", 30, "Fireball");
 

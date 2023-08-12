@@ -1,5 +1,5 @@
 class test {
-    static void main() {
+    void main() {
         a := +a;
     }
 }

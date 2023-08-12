@@ -87,7 +87,7 @@ class Bank {
 }
 
 class TestBank {
-    static void main() {
+    void main() {
         Bank bank = new Bank(10);
         bank.simulateTransactions();
         bank.printAccountBalances();
