@@ -1,0 +1,7 @@
+class foo{}
+class main extends foo {
+    int b;
+    int a (){ 
+    this.foo();}
+    int a(){}
+}

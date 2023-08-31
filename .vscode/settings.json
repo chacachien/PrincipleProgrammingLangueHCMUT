@@ -1,0 +1,6 @@
+{
+    "liveServer.settings.port": 81,
+    "python.analysis.extraPaths": [
+        "./assignment3/src/main/bkool/utils"
+    ]
+}

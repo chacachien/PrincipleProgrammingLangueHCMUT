@@ -1,0 +1,42 @@
+testcase400:
+class foo{}
+class main extends foo {
+    int aa (){    
+        this.foo();
+    }
+}
+---
+testcase401:
+class foo{}
+class main extends foo {
+    int b;
+    int a (){ 
+    this.foo();}
+    int b;
+}
+---
+testcase402:
+class foo{}
+class main extends foo {
+    int b;
+    int a (){ 
+    this.foo();}
+    int a(){}
+}
+---
+testcase403:
+class foo{}
+class main extends foo {
+    int b;
+    int a (int a; int b, a){ 
+    this.foo();}
+    int a(){}
+}
+---
+testcase404:
+class main extends foo {
+    int b;
+    int a (int a; int b){ 
+    this.foo();}
+}
+---

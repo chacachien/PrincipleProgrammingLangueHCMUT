@@ -1,0 +1,10 @@
+testcase400:[]
+---
+testcase401: Redeclared Attribute: b
+---
+testcase402: Redeclared Method: a
+---
+testcase403: Redeclared Parameter: a
+---
+testcase404: Undeclared Class: foo
+---
