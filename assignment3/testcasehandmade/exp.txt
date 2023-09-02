@@ -8,3 +8,15 @@ testcase403: Redeclared Parameter: a
 ---
 testcase404: Undeclared Class: foo
 ---
+testcase405: Redeclared Parameter: a
+---
+testcase406: Redeclared Class: foo
+---
+testcase407: Redeclared Variable: a
+---
+testcase408: Redeclared Constant: a
+---
+testcase409: Redeclared Class: foo
+---
+testcase410: Undeclared Identifier: a
+---

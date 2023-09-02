@@ -1,7 +1,8 @@
 class foo{}
 class main extends foo {
     int b;
-    int a (int a; int a){ 
+    int a (int a; int b){ 
+        float a;
     this.foo();}
 }
 class foo{}

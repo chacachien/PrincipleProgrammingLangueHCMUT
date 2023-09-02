@@ -1,4 +1,4 @@
-# Generated from d:\HDD\Documents\Uni\hk223\PPL\assignment\code\PrincipleProgrammingLangueHCMUT\assignment2\initial\src\main\bkool\parser\BKOOL.g4 by ANTLR 4.9.2
+# Generated from c:\Users\OnDoing\PrincipleProgrammingLangueHCMUT\assignment3\src\main\bkool\parser\BKOOL.g4 by ANTLR 4.9.2
 from antlr4 import *
 from io import StringIO
 import sys

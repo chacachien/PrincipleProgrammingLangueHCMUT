@@ -29,7 +29,9 @@ class ClassDetail:
 
 def getName(ast):
     name = None
-    if type(ast) is AttributeDecl:
+    if type(ast) is ClassDecl:
+        name = ast.classname.name
+    elif type(ast) is AttributeDecl:
         if type(ast.decl) is VarDecl:
             name = ast.decl.variable.name
         elif type(ast.decl) is ConstDecl:
@@ -45,7 +47,44 @@ def getName(ast):
     elif type(ast) is ClassDetail:
         name = ast.name.name
     return name
-        
+
+def getType(ast):
+    typ = None
+    if type(ast) is VarDecl:
+        typ = ast.varType
+    elif type(ast) is ConstDecl:
+        typ = ast.constType
+    elif type(ast) is AttributeDecl:
+        if type(ast.decl) is ConstDecl:
+            typ = ast.decl.constType
+        elif type(ast.decl) is VarDecl:
+            typ = ast.decl.varType
+    return typ
+
+
+def checkRedeclaredMember(ast, l):
+    wasDecl = [False, False]
+    
+    for mem in l:
+        if mem is ast:
+            print(mem,'---',ast)
+            wasDecl[1] = True
+            break
+        if getName(mem) == getName(ast):
+            wasDecl[0] = True
+    
+    if wasDecl[0] and wasDecl[1]:
+        return True
+    return False
+
+def findInList(name, l):
+    if type(l[0]) is AttributeDecl or type(l[0]) is MethodDecl:
+        c
+    for mem in l:
+        if getName(mem) == name:
+            return mem
+    return None
+
 
 class NameCheck(BaseVisitor):
     def visitProgram(self, ast, o):
@@ -60,15 +99,16 @@ class NameCheck(BaseVisitor):
         # classname : Id
         # memlist : List[MemDecl]
         # parentname : Id = None # None if there is no parent
+        
         # o is list of ClassDetail
-        for decl in o:
-            if ast.classname.name == decl.name:
-                raise Redeclared(Class(), ast.classname.name)
+        # for decl in o:
+        #     if ast.classname.name == decl.name:
+        #         raise Redeclared(Class(), ast.classname.name) # throw later
             
         c = []  # list of Att or Method
         for m in ast.memlist:
             c = c + [self.visit(m, c)]
-        return o + [ClassDetail(ast.classname, ast.parentname, c)]
+        return o + [ast]
     
     def visitAttributeDecl(self, ast, o):
         # class AttributeDecl(MemDecl):
@@ -76,18 +116,10 @@ class NameCheck(BaseVisitor):
         # decl: StoreDecl
         # return VarDecl or ConstDecl
         
-        # for decl in o:
-        #     if type(ast.decl) is VarDecl:
-        #         if ast.decl.variable.name == decl:
-        #             raise Redeclared(Attribute(), ast.decl.variable.name)
-        #     elif type(ast.decl) is ConstDecl:
-        #         if ast.decl.constant.name == decl:
-        #             raise Redeclared(Attribute(), ast.decl.constant.name)
-        
         # o still list of ClassDetail
-        for decl in o:
-            if getName(ast.decl) == getName(decl):
-                raise Redeclared(Attribute(), getName(ast.decl))
+        # for decl in o:
+        #     if getName(ast.decl) == getName(decl):
+        #         raise Redeclared(Attribute(), getName(ast.decl))
         return ast
     
     # def visitVarDecl(self, ast, o):
@@ -114,9 +146,9 @@ class NameCheck(BaseVisitor):
         # returnType: Type  # None for constructor
         # body: Block
         
-        for decl in o:
-            if getName(decl) == getName(ast):
-                raise Redeclared(Method(), getName(ast))
+        # for decl in o:
+        #     if getName(decl) == getName(ast):
+        #         raise Redeclared(Method(), getName(ast))
         # param = []
         # for p in ast.param:
         #     if getName(p) in param:
@@ -143,7 +175,7 @@ class StaticChecker(BaseVisitor):
     # varInit : Expr = None 
     
     classProgram = [
-        ClassDetail(Id('io'), None, [MethodDecl(Static(), Id('readInt'), [], IntType(), Block([],[])),
+        ClassDecl(Id('io'), None, [MethodDecl(Static(), Id('readInt'), [], IntType(), Block([],[])),
                                  MethodDecl(Static(), Id('writeIntLn'),[VarDecl(Id('anArg'),IntType())], VoidType(), Block([],[])),
                                  MethodDecl(Static(), Id('writeInt'),[VarDecl(Id('anArg'),IntType())], VoidType(), Block([],[])),
                                  ]),
@@ -158,7 +190,6 @@ class StaticChecker(BaseVisitor):
     def visitProgram(self, ast, c):
         # return [self.visit(x,c) for x in ast.decl]
         o = c + NameCheck().visit(ast, c)
-        
         for decl in ast.decl:
             self.visit(decl, o)
         
@@ -169,48 +200,91 @@ class StaticChecker(BaseVisitor):
         # classname : Id
         # memlist : List[MemDecl]
         # parentname : Id = None # None if there is no parent
-
-            
+        
+        # check redeclared class
+        if checkRedeclaredMember(ast, c):
+            raise Redeclared(Class(), ast.classname.name)
+        
+        # check undeclared parent
         if ast.parentname:
             if not getName(ast.parentname) in map(lambda x: getName(x), c):
                 raise Undeclared(Class(), getName(ast.parentname))
+        # check member
+        o = [ast, c]
         for mem in ast.memlist:
-            self.visit(mem, c)
+            self.visit(mem, o) # c is tuple (this class, list of ClassDeclared)
         
     
     
 
-    def visitVarDecl(self, ast, c): pass
+    def visitVarDecl(self, ast, c):
         # class VarDecl(StoreDecl):
         # variable : Id
         # varType : Type
         # varInit : Expr = None 
-        # for x in c:
-        #     if ast.variable.name == x.name:
-        #         raise Redeclared(Variable(), ast.variable.name)    
-        # return VarDecl(ast.variable.name, ast.varType, ast.varInit)
+
+        # c is tuple (this method, list of ClassDeclared)
+        if checkRedeclaredMember(ast, c[0].param + c[0].body.decl):
+            raise Redeclared(Variable(), getName(ast))
+        if ast.varInit:
+            name, typ = self.visit(ast.varInit, c)           # it can be a literal or a Id
+            
+            if type(typ) is not type(ast.varType):
+                raise TypeMismatchInStatement(ast)
+            
         
-    def visitConstDecl(self, ast, param):
-        return None
+    def visitConstDecl(self, ast, o):
+        # class ConstDecl(StoreDecl):
+        # constant : Id
+        # constType : Type
+        # value : Expr
+        
+        if checkRedeclaredMember(ast, o[0].param + o[0].body.decl):
+            raise Redeclared(Constant(), getName(ast))
+        
     
     def visitStatic(self, ast, param):
         return None
     
-    def visitInstance(self, ast, param):
+    def visitInstance(self, ast, param): 
         return None
     
-    def visitMethodDecl(self, ast, param):
-        return None
+    def visitMethodDecl(self, ast, o):
+        # class MethodDecl(MemDecl):
+        # kind: SIKind
+        # name: Id
+        # param: List[VarDecl]
+        # returnType: Type  # None for constructor
+        # body: Block
+        
+        
+        # o = (this class, list of ClassDetail)
+        if checkRedeclaredMember(ast, o[0].memlist):
+            raise Redeclared(Method(), getName(ast))
+        
+        for par in ast.param:
+            if checkRedeclaredMember(par, ast.param):
+                raise Redeclared(Parameter(), getName(par))
+        
+        o = [ast, o[1]]
+        self.visit(ast.body, o)
+        return ast # not yet now
     
-    def visitAttributeDecl(self, ast, param): pass
+    
+    def visitAttributeDecl(self, ast, o): 
         # class AttributeDecl(MemDecl):
         # kind: SIKind #Instance or Static
         # decl: StoreDecl
-        # for x in param:
-        #     if ast.decl.name == x.name:
-        #         raise Redeclared(Attribute(), ast.decl.name)
-        # return AttributeDecl(ast.kind, self.visit(ast.decl, param))
-    
+        
+        # o = (this class, list of ClassDetail)
+        
+        if checkRedeclaredMember(ast, o[0].memlist):
+            raise Redeclared(Attribute(), getName(ast.decl))
+        
+        self.visit(ast.decl,o)
+        
+        return ast # not yet now
+            
     def visitIntType(self, ast, param):
         return None
     
@@ -244,17 +318,35 @@ class StaticChecker(BaseVisitor):
     def visitNewExpr(self, ast, param):
         return None
     
-    def visitId(self, ast, param):
-        return None
-    
+    def visitId(self, ast, o):
+        
+        # class Id(LHS):
+        # name:str
+        # o is tuple (this method, list of ClassDeclared)
+        
+        id = findInList(ast.name, o)
+        if id:
+            return getName(id), getType(id)
+        raise Undeclared(Identifier(), ast.name)
+        
+        
     def visitArrayCell(self, ast, param):
         return None
     
     def visitFieldAccess(self, ast, param):
         return None
     
-    def visitBlock(self, ast, param):
-        return None
+    def visitBlock(self, ast, o):
+            #---------------------
+            # decl:List[StoreDecl]
+            # stmt:List[Stmt]
+            #---------------------
+        # o = (this class, list of ClassDetail)
+        for decl in ast.decl:
+            self.visit(decl, o)
+        for stmt in ast.stmt:
+            self.visit(stmt, o)
+        return ast
     
     def visitIf(self, ast, param):
         return None

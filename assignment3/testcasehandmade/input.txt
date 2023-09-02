@@ -40,3 +40,67 @@ class main extends foo {
     this.foo();}
 }
 ---
+testcase405:
+class foo{}
+class main extends foo {
+    int b;
+    int a (int a; int a){ 
+    this.foo();}
+}
+class foo{}
+---
+testcase406:
+class foo{}
+class main extends foo {
+    int b;
+    int a (int a; int b){ 
+    this.foo();}
+}
+class foo{}
+---
+testcase407:
+class foo{}
+class main extends foo {
+    int b;
+    int a (int a; int b){ 
+        float a;
+    this.foo();}
+}
+class foo{}
+---
+testcase408:
+class foo{}
+class main extends foo {
+    int b;
+    int a (int a; int b){ 
+        final float a;
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+class foo{}
+---testcase409:
+class foo{}
+class main extends foo {
+    int b;
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+class foo{}
+---
+---testcase410:
+class foo{}
+class main extends foo {
+    int b = a;
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+class foo{}
+---

@@ -49,16 +49,6 @@ class BKOOLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by BKOOLParser#listattmu.
-    def visitListattmu(self, ctx:BKOOLParser.ListattmuContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#attributenamemu.
-    def visitAttributenamemu(self, ctx:BKOOLParser.AttributenamemuContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by BKOOLParser#immutableatt.
     def visitImmutableatt(self, ctx:BKOOLParser.ImmutableattContext):
         return self.visitChildren(ctx)
@@ -146,11 +136,6 @@ class BKOOLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by BKOOLParser#vardecl.
     def visitVardecl(self, ctx:BKOOLParser.VardeclContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKOOLParser#vardeclmu.
-    def visitVardeclmu(self, ctx:BKOOLParser.VardeclmuContext):
         return self.visitChildren(ctx)
 
 

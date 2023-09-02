@@ -69,22 +69,22 @@ class ASTGeneration(BKOOLVisitor):
     #   mutableatt: (STATIC)? typ listattmu;
     def visitMutableatt(self, ctx:BKOOLParser.MutableattContext):
         if ctx.getChildCount()==3:
-            return list(map(lambda x: AttributeDecl(Static(), VarDecl(x[0], self.visit(ctx.typ()), x[1])), self.visit(ctx.listattmu())))
+            return list(map(lambda x: AttributeDecl(Static(), VarDecl(x[0], self.visit(ctx.typ()), x[1])), self.visit(ctx.listatt())))
         else:
-            return list(map(lambda x: AttributeDecl(Instance(), VarDecl(x[0], self.visit(ctx.typ()), x[1])), self.visit(ctx.listattmu())))
+            return list(map(lambda x: AttributeDecl(Instance(), VarDecl(x[0], self.visit(ctx.typ()), x[1])), self.visit(ctx.listatt())))
     # Visit a parse tree produced by BKOOLParser#listattmu.
     #   listattmu: attributenamemu COMMA listattmu | attributenamemu;
-    def visitListattmu(self,ctx:BKOOLParser.ListattmuContext):
-        if ctx.getChildCount()==1:
-            return [self.visit(ctx.attributenamemu())]
-        else:
-            return [self.visit(ctx.attributenamemu())] + self.visit(ctx.listattmu())
+    # def visitListattmu(self,ctx:BKOOLParser.ListattmuContext):
+    #     if ctx.getChildCount()==1:
+    #         return [self.visit(ctx.attributenamemu())]
+    #     else:
+    #         return [self.visit(ctx.attributenamemu())] + self.visit(ctx.listattmu())
     #   attributenamemu: ID (EQ expression)?;
-    def visitAttributenamemu(self,ctx:BKOOLParser.AttributenamemuContext):
-        if ctx.getChildCount()==1:
-            return (Id(ctx.ID().getText()), None)
-        else:
-            return (Id(ctx.ID().getText()), self.visit(ctx.expression()))   
+    # def visitAttributenamemu(self,ctx:BKOOLParser.AttributenamemuContext):
+    #     if ctx.getChildCount()==1:
+    #         return (Id(ctx.ID().getText()), None)
+    #     else:
+    #         return (Id(ctx.ID().getText()), self.visit(ctx.expression()))   
     # Visit a parse tree produced by BKOOLParser#immutableatt.
     #immutableatt: FINAL (STATIC)? typ listatt
 	#              | (STATIC)? FINAL typ listatt;
@@ -105,8 +105,10 @@ class ASTGeneration(BKOOLVisitor):
 
 
     # Visit a parse tree produced by BKOOLParser#attributename.
-    #   attributename: ID EQ expression;
+    #   attributename: ID (EQ expression)?;
     def visitAttributename(self, ctx:BKOOLParser.AttributenameContext):
+        if ctx.getChildCount()==1:
+            return (Id(ctx.ID().getText()), None)
         return (Id(ctx.ID().getText()), self.visit(ctx.expression()))
 
 
@@ -217,17 +219,17 @@ class ASTGeneration(BKOOLVisitor):
         return self.visit(ctx.getChild(0))
 
     # Visit a parse tree produced by BKOOLParser#vardecl.
-    #       vardecl: FINAL typ listatt;
+    #       vardecl: FINAL? typ listatt;
     #       return a list of ConstDecl
     def visitVardecl(self, ctx:BKOOLParser.VardeclContext):
-        return list(map(lambda x: ConstDecl(x[0], self.visit(ctx.typ()), x[1]), self.visit(ctx.listatt())))
+        return list(map(lambda x: ConstDecl(x[0], self.visit(ctx.typ()), x[1]) if ctx.FINAL() else VarDecl(x[0], self.visit(ctx.typ()), x[1]), self.visit(ctx.listatt())))
     
     
     # Visit a parse tree produced by BKOOLParser#vardeclmu.
     #       vardeclmu: typ listattmu;
     #       return a list of vacl
-    def visitVardeclmu(self, ctx:BKOOLParser.VardeclmuContext):
-        return list(map(lambda x: VarDecl(x[0], self.visit(ctx.typ()), x[1]) if x[1] else VarDecl(x[0], self.visit(ctx.typ())), self.visit(ctx.listattmu())))
+    # def visitVardeclmu(self, ctx:BKOOLParser.VardeclmuContext):
+    #     return list(map(lambda x: VarDecl(x[0], self.visit(ctx.typ()), x[1]) if x[1] else VarDecl(x[0], self.visit(ctx.typ())), self.visit(ctx.listattmu())))
     
     
     # Visit a parse tree produced by BKOOLParser#assignmentstatement.

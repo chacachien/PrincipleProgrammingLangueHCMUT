@@ -2,19 +2,7 @@ import unittest
 from TestUtils import TestChecker
 from AST import *
 
-# class CheckerSuite(unittest.TestCase):
-#     def test_undeclared_function(self):
-#         """Simple program: int main() {} """
-#         input = """
-        # class foo{}
-        # class main extends foo {
-        #     int a (){
-                
-        #     this.foo();
-        #     }
-        #     }"""
-#         expect = "[]"
-#         self.assertTrue(TestChecker.test(input,expect,400))
+
 
 class CheckerSuite(unittest.TestCase):
     def generate_test_method(testNumber,input,exp):
@@ -48,12 +36,22 @@ for i in range(len(testcase)):
     setattr(CheckerSuite, f"test{str(i)}", test_method)
     
     
-# with open('C:/Users/OnDoing/PrincipleProgrammingLangueHCMUT/assignment2/testcasehandmade/input.txt') as f:
-#     f = f.read()
-# with open('C:/Users/OnDoing/PrincipleProgrammingLangueHCMUT/assignment2/testcasehandmade/exp.txt') as e:
-#     e = e.read()
 
 
+# class CheckerSuite(unittest.TestCase):
+#     def test_undeclared_function(self):
+#         """Simple program: int main() {} """
+#         input = """
+# class foo{}
+# class main extends foo {
+#     int b;
+#     int a (){ 
+#     this.foo();}
+#     int b;
+# }
+#             """
+#         expect = "Redeclared Attribute: b"
+#         self.assertTrue(TestChecker.test(input,expect,400))
     # def test_diff_numofparam_stmt(self):
     #     """More complex program"""
     #     input = """int main () {
