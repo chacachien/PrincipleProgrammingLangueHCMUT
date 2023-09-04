@@ -21,10 +21,58 @@ import re
 
 f = """
 testcase300:
-class a{
-    float b, c;
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int c = this.a;
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
 }
 ---
+
+"""
+e ="""
+testcase300:Program([ClassDecl(Id(a),[AttributeDecl(Instance,VarDecl(Id(b),FloatType)),AttributeDecl(Instance,VarDecl(Id(c),FloatType))])])
+---
+"""
+
+
+
+
+
+
+
+
+
+testcase=[]
+exp = []
+pattern= r"testcase(\d+):(.*?)---"
+match = re.findall(pattern, f,re.DOTALL)
+
+for m in match:
+    testcase.append(m[1].strip())
+
+match = re.findall(pattern, e,re.DOTALL)
+for m in match:
+    exp.append(m[1].strip())
+for i in range(len(testcase)):
+    input = testcase[i]
+    expindex = exp[i]
+    test_method = ASTGenSuite.generate_test_method(i+300, input, expindex)
+    setattr(ASTGenSuite, f"test{str(i)}", test_method)
+    
+    
+    
+    
+    
+
+'''
 testcase301:
 class a{
     float b = 3, d = 3, c = 3+4; 
@@ -1874,12 +1922,10 @@ class UltraComplexTest {
         io.writeStrLn("Final Result: " ^ finalResult);
     }
 }
----
+--- '''
 
-"""
-e ="""
-testcase300:Program([ClassDecl(Id(a),[AttributeDecl(Instance,VarDecl(Id(b),FloatType)),AttributeDecl(Instance,VarDecl(Id(c),FloatType))])])
----
+
+'''
 testcase301:Program([ClassDecl(Id(a),[AttributeDecl(Instance,VarDecl(Id(b),FloatType,IntLit(3))),AttributeDecl(Instance,VarDecl(Id(d),FloatType,IntLit(3))),AttributeDecl(Instance,VarDecl(Id(c),FloatType,BinaryOp(+,IntLit(3),IntLit(4))))])])
 ---
 testcase302:Program([ClassDecl(Id(a),[AttributeDecl(Static,ConstDecl(Id(c),BoolType,IntLit(2)))])])
@@ -2078,29 +2124,4 @@ testcase398:Program([ClassDecl(Id(SuperComplexTest),[MethodDecl(Id(customPower),
 ---
 testcase399:Program([ClassDecl(Id(UltraComplexTest),[MethodDecl(Id(factorial),Static,[param(Id(n),IntType)],IntType,Block([],[If(BinaryOp(<=,Id(n),IntLit(1)),Block([],[Return(IntLit(1))]),Block([],[Return(BinaryOp(*,Id(n),CallExpr(Self(),Id(factorial),[BinaryOp(-,Id(n),IntLit(1))])))]))])),MethodDecl(Id(gcd),Static,[param(Id(a),IntType),param(Id(b),IntType)],IntType,Block([],[If(BinaryOp(==,Id(b),IntLit(0)),Block([],[Return(Id(a))]),Block([],[Return(CallExpr(Self(),Id(gcd),[Id(b),BinaryOp(%,Id(a),Id(b))]))]))])),MethodDecl(Id(computeSeries),Static,[param(Id(x),IntType)],FloatType,Block([VarDecl(Id(result),FloatType,IntLit(0))],[For(Id(i),IntLit(1),IntLit(10),True,Block([],[AssignStmt(Id(result),BinaryOp(+,Id(result),BinaryOp(/,CallExpr(Self(),Id(customPower),[Id(x),Id(i)]),CallExpr(Self(),Id(factorial),[Id(i)]))))])]),Return(Id(result))])),MethodDecl(Id(customPower),Static,[param(Id(base),FloatType),param(Id(exponent),IntType)],FloatType,Block([],[If(BinaryOp(==,Id(exponent),IntLit(0)),Block([],[Return(IntLit(1))]),If(BinaryOp(==,BinaryOp(%,Id(exponent),IntLit(2)),IntLit(0)),Block([VarDecl(Id(temp),FloatType,CallExpr(Self(),Id(customPower),[Id(base),BinaryOp(/,Id(exponent),IntLit(2))]))],[Return(BinaryOp(*,Id(temp),Id(temp)))]),Block([VarDecl(Id(temp),FloatType,CallExpr(Self(),Id(customPower),[Id(base),BinaryOp(/,BinaryOp(-,Id(exponent),IntLit(1)),IntLit(2))]))],[Return(BinaryOp(*,BinaryOp(*,Id(base),Id(temp)),Id(temp)))])))])),MethodDecl(Id(main),Static,[],VoidType,Block([VarDecl(Id(finalResult),IntType,IntLit(0))],[For(Id(a),IntLit(1),IntLit(5),True,Block([],[For(Id(b),IntLit(1),IntLit(5),True,Block([],[If(BinaryOp(!=,Id(a),Id(b)),Block([],[For(Id(c),IntLit(1),IntLit(5),True,Block([],[For(Id(d),IntLit(1),IntLit(5),True,Block([],[If(BinaryOp(!=,Id(c),Id(d)),Block([VarDecl(Id(gcdValue),IntType,CallExpr(Self(),Id(gcd),[BinaryOp(*,Id(a),Id(b)),BinaryOp(*,Id(c),Id(d))])),VarDecl(Id(sum),IntType,BinaryOp(+,BinaryOp(+,BinaryOp(+,Id(a),Id(b)),Id(c)),Id(d))),VarDecl(Id(seriesResult),FloatType,CallExpr(Self(),Id(computeSeries),[Id(sum)]))],[If(BinaryOp(==,BinaryOp(%,Id(gcdValue),IntLit(2)),IntLit(0)),Block([],[AssignStmt(Id(finalResult),BinaryOp(+,Id(finalResult),BinaryOp(*,Id(seriesResult),Id(gcdValue))))]),Block([],[AssignStmt(Id(finalResult),BinaryOp(-,Id(finalResult),BinaryOp(/,Id(seriesResult),Id(gcdValue))))]))]))])])])])]))])])])]),Call(Id(io),Id(writeStrLn),[BinaryOp(^,StringLit(Final Result: ),Id(finalResult))])]))])])
 ---
-"""
-
-
-
-
-
-
-
-
-
-testcase=[]
-exp = []
-pattern= r"testcase(\d+):(.*?)---"
-match = re.findall(pattern, f,re.DOTALL)
-
-for m in match:
-    testcase.append(m[1].strip())
-
-match = re.findall(pattern, e,re.DOTALL)
-for m in match:
-    exp.append(m[1].strip())
-for i in range(len(testcase)):
-    input = testcase[i]
-    expindex = exp[i]
-    test_method = ASTGenSuite.generate_test_method(i+300, input, expindex)
-    setattr(ASTGenSuite, f"test{str(i)}", test_method)
+'''

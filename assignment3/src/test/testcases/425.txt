@@ -1,0 +1,13 @@
+class foo{}
+class A {
+    static int a;
+}
+class B extends A {
+    A b = new B();
+    int c = this.a;
+    int foo(int a; float e){
+        float b = a;
+        float c = b;
+        boolean d = a;
+    }
+}

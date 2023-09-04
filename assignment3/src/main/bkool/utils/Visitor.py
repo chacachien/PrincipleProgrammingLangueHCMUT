@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod, ABCMeta
 
 
 class Visitor(ABC):
-    def visit(self, tree,param):
+    def visit(self, tree, param):
         return tree.accept(self,param)
     @abstractmethod
     def visitProgram(self, ast, param):

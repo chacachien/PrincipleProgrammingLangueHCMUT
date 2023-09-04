@@ -1,0 +1,10 @@
+class foo{}
+class A {}
+class B extends A{
+    A b = new B();
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}

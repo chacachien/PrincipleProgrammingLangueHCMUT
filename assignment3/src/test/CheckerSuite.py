@@ -46,12 +46,16 @@ for i in range(len(testcase)):
 # class main extends foo {
 #     int b;
 #     int a (){ 
+#     float c = this.b;
 #     this.foo();}
-#     int b;
+
 # }
 #             """
-#         expect = "Redeclared Attribute: b"
+#         expect = "[]"
 #         self.assertTrue(TestChecker.test(input,expect,400))
+        
+        
+        
     # def test_diff_numofparam_stmt(self):
     #     """More complex program"""
     #     input = """int main () {

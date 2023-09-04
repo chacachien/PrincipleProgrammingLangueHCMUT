@@ -1,0 +1,11 @@
+class foo{}
+class A {
+    static int a;
+}
+class B extends A {
+    static A b = new B();
+
+    int foo(int a; float e){
+        final float b = B.b;   # assign a class to constant
+    }
+}

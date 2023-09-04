@@ -1,0 +1,10 @@
+class foo{}
+class main extends foo {
+    final int b = a;
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+class foo{}

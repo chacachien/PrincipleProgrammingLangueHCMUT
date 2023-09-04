@@ -100,4 +100,11 @@ class IllegalMemberAccess(StaticError):
     expr:Expr
     def __str__(self):
         return "Illegal Member Access: " + str(self.expr)
+    
+    
+@dataclass
+class Unknow(StaticError):
+    expr:Expr
+    def __str__(self):
+        return "Unknow error: " + str(self.expr)
 

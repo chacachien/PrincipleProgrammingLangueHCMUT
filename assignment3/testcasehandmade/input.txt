@@ -80,7 +80,8 @@ class main extends foo {
     }
 }
 class foo{}
----testcase409:
+---
+testcase409:
 class foo{}
 class main extends foo {
     int b;
@@ -92,7 +93,7 @@ class main extends foo {
 }
 class foo{}
 ---
----testcase410:
+testcase410:
 class foo{}
 class main extends foo {
     int b = a;
@@ -104,3 +105,431 @@ class main extends foo {
 }
 class foo{}
 ---
+testcase411:
+class foo{}
+class main extends foo {
+    final int b = a;
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+class foo{}
+---
+testcase412:
+class foo{}
+class main extends foo {
+    final int b = 323;
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+---
+testcase413:
+class foo{}
+class main extends foo {
+    final int b = 21.5;
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+---
+testcase414:
+class foo{}
+class main extends foo {
+    boolean b = 21.5;
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+---
+testcase415:
+class foo{}
+class main extends foo {
+    A b = 21.5;
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+---
+testcase416:
+class foo{}
+class A {}
+class main extends foo {
+    A b = new A();
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+---
+testcase417:
+class foo{}
+class A {}
+class B {}
+class main extends foo {
+    A b = new B();
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+---
+testcase418:
+class foo{}
+class A {}
+class B extends A{
+    A b = new B();
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+---
+testcase419:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int c = this.a;
+}
+---
+testcase420:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int c = this.b.a;
+}
+---
+testcase421:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int c = this.b.a;
+    int foo(int a){
+        int b;
+        int a;
+    }
+}
+---
+testcase422:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int c = this.b.a;
+    int foo(int a){
+        int b = a;
+        float c = b;
+        boolean d = a;
+    }
+}
+---
+testcase423:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int c = this.b.a;
+    int foo(int a; float e){
+        float b = a;
+        float c = b;
+        boolean d = a;
+    }
+}
+---
+testcase424:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int c = A.a;
+    int foo(int a; float e){
+        float b = a;
+        float c = b;
+        boolean d = a;
+    }
+}
+---
+testcase425:
+class foo{}
+class A {
+    static int a;
+}
+class B extends A {
+    A b = new B();
+    int c = this.a;
+    int foo(int a; float e){
+        float b = a;
+        float c = b;
+        boolean d = a;
+    }
+}
+---
+testcase426:
+class foo{}
+class A {
+    static int a;
+}
+class B extends A {
+    A b = new B();
+
+    int foo(int a; float e){
+        float b = this.a;
+    }
+}
+---
+testcase427:
+class foo{}
+class A {
+    static int a;
+}
+class B extends A {
+    static A b = new B();
+
+    int foo(int a; float e){
+        float b = B.b;
+    }
+}
+---
+testcase428:
+class foo{}
+class A {
+    static int a;
+}
+class B extends A {
+    A b = new B();
+
+    int foo(int a; float e){
+        float b = new B();
+    }
+}
+---
+testcase429:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+
+    int foo(int a; float e){
+        float b = this.b.a;
+    }
+}
+---
+testcase430:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; float e){
+        float b = 30.5;
+        A c = new A();
+        B d = new B();
+        int f = a;
+        float g = e;
+    }
+}
+---
+testcase431:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; float e){
+        float b = 30.5;
+        A c = new A();
+        C d = new B();
+        int f = a;
+        float g = e;
+    }
+}
+---
+testcase432:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; float e){
+        float b = 30.5;
+        A c = new A();
+        
+        int f = this.g;
+    }
+}
+---
+testcase433:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; float e){
+        float b = 30.5;
+        A c = new A();
+        
+        int f = g;
+    }
+}
+---
+testcase434:
+class foo{}
+class A {
+    static int a = 3;
+}
+class B extends A {
+    A b = new B();
+
+    int foo(int a; float e){
+        final float b = this.a;
+    }
+}
+---
+testcase435:
+class foo{}
+class A {
+    static int a;
+}
+class B extends A {
+    static A b = new B();
+
+    int foo(int a; float e){
+        final float b = B.b;   # assign a class to constant
+    }
+}
+---
+testcase436:
+class foo{}
+class A {
+    static int a;
+}
+class B extends A {
+    A b = new B();
+
+    int foo(int a; float e){
+       final float b = new B();
+    }
+}
+---
+testcase437:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+
+    int foo(int a; float e){
+        final float b = this.b.a;
+    }
+}
+---
+testcase438:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; float e){                # check it later when para into a
+        final float b = 30.5;
+        A c = new A();
+        B d = new B();
+        final int f = a;
+        final float g = e;
+    }
+}
+---
+testcase439:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; boolean e){
+        float b = 30.5;
+        A c = new A();
+        C d = new B();
+        int f = a;
+        final float g = e;
+    }
+}
+---
+testcase440:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; float e){
+        float b = 30.5;
+        A c = new A();
+        final int f = 1100;
+    }
+}
+---
+testcase441:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; float e){
+        float b = 30.5;
+        A c = new A();
+        final boolean f = g;
+    }
+}
+---
+testcase442:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; float e){
+        float b = 30.5;
+        A c = new A();
+        final float f = a + b; 
+    }
+}
+---
+

@@ -1,7 +1,7 @@
 testcase400:[]
 ---
 testcase401: Redeclared Attribute: b
----
+--- 
 testcase402: Redeclared Method: a
 ---
 testcase403: Redeclared Parameter: a
@@ -18,5 +18,69 @@ testcase408: Redeclared Constant: a
 ---
 testcase409: Redeclared Class: foo
 ---
-testcase410: Undeclared Identifier: a
+testcase410: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),IntType,Id(a)))
+---
+testcase411: Type Mismatch In Statement: AttributeDecl(Instance,ConstDecl(Id(b),IntType,Id(a)))
+---
+testcase412:[]
+---
+testcase413: Type Mismatch In Statement: AttributeDecl(Instance,ConstDecl(Id(b),IntType,FloatLit(21.5)))
+---
+testcase414: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),BoolType,FloatLit(21.5)))
+---
+testcase415: Undeclared Class: A 
+---
+testcase416:[]
+---
+testcase417: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),ClassType(Id(A)),NewExpr(Id(B),[])))
+---          
+testcase418: []
+---
+testcase419: []
+---
+testcase420: []
+---
+testcase421: Redeclared Variable: a
+---
+testcase422: Type Mismatch In Statement: VarDecl(Id(d),BoolType,Id(a))
+---
+testcase423: Type Mismatch In Statement: VarDecl(Id(d),BoolType,Id(a))
+---
+testcase424: Illegal Member Access: FieldAccess(Id(A),Id(a))
+---
+testcase425: Illegal Member Access: FieldAccess(Self(),Id(a))
+---
+testcase426: Illegal Member Access: FieldAccess(Self(),Id(a))
+---
+testcase427: Type Mismatch In Statement: VarDecl(Id(b),FloatType,FieldAccess(Id(B),Id(b))) 
+---
+testcase428: Type Mismatch In Statement: VarDecl(Id(b),FloatType,NewExpr(Id(B),[]))
+---
+testcase429: []
+---
+testcase430: []
+---
+testcase431: Undeclared Class: C 
+---
+testcase432: Undeclared Attribute: g
+---
+testcase433: Undeclared Identifier: g
+---
+testcase434: Illegal Member Access: FieldAccess(Self(),Id(a))
+---
+testcase435: Type Mismatch In Constant Declaration: ConstDecl(Id(b),FloatType,FieldAccess(Id(B),Id(b))) 
+---
+testcase436: Type Mismatch In Constant Declaration: ConstDecl(Id(b),FloatType,NewExpr(Id(B),[]))
+---
+testcase437: Illegal Constant Expression: FieldAccess(FieldAccess(Self(),Id(b)),Id(a))
+---
+testcase438: []
+---
+testcase439: Undeclared Class: C 
+---
+testcase440: []
+---
+testcase441: Undeclared Identifier: g
+---
+testcase442: Illegal Constant Expression: BinaryOp(+,Id(a),Id(b)))
 ---
