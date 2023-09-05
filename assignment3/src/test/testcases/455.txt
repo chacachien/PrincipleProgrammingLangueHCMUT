@@ -1,0 +1,18 @@
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for c:= b to 10 do {
+            if (a==2) && (b >=3) then
+                return a;
+            else 
+                a := b + 1;
+        }
+
+    }
+}

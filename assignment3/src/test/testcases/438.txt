@@ -4,7 +4,7 @@ class A {
 }
 class B extends A {
     A b = new B();
-    int foo(int a; float e){
+    int foo(int a; float e){                # check it later when para into a
         final float b = 30.5;
         A c = new A();
         B d = new B();

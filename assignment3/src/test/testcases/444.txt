@@ -1,0 +1,12 @@
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int foo(int a; int e){
+        float b = 30.5;
+        A c = new A();
+        final float f = a % e \ b; 
+    }
+}

@@ -82,5 +82,33 @@ testcase440: []
 ---
 testcase441: Undeclared Identifier: g
 ---
-testcase442: Illegal Constant Expression: BinaryOp(+,Id(a),Id(b)))
+testcase442: []
+---
+testcase443: Type Mismatch In Expression: BinaryOp(+,BinaryOp(*,Id(a),Id(b)),Id(c))
+---
+testcase444: Type Mismatch In Expression: BinaryOp(\,BinaryOp(%,Id(a),Id(e)),Id(b))
+---
+testcase445: Type Mismatch In Expression: BinaryOp(!=,Id(a),Id(b))
+---
+testcase446: Type Mismatch In Expression: BinaryOp(==,Id(a),Id(b))
+---
+testcase447: []
+---
+testcase448: Illegal Constant Expression: None
+---
+testcase449: Cannot Assign To Constant: AssignStmt(Id(c),IntLit(10)) 
+---
+testcase450: []
+---
+testcase451: Type Mismatch In Statement: If(BinaryOp(-,Id(a),IntLit(2)),Return(Id(a)),Return(Id(b)))
+---
+testcase452: Type Mismatch In Statement: Return(Id(b))
+---
+testcase453: Type Mismatch In Statement: AssignStmt(Id(a),BinaryOp(+,Id(b),IntLit(1)))
+---
+testcase454: Type Mismatch In Statement: For(Id(a),Id(b),IntLit(10),True,Block([],[If(BinaryOp(&&,BinaryOp(==,Id(a),IntLit(2)),BinaryOp(>=,Id(b),IntLit(3))),Return(Id(a)),AssignStmt(Id(a),BinaryOp(+,Id(b),IntLit(1))))])])
+---
+testcase455: Cannot Assign To Constant: AssignStmt(Id(c),Id(b))
+---
+testcase456: type
 ---

@@ -1,0 +1,1 @@
+Type Mismatch In Statement: For(Id(a),Id(b),IntLit(10),True,Block([],[If(BinaryOp(&&,BinaryOp(==,Id(a),IntLit(2)),BinaryOp(>=,Id(b),IntLit(3))),Return(Id(a)),AssignStmt(Id(a),BinaryOp(+,Id(b),IntLit(1))))])])
