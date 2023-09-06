@@ -2,7 +2,8 @@ class foo{}
 class main extends foo {
     final int b = 323;
     int a (int a; int b){ 
-        this.foo();}
+        foo fo = new foo();
+    }
     int c(){
         int a;
     }

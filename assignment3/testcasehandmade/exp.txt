@@ -16,7 +16,7 @@ testcase407: Redeclared Variable: a
 ---
 testcase408: Redeclared Constant: a
 ---
-testcase409: Redeclared Class: foo
+testcase409: Undeclared Method: foo
 ---
 testcase410: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),IntType,Id(a)))
 ---
@@ -34,7 +34,7 @@ testcase416:[]
 ---
 testcase417: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),ClassType(Id(A)),NewExpr(Id(B),[])))
 ---          
-testcase418: []
+testcase418: Type Mismatch In Expression: FieldAccess(Self(),Id(a))
 ---
 testcase419: []
 ---
@@ -110,5 +110,67 @@ testcase454: Type Mismatch In Statement: For(Id(a),Id(b),IntLit(10),True,Block([
 ---
 testcase455: Cannot Assign To Constant: AssignStmt(Id(c),Id(b))
 ---
-testcase456: type
+testcase456: Type Mismatch In Statement: AssignStmt(Id(x),FieldAccess(Self(),Id(y)))
+---
+testcase457: []
+---
+testcase458: Type Mismatch In Statement: AssignStmt(Id(x),CallExpr(Self(),Id(foo),[BinaryOp(-,Id(a),IntLit(1)),BinaryOp(-,Id(e),IntLit(1))]))
+---
+testcase459: []
+---
+testcase460: Undeclared Method: A
+---
+testcase461: Type Mismatch In Expression: CallExpr(Self(),Id(count),[BinaryOp(-,Id(a),IntLit(1)),BinaryOp(-,Id(e),IntLit(1))])
+---
+testcase462: []
+---
+testcase463: Type Mismatch In Statement: Call(Self(),Id(foo),[BinaryOp(-,Id(a),IntLit(1)),BinaryOp(-,Id(c),IntLit(2))])
+---
+testcase464: Continue Not In Loop
+---
+testcase465: Break Not In Loop
+---
+testcase466: Cannot Assign To Constant: AssignStmt(FieldAccess(Self(),Id(a)),Id(a))
+---
+testcase467: Type Mismatch In Statement: If(FieldAccess(Id(A),Id(b)),Return(Id(a)),Return(Id(b)))
+---
+testcase468: Type Mismatch In Expression: BinaryOp(\,BinaryOp(/,Id(c),IntLit(3)),IntLit(4))
+---
+testcase469: []
+---
+testcase470: Type Mismatch In Expression: BinaryOp(\,BinaryOp(/,Id(c),IntLit(3)),IntLit(4))
+---
+testcase471: Cannot Assign To Constant: AssignStmt(Id(c),Id(d))
+---
+testcase472: Illegal Array Literal: [IntLit(1),IntLit(2),FloatLit(3.0)]
+---
+testcase473: Type Mismatch In Statement: AssignStmt(Id(c),[IntLit(1),IntLit(2),IntLit(3)])
+---
+testcase474: Illegal Array Literal: [FloatLit(1.2),IntLit(2),IntLit(3),IntLit(4)]
+---
+testcase475: Type Mismatch In Statement: AssignStmt(Id(c),[IntLit(1),IntLit(2),IntLit(3),IntLit(4)])
+---
+testcase476: Type Mismatch In Statement: AssignStmt(ArrayCell(Id(c),IntLit(2)),FloatLit(5.0))
+---
+testcase477: Type Mismatch In Statement: AssignStmt(Id(d),[FloatLit(1.2),FloatLit(2.2),FloatLit(3.4),FloatLit(4.6)])
+---
+testcase478: Type Mismatch In Statement: Return(Id(c))
+---
+testcase479: []
+---
+testcase480: []
+---
+testcase481: []
+---
+testcase482: Type Mismatch In Statement: Call(Id(io),Id(writeInt),[Id(b)])
+---
+testcase483: Type Mismatch In Statement: Return(CallExpr(Id(io),Id(readStr),[]))
+---
+testcase484: []
+---
+testcase485: Type Mismatch In Statement: Return(BooleanLit(True))
+---
+testcase486: Type Mismatch In Statement: Return(BinaryOp(/,Id(n),CallExpr(Self(),Id(factorial),[BinaryOp(-,Id(n),IntLit(1))])))
+---
+testcase487: Type Mismatch In Expression: BinaryOp(*,Id(e),CallExpr(Self(),Id(factorial),[BinaryOp(-,Id(n),IntLit(1))]))
 ---

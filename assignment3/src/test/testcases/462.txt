@@ -1,0 +1,29 @@
+class foo{
+    int count(int a; float b){
+        
+    }
+}
+class A extends foo{
+    int a;
+    int b;
+    A (int a; int b){
+        this.a := a;
+        this.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    int[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:= 3 to 10 do {
+            int[10] x;
+            if (a==2) && (b >=3) then
+                return a;
+            else 
+                x[0] := this.b.count(1,a);
+        }
+
+    }
+}

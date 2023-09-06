@@ -2,6 +2,6 @@ class foo{}
 class main extends foo {
     int b;
     int a (int a; int b){ 
-    this.foo();}
+    return this.b;}
 }
 class foo{}

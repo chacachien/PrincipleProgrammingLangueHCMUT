@@ -1,0 +1,1 @@
+Type Mismatch In Statement: AssignStmt(Id(d),[FloatLit(1.2),FloatLit(2.2),FloatLit(3.4),FloatLit(4.6)])

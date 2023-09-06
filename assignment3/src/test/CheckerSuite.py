@@ -42,13 +42,26 @@ for i in range(len(testcase)):
 #     def test_undeclared_function(self):
 #         """Simple program: int main() {} """
 #         input = """
-# class foo{}
-# class main extends foo {
-#     int b;
-#     int a (){ 
-#     float c = this.b;
-#     this.foo();}
 
+# class foo{}
+# class A {
+#     int a;
+# }
+# class B extends A {
+#     A b = new B();
+#     int[11] y;
+#     int foo(int a; int e){
+#         float b = 30.5;
+#         final int c = 10;
+#         for a:= 3 to 10 do {
+#             int[10] x;
+#             if (a==2) && (b >=3) then
+#                 return a;
+#             else 
+#                 x := this.y;
+#         }
+
+#     }
 # }
 #             """
 #         expect = "[]"

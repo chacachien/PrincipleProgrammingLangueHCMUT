@@ -1,0 +1,31 @@
+class foo{
+
+}
+class A extends foo{
+
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            int[3] c;
+            if a - 2 > 4.0 then{
+                int d;
+                c := {1,2,3}; 
+                c[3] := 5;
+                
+                d := {1.2, 2.2, 3.4, 4.6};
+                c := d;
+            }
+        }
+        return c;
+    }
+}

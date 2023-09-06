@@ -1,8 +1,8 @@
 testcase400:
 class foo{}
 class main extends foo {
-    int aa (){    
-        this.foo();
+    void aa (){    
+        this.aa();
     }
 }
 ---
@@ -11,7 +11,8 @@ class foo{}
 class main extends foo {
     int b;
     int a (){ 
-    this.foo();}
+        int b;
+    }
     int b;
 }
 ---
@@ -19,8 +20,7 @@ testcase402:
 class foo{}
 class main extends foo {
     int b;
-    int a (){ 
-    this.foo();}
+    int a (){}
     int a(){}
 }
 ---
@@ -54,7 +54,7 @@ class foo{}
 class main extends foo {
     int b;
     int a (int a; int b){ 
-    this.foo();}
+    return this.b;}
 }
 class foo{}
 ---
@@ -86,7 +86,8 @@ class foo{}
 class main extends foo {
     int b;
     int a (int a; int b){ 
-        this.foo();}
+        this.foo();
+        }
     int c(){
         int a;
     }
@@ -122,7 +123,8 @@ class foo{}
 class main extends foo {
     final int b = 323;
     int a (int a; int b){ 
-        this.foo();}
+        foo fo = new foo();
+    }
     int c(){
         int a;
     }
@@ -167,7 +169,10 @@ class A {}
 class main extends foo {
     A b = new A();
     int a (int a; int b){ 
-        this.foo();}
+        if a ==3 then{
+            return b;
+        }
+        }
     int c(){
         int a;
     }
@@ -192,7 +197,7 @@ class A {}
 class B extends A{
     A b = new B();
     int a (int a; int b){ 
-        this.foo();}
+        return this.a;}
     int c(){
         int a;
     }
@@ -772,5 +777,887 @@ class B extends A {
 
     }
 }
----
 
+---
+testcase457:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:= 3 to 10 do {
+            int[10] x;
+            if (a==2) && (b >=3) then
+                return a;
+            else 
+                x := this.y;
+        }
+
+    }
+}
+---
+testcase458:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:= 3 to 10 do {
+            int[10] x;
+            if (a==2) && (b >=3) then
+                return a;
+            else 
+                x := this.foo(a-1, e-1);
+        }
+
+    }
+}
+---
+testcase459:
+class foo{}
+class A {
+    int a;
+}
+class B extends A {
+    A b = new B();
+    int[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:= 3 to 10 do {
+            int[10] x;
+            if (a==2) && (b >=3) then
+                return a;
+            else 
+                x[0] := this.foo(a-1, e-1);
+        }
+
+    }
+}
+---
+testcase460:
+class foo{}
+class A {
+    int a;
+    int b;
+    A (int a; int b){
+        this.a := a;
+        this.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    int[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:= 3 to 10 do {
+            int[10] x;
+            if (a==2) && (b >=3) then
+                return a;
+            else 
+                x[0] := this.A(a-1, e-1);
+        }
+
+    }
+}
+---
+testcase461:
+class foo{
+    void count(int a; float b){
+        
+    }
+}
+class A extends foo{
+    int a;
+    int b;
+    A (int a; int b){
+        this.a := a;
+        this.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    int[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:= 3 to 10 do {
+            int[10] x;
+            if (a==2) && (b >=3) then
+                return a;
+            else 
+                x[0] := this.count(a-1, e-1);
+        }
+
+    }
+}
+---
+testcase462:
+class foo{
+    int count(int a; float b){
+        
+    }
+}
+class A extends foo{
+    int a;
+    int b;
+    A (int a; int b){
+        this.a := a;
+        this.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    int[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:= 3 to 10 do {
+            int[10] x;
+            if (a==2) && (b >=3) then
+                return a;
+            else 
+                x[0] := this.b.count(1,a);
+        }
+
+    }
+}
+---
+testcase463:
+class foo{
+    int count(int a; float b){
+        
+    }
+}
+class A extends foo{
+    int a;
+    int b;
+    A (int a; int b){
+        this.a := a;
+        this.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    int[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        if a == 3 then
+            this.foo(a -1, c-2);
+        else
+            b.count(a +1, b +c);
+
+    }
+}
+---
+testcase464:
+class foo{
+    int count(int a; float b){
+        
+    }
+}
+class A extends foo{
+    int a;
+    int b;
+    A (int a; int b){
+        this.a := a;
+        this.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        continue;
+        for a:=3 to 10 do {
+            if a %2 ==0 then{
+                b:= a*2 +1;
+                this.y[a]:= b;
+            }
+            else {
+                break;
+            }
+        }
+    }
+}
+---
+testcase465:
+class foo{
+    int count(int a; float b){
+        
+    }
+}
+class A extends foo{
+    int a;
+    int b;
+    A (int a; int b){
+        this.a := a;
+        this.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        for a:=3 to 10 do {
+            if a %2 ==0 then{
+                b:= a*2 +1;
+                this.y[a]:= b;
+            }
+            else {
+                break;
+            }
+        }
+        if b >= 3.0 then
+             break;
+        else
+           continue;
+    }
+}
+---
+testcase466:
+class foo{
+    int count(int a; float b){
+        
+    }
+}
+class A extends foo{
+    final int a = 4;
+    int b;
+    A (int a; int b){
+        this.a := a;
+        this.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        for a:=3 to 10 do {
+            if a %2 ==0 then{
+                b:= a*2 +1;
+                this.y[a]:= b;
+            }
+            else {
+                break;
+            }
+        }
+    }
+}
+---
+testcase467:
+class foo{
+    int count(int a; float b){
+        if A.b then 
+            return a;
+        else
+            return b;
+    }
+}
+class A extends foo{
+    final int a = 4;
+    static int b;
+    A (int a; int b){
+        this.a := a;
+        this.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        for a:=3 to 10 do {
+            if a %2 ==0 then{
+                b:= a*2 +1;
+                this.y[a]:= b;
+            }
+            else {
+                break;
+            }
+        }
+    }
+}
+---
+testcase468:
+class foo{
+    float count(int a; float b){
+        return a * b - a +b;
+    }
+}
+class A extends foo{
+    int a = 4;
+    static int b;
+    A (int a; int b){
+        this.a := a;
+        A.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    int foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        for a:=3 to 10 do {
+            if a %2 ==0 then{
+                b:= a*2 +1;
+                this.y[a]:= b;
+            }
+            else {
+                if a - 2 > 4.0 then
+                    return c / 3 \4;
+            }
+        }
+    }
+}
+---
+testcase469:
+class foo{
+    float count(int a; float b){
+        return a * b - a +b;
+    }
+}
+class A extends foo{
+    int a = 4;
+    static int b;
+    A (int a; int b){
+        this.a := a;
+        A.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        for a:=3 to 10 do {
+            if a %2 ==0 then{
+                b:= a*2 +1;
+                this.y[a]:= b;
+            }
+            else {
+                if a - 2 > 4.0 then
+                    return c / (3 \ 4);
+            }
+        }
+    }
+}
+---
+testcase470:
+class foo{
+    float count(int a; float b){
+        return a * b - a +b;
+    }
+}
+class A extends foo{
+    int a = 4;
+    static int b;
+    A (int a; int b){
+        this.a := a;
+        A.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:=3 to 10 do {
+            if a %2 ==0 then{
+                b:= a*2 +1;
+                this.y[a]:= b;
+            }
+            else {
+                if a - 2 > 4.0 then
+                    return c / 3 \ 4;
+            }
+        }
+    }
+}
+---
+testcase471:
+class foo{
+    float count(int a; float b){
+        return a * b - a +b;
+    }
+}
+class A extends foo{
+    int a = 4;
+    static int b;
+    A (int a; int b){
+        this.a := a;
+        A.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:=3 to 10 do {
+            if a %2 ==0 then{
+                b:= a*2 +1;
+                this.y[a]:= b;
+            }
+            else {
+                if a - 2 > 4.0 then{
+                    int d;
+                    c := d;
+                }
+            }
+        }
+    }
+}
+---
+testcase472:
+class foo{
+    float count(int a; float b){
+        return a * b - a +b;
+    }
+}
+class A extends foo{
+    int a = 4;
+    static int b;
+    A (int a; int b){
+        this.a := a;
+        A.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:=3 to 10 do {
+            if a %2 ==0 then{
+                b:= a*2 +1;
+                this.y[a]:= b;
+            }
+            else {
+                int c;
+                if a - 2 > 4.0 then{
+                    int d;
+                    c := {1, 2, 3.0};
+                    d := {1.2, 2,3,4};
+                }
+            }
+        }
+    }
+}
+---
+testcase473:
+class foo{
+    float count(int a; float b){
+        return a * b - a +b;
+    }
+}
+class A extends foo{
+    int a = 4;
+    static int b;
+    A (int a; int b){
+        this.a := a;
+        A.b := b;
+    }
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        for a:=3 to 10 do {
+            if a %2 ==0 then{
+                b:= a*2 +1;
+                this.y[a]:= b;
+            }
+            else {
+                int[4] c;
+                if a - 2 > 4.0 then{
+                    int d;
+                    c := {1,2,3};
+                    d := {1.2, 2,3,4};
+                }
+            }
+        }
+    }
+}
+---
+testcase474:
+class foo{
+
+}
+class A extends foo{
+
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            float[3] c;
+            if a - 2 > 4.0 then{
+                int d;
+                c := {1,2,3};
+                d := {1.2, 2,3,4};
+            }
+        }
+        return c;
+        
+    }
+}
+---
+testcase475:
+class foo{
+
+}
+class A extends foo{
+
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            int[3] c;
+            if a - 2 > 4.0 then{
+                int d;
+                c := {1,2,3,4};
+                d := {1.2, 2,3,4};
+            }
+        }
+        return c;
+        
+    }
+}
+---
+testcase476: 
+class foo{
+
+}
+class A extends foo{
+
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            int[3] c;
+            if a - 2 > 4.0 then{
+                int d;
+                c := {1,2,3}; 
+                c[3] := 5;
+                c[2] := 5.0;
+                d := {1.2, 2,3,4};
+            }
+        }
+        return c;
+    }
+}
+---
+testcase477:
+class foo{
+
+}
+class A extends foo{
+
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            int[3] c;
+            if a - 2 > 4.0 then{
+                int d;
+                c := {1,2,3}; 
+                c[3] := 5;
+                
+                d := {1.2, 2.2, 3.4, 4.6};
+                c := d;
+            }
+        }
+        return c;
+    }
+}
+---
+testcase478:
+class foo{
+
+}
+class A extends foo{
+
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            int[3] c;
+            if a - 2 > 4.0 then{
+                int[3] d;
+                c := {1,2,3}; 
+                c[3] := 5;
+                
+                d := {5,3,5};
+                c := d;
+            }
+        }
+        return c;
+    }
+}
+---
+testcase479:
+class foo{
+
+}
+class A extends foo{
+    static void writeIntLn(int arg){}
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            A.writeIntLn(3);
+            
+        }
+        return c;
+    }
+}
+---
+testcase480:
+class foo{
+}
+class A extends foo{
+    static void writeIntLn(int arg){}
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            io.writeIntLn(3);
+            
+        }
+        return c;
+    }
+}
+---
+testcase481:
+class foo{
+}
+class A extends foo{
+    static void writeIntLn(int arg){}
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            int f = io.readInt();
+            if f >3 then{
+                io.writeInt(f);
+            }
+            else
+                return io.readFloat();
+            
+        }
+        return c;
+    }
+}
+---
+testcase482:
+class foo{
+}
+class A extends foo{
+    static void writeIntLn(int arg){}
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            int f = io.readInt();
+            if f >3 then{
+                io.writeInt(b); #error here Type Mismatch In Statement: Call(Id(io),Id(writeInt),[Id(b)])
+            }
+            else
+                return io.readFloat();
+            
+        }
+        return c;
+    }
+}
+---
+testcase483:
+class foo{
+}
+class A extends foo{
+    static void writeIntLn(int arg){}
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            int f = io.readInt();
+            if f >3 then{
+                io.writeInt(f); 
+            }
+            else
+                return io.readStr(); #error here
+            
+        }
+        return c;
+    }
+}
+---
+testcase484:
+class Example1 {
+    int factorial(int n){
+        if n == 0 then return 1; else return n * this.factorial(n - 1);
+}
+    void main(){
+        int x;
+        x := io.readInt();
+        io.writeIntLn(this.factorial(x));
+    }
+}
+---
+testcase485:
+class Example1 {
+    int factorial(int n){
+        if n == 0 then return true; else return n * this.factorial(n - 1);
+    }
+    void main(){
+        int x;
+        x := io.readInt();
+        io.writeIntLn(this.factorial(x));
+    }
+}
+---
+testcase486:
+class Example1 {
+    int factorial(int n){
+        if n == 0 then return 1; else return n / this.factorial(n - 1);
+    }
+    void main(){
+        int x;
+        x := io.readInt();
+        io.writeIntLn(this.factorial(x));
+    }
+}
+---
+testcase487:
+class Example1 {
+    int factorial(int n){
+        Example1 e = new Example();
+        if n == 0 then return 1; else return e * this.factorial(n - 1);
+    }
+    void main(){
+        int x;
+        x := io.readInt();
+        io.writeIntLn(this.factorial(x));
+    }
+}
+---

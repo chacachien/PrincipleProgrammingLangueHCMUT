@@ -1,0 +1,23 @@
+class foo{
+}
+class A extends foo{
+    static void writeIntLn(int arg){}
+}
+class B extends A {
+    A b = new B();
+    float[10] y;
+    float foo(int a; int e){
+        float b = 30.5;
+        final int c = 10;
+        
+        if a %2 ==0 then{
+            b:= a*2 +1;
+            this.y[a]:= b;
+        }
+        else {
+            io.writeIntLn(3);
+            
+        }
+        return c;
+    }
+}

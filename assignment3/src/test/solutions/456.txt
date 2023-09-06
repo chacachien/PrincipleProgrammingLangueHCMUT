@@ -1,1 +1,1 @@
-Undeclared Identifier: x
+Type Mismatch In Statement: AssignStmt(Id(x),FieldAccess(Self(),Id(y)))

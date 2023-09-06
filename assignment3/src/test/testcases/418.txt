@@ -3,7 +3,7 @@ class A {}
 class B extends A{
     A b = new B();
     int a (int a; int b){ 
-        this.foo();}
+        return this.a;}
     int c(){
         int a;
     }

@@ -3,7 +3,10 @@ class A {}
 class main extends foo {
     A b = new A();
     int a (int a; int b){ 
-        this.foo();}
+        if a ==3 then{
+            return b;
+        }
+        }
     int c(){
         int a;
     }

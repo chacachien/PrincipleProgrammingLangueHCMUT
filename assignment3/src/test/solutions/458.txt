@@ -1,0 +1,1 @@
+Type Mismatch In Statement: AssignStmt(Id(x),CallExpr(Self(),Id(foo),[BinaryOp(-,Id(a),IntLit(1)),BinaryOp(-,Id(e),IntLit(1))]))
