@@ -174,3 +174,33 @@ testcase486: Type Mismatch In Statement: Return(BinaryOp(/,Id(n),CallExpr(Self()
 ---
 testcase487: Type Mismatch In Expression: BinaryOp(*,Id(e),CallExpr(Self(),Id(factorial),[BinaryOp(-,Id(n),IntLit(1))]))
 ---
+testcase488: Type Mismatch In Expression: CallExpr(Self(),Id(customPower),[Id(base),BinaryOp(/,Id(exponent),IntLit(2))])
+---
+testcase489: Illegal Member Access: CallExpr(Self(),Id(fibonacci),[BinaryOp(-,Id(n),IntLit(1))])
+---
+testcase490: Undeclared Identifier: i
+---
+testcase491: Type Mismatch In Statement: AssignStmt(Id(finalValue),BinaryOp(+,BinaryOp(+,Id(finalValue),CallExpr(Self(),Id(customPower),[Id(sum),Id(k)])),Id(k)))
+---
+testcase492: Type Mismatch In Expression: BinaryOp(^,StringLit(Final Value: ),Id(finalValue))
+---
+testcase493: Redeclared Variable: finalValue
+---
+testcase494: Undeclared Identifier: arr
+---
+testcase495: Type Mismatch In Expression: BinaryOp(&&,Id(n1),BinaryOp(||,BinaryOp(>=,Id(j),Id(n2)),BinaryOp(<=,ArrayCell(Id(leftArray),Id(i)),ArrayCell(Id(rightArray),Id(j)))))
+---
+testcase496: Undeclared Identifier: arr
+---
+testcase497: Type Mismatch In Statement: Call(Self(),Id(merge),[Id(arr),Id(left),Id(middle),Id(right)])
+---
+testcase498: []
+---
+testcase499: Type Mismatch In Expression: CallExpr(Id(s2),Id(getGrade),[StringLit(a)])
+---
+testcase500: Type Mismatch In Statement: AssignStmt(ArrayCell(FieldAccess(Id(main),Id(a)),IntLit(0)),Id(s))
+---
+testcase501: []
+---
+testcase502: []
+---

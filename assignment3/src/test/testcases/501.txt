@@ -1,1 +1,25 @@
-Program(List(FuncDecl(Id(main),List(),VoidType,Block(List(),List(CallExpr(Id(putInt),List(IntLiteral(5))))))))
+class main {
+    int[2] b;
+    int[2] m (){
+        int[2] c = {1, 2};
+        return c;
+    }
+    int length;
+    float getArea(){
+        main x = new main();
+        x.b[2] := x.m()[3];
+        #start of declaration part
+        {
+            float r,s;
+            
+            #list of statements
+            r:=2.0;
+            s:=r*r*this.myPI;
+            main.a[0]:= this.m()[1];
+        }
+        return this.length*this.width;
+    }
+    static int[2] a = this.b;
+    float myPI = 3.14;
+    int width;
+}

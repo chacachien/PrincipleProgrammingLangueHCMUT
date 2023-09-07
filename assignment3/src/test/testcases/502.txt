@@ -1,0 +1,14 @@
+class main extends A {
+    float getArea(){
+        main x = new main();
+        A.a[3+x.foo(2,3)] := A.a[main.b[2]] +3;
+        return this.length*this.width;
+    }
+    int foo(int a, b){}
+    static int[5] b;
+    int length;
+}
+class A {
+    static int[2] a;
+    int width;
+}

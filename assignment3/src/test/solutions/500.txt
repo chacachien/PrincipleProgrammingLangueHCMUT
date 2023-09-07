@@ -1,0 +1,1 @@
+Type Mismatch In Statement: AssignStmt(ArrayCell(FieldAccess(Id(main),Id(a)),IntLit(0)),Id(s))

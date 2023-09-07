@@ -1,0 +1,1 @@
+Type Mismatch In Statement: AssignStmt(Id(finalValue),BinaryOp(+,BinaryOp(+,Id(finalValue),CallExpr(Self(),Id(customPower),[Id(sum),Id(k)])),Id(k)))

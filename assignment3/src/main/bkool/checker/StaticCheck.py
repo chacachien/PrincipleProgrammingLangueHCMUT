@@ -660,8 +660,15 @@ class StaticChecker(BaseVisitor):
             raise TypeMismatchInExpression(ast)
         if type(o[0]) is ClassDecl:
             # check if obj is a Class Name 
-
-            if type(ast.obj) is Id:
+           
+            if type(obj.mtype) is ClassType:
+                infor = findField(field, obj.mtype.classname.name, o[1])
+                
+                if not infor:
+                    raise Undeclared(Attribute(), field)
+                if type(infor.kind) is Static:
+                    raise IllegalMemberAccess(ast)
+            elif type(ast.obj) is Id:
                 # obj = A, obj = ClassType
                 # find field
                 if not type(obj.mtype) is ClassDecl:
@@ -678,20 +685,22 @@ class StaticChecker(BaseVisitor):
                     return Symbol(getName(infor), getType(infor), True, Static(), infor.decl.value)
                 elif type(infor.decl) is VarDecl:
                     return Symbol(getName(infor), getType(infor), False, Static(), infor.decl.varInit)
-            elif type(obj.mtype) is ClassType:
-                infor = findField(field, obj.mtype.classname.name, o[1])
-                
-                if not infor:
-                    raise Undeclared(Attribute(), field)
-                if type(infor.kind) is Static:
-                    raise IllegalMemberAccess(ast)
             else:
                 raise TypeMismatchInExpression(ast)
             #return getType(infor)
             
         elif type(o[0]) is MethodDecl:
 
-            if type(ast.obj) is Id:
+            if type(obj.mtype) is ClassType:
+                infor = findField(field, obj.mtype.classname.name, o[1])
+                if not infor:
+                    raise Undeclared(Attribute(), field)
+                
+                if not type(infor) is AttributeDecl:
+                    raise TypeMismatchInExpression(ast)
+                if type(infor.kind) is Static:
+                    raise IllegalMemberAccess(ast)
+            elif type(ast.obj) is Id:
                 infor = findField(field , ast.obj.name, o[1])
                 if not infor:
                     raise Undeclared(Attribute(), field)
@@ -709,15 +718,6 @@ class StaticChecker(BaseVisitor):
                     return Symbol(getName(infor), getType(infor), True, Static(), infor.decl.value)
                 elif type(infor.decl) is VarDecl:
                     return Symbol(getName(infor), getType(infor), False, Static(), infor.decl.varInit)
-            elif type(obj.mtype) is ClassType:
-                infor = findField(field, obj.mtype.classname.name, o[1])
-                if not infor:
-                    raise Undeclared(Attribute(), field)
-                
-                if not type(infor) is AttributeDecl:
-                    raise TypeMismatchInExpression(ast)
-                if type(infor.kind) is Static:
-                    raise IllegalMemberAccess(ast)   
             else:
                 raise TypeMismatchInExpression(ast)     
         if type(infor.decl) is ConstDecl:
