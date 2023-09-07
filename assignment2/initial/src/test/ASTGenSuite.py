@@ -37,7 +37,7 @@ class a{
 ---
 testcase303:
 class a{
-    final static int c = 1;
+    final static int c;
     
 }
 ---
@@ -1884,7 +1884,7 @@ testcase301:Program([ClassDecl(Id(a),[AttributeDecl(Instance,VarDecl(Id(b),Float
 ---
 testcase302:Program([ClassDecl(Id(a),[AttributeDecl(Static,ConstDecl(Id(c),BoolType,IntLit(2)))])])
 ---
-testcase303:Program([ClassDecl(Id(a),[AttributeDecl(Static,ConstDecl(Id(c),IntType,IntLit(1)))])])
+testcase303:Program([ClassDecl(Id(a),[AttributeDecl(Static,ConstDecl(Id(c),IntType,None))])])
 ---
 testcase304:Program([ClassDecl(Id(a),[AttributeDecl(Static,VarDecl(Id(a),FloatType))])])
 ---

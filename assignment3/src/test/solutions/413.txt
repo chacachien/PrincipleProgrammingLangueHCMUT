@@ -1,1 +1,1 @@
-Type Mismatch In Statement: AttributeDecl(Instance,ConstDecl(Id(b),IntType,FloatLit(21.5)))
+Type Mismatch In Constant Declaration: ConstDecl(Id(b),IntType,FloatLit(21.5))

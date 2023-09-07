@@ -1,1 +1,1 @@
-Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),ClassType(Id(A)),NewExpr(Id(B),[])))
+Type Mismatch In Statement: VarDecl(Id(b),ClassType(Id(A)),NewExpr(Id(B),[]))

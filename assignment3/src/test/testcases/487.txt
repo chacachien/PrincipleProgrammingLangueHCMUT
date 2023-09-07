@@ -1,6 +1,6 @@
 class Example1 {
     int factorial(int n){
-        Example1 e = new Example();
+        Example1 e = new Example1();
         if n == 0 then return 1; else return e * this.factorial(n - 1);
     }
     void main(){

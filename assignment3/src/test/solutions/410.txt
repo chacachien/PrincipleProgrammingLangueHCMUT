@@ -1,1 +1,1 @@
-Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),IntType,Id(a)))
+Undeclared Identifier: a

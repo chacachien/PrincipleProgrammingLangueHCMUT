@@ -18,21 +18,21 @@ testcase408: Redeclared Constant: a
 ---
 testcase409: Undeclared Method: foo
 ---
-testcase410: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),IntType,Id(a)))
+testcase410: Undeclared Identifier: a
 ---
-testcase411: Type Mismatch In Statement: AttributeDecl(Instance,ConstDecl(Id(b),IntType,Id(a)))
+testcase411: Undeclared Identifier: a
 ---
 testcase412:[]
 ---
-testcase413: Type Mismatch In Statement: AttributeDecl(Instance,ConstDecl(Id(b),IntType,FloatLit(21.5)))
+testcase413: Type Mismatch In Constant Declaration: ConstDecl(Id(b),IntType,FloatLit(21.5))
 ---
-testcase414: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),BoolType,FloatLit(21.5)))
+testcase414: Type Mismatch In Statement: VarDecl(Id(b),BoolType,FloatLit(21.5))
 ---
 testcase415: Undeclared Class: A 
 ---
 testcase416:[]
 ---
-testcase417: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),ClassType(Id(A)),NewExpr(Id(B),[])))
+testcase417: Type Mismatch In Statement: VarDecl(Id(b),ClassType(Id(A)),NewExpr(Id(B),[]))
 ---          
 testcase418: Type Mismatch In Expression: FieldAccess(Self(),Id(a))
 ---

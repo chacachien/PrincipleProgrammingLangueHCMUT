@@ -23,17 +23,18 @@ listmemberprime: member listmemberprime | member;
 member: attribute
 		| method
 		| constructor;
+
 attribute: (mutableatt|immutableatt) SEMI;
 
-mutableatt: (STATIC)? typ listattmu; //expresion is ok?
-listattmu: attributenamemu COMMA listattmu | attributenamemu;
-attributenamemu: ID (EQ expression)?;
-
+mutableatt: (STATIC)? typ listatt; //expresion is ok?
+// listattmu: attributenamemu COMMA listattmu | attributenamemu;
+// attributenamemu: ID (EQ expression)?;
 
 immutableatt: FINAL (STATIC)? typ listatt //immu must be decl with value or not ????????????
 			| (STATIC)? FINAL typ listatt;
+			
 listatt: attributename COMMA listatt | attributename;
-attributename: ID EQ expression;
+attributename: ID (EQ expression)?;
 
 method: STATIC? typ ID LB listparameter RB blockstatement;
 listparameter: listparameterprime | ;
@@ -61,10 +62,10 @@ blockdeclprime: blockdecl blockdeclprime| blockdecl;
 blockbodylist: blockbodyprime| ;
 blockbodyprime: statement blockbodyprime | statement;
 
-blockdecl: (vardecl|vardeclmu) SEMI; //all of them
-vardecl: FINAL typ listatt;			// delete ?
+blockdecl: vardecl SEMI; //all of them
+vardecl: FINAL? typ listatt;			// delete ?
 
-vardeclmu: typ listattmu; 			// add to assignment 2
+// vardeclmu: typ listattmu; 			// add to assignment 2
 
 
 // ASSIGN 
