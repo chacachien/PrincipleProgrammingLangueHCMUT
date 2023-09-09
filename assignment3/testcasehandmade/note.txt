@@ -1,2 +1,24 @@
 - có thay đổi kiểu của const ko 
 - 
+class foo{}
+class main extends foo {
+    int b = a;  #undeclare or type Mismatch
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}
+class foo{}
+
+- 
+testcase414:
+class foo{}
+class main extends foo {
+    boolean b = 21.5; # type mis in att or var
+    int a (int a; int b){ 
+        this.foo();}
+    int c(){
+        int a;
+    }
+}

@@ -1,13 +1,14 @@
-class foo{}
-class A {
-    int a;
-}
-class B extends A {
-    A b = new B();
-    int c = this.a;
-    int a (int a; int b){ 
-        this.foo();}
-    int c(){
-        int a;
-    }
-}
+class Test2 {
+            int a = 1,b = 0;
+            static Test2 abc;
+            Test2 abcc(Test2 a,a){
+                Test2 an;
+                for i := 1 to 100 do 
+                {
+                    io.writeIntLn(i);
+                    Intarray[i] := i + 1;
+                }
+            }
+            void aneue,onichann= 1213;
+        }
+        

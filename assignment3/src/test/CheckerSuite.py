@@ -13,11 +13,11 @@ class CheckerSuite(unittest.TestCase):
         return test_simple_program
 
 import re
-
-# with open('C:/Users/OnDoing/PrincipleProgrammingLangueHCMUT/assignment3/testcasehandmade/input.txt') as f:
-#     f = f.read()
-# with open('C:/Users/OnDoing/PrincipleProgrammingLangueHCMUT/assignment3/testcasehandmade/exp.txt') as e:
-#     e = e.read()
+ 
+with open('C:/Users/OnDoing/PrincipleProgrammingLangueHCMUT/assignment3/testcasehandmade/input.txt') as f:
+    f = f.read()
+with open('C:/Users/OnDoing/PrincipleProgrammingLangueHCMUT/assignment3/testcasehandmade/exp.txt') as e:
+    e = e.read()
 
 f = '''
 testcase400:
@@ -2272,7 +2272,7 @@ testcase408: Redeclared Constant: a
 ---
 testcase409: Undeclared Method: foo
 ---
-testcase410: Undeclared Identifier: a
+testcase410: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),IntType,Id(a)))
 ---
 testcase411: Undeclared Identifier: a
 ---
@@ -2280,13 +2280,13 @@ testcase412:[]
 ---
 testcase413: Type Mismatch In Constant Declaration: ConstDecl(Id(b),IntType,FloatLit(21.5))
 ---
-testcase414: Type Mismatch In Statement: VarDecl(Id(b),BoolType,FloatLit(21.5))
+testcase414: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),BoolType,FloatLit(21.5)))
 ---
 testcase415: Undeclared Class: A 
 ---
 testcase416:[]
 ---
-testcase417: Type Mismatch In Statement: VarDecl(Id(b),ClassType(Id(A)),NewExpr(Id(B),[]))
+testcase417: Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(b),ClassType(Id(A)),NewExpr(Id(B),[])))
 ---          
 testcase418: Type Mismatch In Expression: FieldAccess(Self(),Id(a))
 ---
@@ -2451,9 +2451,10 @@ testcase497: Type Mismatch In Statement: Call(Self(),Id(merge),[Id(arr),Id(left)
 testcase498: []
 ---
 testcase499: Type Mismatch In Expression: CallExpr(Id(s2),Id(getGrade),[StringLit(a)])
-
 ---
+
 '''
+
 
 testcase=[]
 exp = []
@@ -2478,9 +2479,22 @@ for i in range(len(testcase)):
 # class CheckerSuite(unittest.TestCase):
 #     def test_undeclared_function(self):
 #         """Simple program: int main() {} """
-#         input = Program([ClassDecl(Id("Ex"),[AttributeDecl(Instance(),ConstDecl(Id("x"),IntType(),FloatLiteral(10.0)))])])
+#         input = '''
+# class Student {
+#     string name;
+#     int foo(int a, b){
+#         int c,d;
+#         if c >1 then {
+#             int e;
+#             float f;
+#             int g;
+#             int e = 1;
+#         }
+#     }
+# }
+#         '''
             
-#         expect = "Type Mismatch In Constant Declaration: ConstDecl(Id(x),IntType,FloatLit(10.0))"
+#         expect = "Redeclared Variable: e"
 #         self.assertTrue(TestChecker.test(input,expect,400))
         
         
@@ -2521,4 +2535,35 @@ for i in range(len(testcase)):
     #                 CallExpr(Id("putIntLn"),[])]))])
     #     expect = "Type Mismatch In Statement: CallExpr(Id(putIntLn),List())"
     #     self.assertTrue(TestChecker.test(input,expect,405))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     

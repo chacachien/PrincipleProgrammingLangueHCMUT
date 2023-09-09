@@ -19,7 +19,6 @@ class ASTGeneration(BKOOLVisitor):
         else:
             return [self.visit(ctx.classdecl())] + self.visit(ctx.bkool())
 
-
     # Visit a parse tree produced by BKOOLParser#classdecl.
     #   classdecl: CLASS ID (EXTENDS ID)? LP listmember RP;
     #   return a ClassDecl object
@@ -116,7 +115,7 @@ class ASTGeneration(BKOOLVisitor):
     #       method: STATIC? typ ID LB listparameter RB blockstatement;
     def visitMethod(self, ctx:BKOOLParser.MethodContext):
         if ctx.ID().getText()=="main":
-            return [MethodDecl(Static(), Id(ctx.ID().getText()), [], self.visit(ctx.typ()), self.visit(ctx.blockstatement()))]
+            return [MethodDecl(Static(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()), self.visit(ctx.typ()), self.visit(ctx.blockstatement()))]
         if ctx.STATIC():
             return [MethodDecl(Static(), Id(ctx.ID().getText()), self.visit(ctx.listparameter()), self.visit(ctx.typ()), self.visit(ctx.blockstatement()))]
         else:

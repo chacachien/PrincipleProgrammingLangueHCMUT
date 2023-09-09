@@ -1,0 +1,18 @@
+class A {
+            A a;
+            A foo(B b, a) {
+                float c;
+                
+            }
+        }
+        class B {
+            A a;
+            A foo(A a, b) {
+                C c1;
+                B x,y;
+                return c1.foo(x,y);
+                B.haha();
+            }
+            int[3] hihi() {}
+        }
+        class C extends A {}
