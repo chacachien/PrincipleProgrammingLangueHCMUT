@@ -1,6 +1,6 @@
 ## Bkool Programming Language - Compiler Development
 
-This repository contains the development of a compiler for the Bkool programming language, an object-oriented programming language designed using ANTLR and Python. 
+This repository contains the development of a compiler for the Bkool programming language, an object-oriented programming language designed using ANTLR and Python. This Project provides for Principle of Programming Language at HCMUT. 
 
 ### Introduction
 
